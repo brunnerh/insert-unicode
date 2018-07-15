@@ -11,4 +11,5 @@ export class Config
 interface TypedConfig
 {
 	get(item: "page-size"): number;
+	get(item: "unicode-font-use-regular-space"): boolean;
 }

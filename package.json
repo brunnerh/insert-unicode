@@ -2,7 +2,7 @@
     "name": "insert-unicode",
     "displayName": "Insert Unicode",
     "description": "Search for unicode characters and insert them into documents.",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "publisher": "brunnerh",
     "license": "MIT",
     "icon": "icon/icon.png",
@@ -21,7 +21,8 @@
         "onCommand:insert-unicode.insertText",
         "onCommand:insert-unicode.insertCode",
         "onCommand:insert-unicode.insertTextExact",
-        "onCommand:insert-unicode.insertCodeExact"
+        "onCommand:insert-unicode.insertCodeExact",
+        "onCommand:insert-unicode.insertFont"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -41,6 +42,10 @@
             {
                 "command": "insert-unicode.insertCodeExact",
                 "title": "Insert Exact Unicode (Hex Code)"
+            },
+            {
+                "command": "insert-unicode.insertFont",
+                "title": "Insert/Replace Text With \"Unicode Font\""
             }
         ],
         "configuration": {
@@ -51,6 +56,11 @@
                     "description": "The maximal number of items shown on one search page.",
                     "type": "number",
                     "default": 500
+                },
+                "insert-unicode.unicode-font-use-regular-space": {
+                    "description": "Always use a normal space character instead of higher width spaces when using the 'insertFont' command. Some of the fonts use a different space character to account for larger character widths.",
+                    "type": "boolean",
+                    "default": false
                 }
             }
         }
