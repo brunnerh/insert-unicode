@@ -31621,9 +31621,17 @@ FFFFD;<Plane 15 Private Use, Last>;Co;0;L;;;;;N;;;;;
 10FFFD;<Plane 16 Private Use, Last>;Co;0;L;;;;;N;;;;;`;
 // cSpell: enable
 
+export interface UnicodeEntry
+{
+	/**	Code point. */
+	code: number;
+	/** Name of the character. */
+	name: string;
+}
+
 export const data = str.split('\n')
-						.map(line => line.split(';'))
-						.map(([code, name]) => ({
-							code: parseInt(code, 16),
-							name
-						}));
+	.map(line => line.split(';'))
+	.map(([code, name]) => (<UnicodeEntry>{
+		code: parseInt(code, 16),
+		name
+	}));

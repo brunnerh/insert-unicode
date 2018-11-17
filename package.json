@@ -2,7 +2,7 @@
     "name": "insert-unicode",
     "displayName": "Insert Unicode",
     "description": "Search for unicode characters and insert them into documents.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "publisher": "brunnerh",
     "license": "MIT",
     "icon": "icon/icon.png",
@@ -53,12 +53,20 @@
             "title": "Insert Unicode",
             "properties": {
                 "insert-unicode.page-size": {
+                    "title": "Search Page Size",
                     "description": "The maximal number of items shown on one search page.",
                     "type": "number",
                     "default": 500
                 },
                 "insert-unicode.unicode-font-use-regular-space": {
+                    "title": "Use Regular Space for Unicode Fonts",
                     "description": "Always use a normal space character instead of higher width spaces when using the 'insertFont' command. Some of the fonts use a different space character to account for larger character widths.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "insert-unicode.disable-pre-filtering": {
+                    "title": "Disable Pre-Filtering",
+                    "description": "Disable the paged search and perform live filtering on the entire Unicode set. Can have performance issues.",
                     "type": "boolean",
                     "default": false
                 }

@@ -8,7 +8,8 @@ export async function showPaginatedQuickPick<T extends QuickPickItem>(
 {
 	const resolvedItems = await items;
 
-	options = Object.assign({}, { pageSize: 100 }, options);
+	const defaults = { pageSize: 100 };
+	options = { ...defaults, ...options };
 
 	type ActionItem = QuickPickItem & { _callback: () => Promise<T | undefined> };
 

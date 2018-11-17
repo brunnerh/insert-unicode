@@ -12,4 +12,5 @@ interface TypedConfig
 {
 	get(item: "page-size"): number;
 	get(item: "unicode-font-use-regular-space"): boolean;
+	get(item: "disable-pre-filtering"): boolean;
 }

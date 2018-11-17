@@ -8,15 +8,32 @@ import { showPaginatedQuickPick } from './utility';
 const codeToHex = (code: number) => `0x${code.toString(16)}`;
 const codeToText = (code: number) => String.fromCodePoint(code);
 
+const allDataQuickPicks = data.map(entry => ({
+	label: String.fromCodePoint(entry.code),
+	description: `${codeToHex(entry.code)} - ${entry.name}`,
+	entry
+}));
+
+/**
+ * Creates a command function with the specified settings.
+ * @param codeConverter Conversion from selected Unicode code to text to insert into the editor.
+ * @param matchExact Whether to search the Unicode characters for the exact search term.
+ */
 const insertCommandFactory = (codeConverter: (code: number) => string, matchExact: boolean) =>
 	async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
 	{
-		var search = <string | object>args[0];
+		const search = <string | object>args[0];
+		const disableFiltering = Config.section.get("disable-pre-filtering");
 
 		const insert = (value: string) =>
 			editor.edit(builder => editor.selection.isEmpty ?
-					builder.insert(editor.selection.active, value) : builder.replace(editor.selection, value));
+				builder.insert(editor.selection.active, value) : builder.replace(editor.selection, value));
 
+		/**
+		 * Prompts the user for an initial search term.
+		 * @param search Pre-filled search term.
+		 * @param prompt The prompt text above the search input.
+		 */
 		const filter = async (search?: string, prompt?: string) =>
 		{
 			const filter = await vscode.window.showInputBox({
@@ -31,47 +48,61 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 			await select(filter);
 		};
 
-		const select = async (search: string) =>
+		/**
+		 * Shows a filtered selection list from which to choose a character.
+		 * @param search The search term to which to limit the list of characters to choose from.
+		 */
+		const select = async (search?: string) =>
 		{
-			const searchNormalized = search.toUpperCase();
+			let pickItems = allDataQuickPicks;
 
-			const items = data.filter(item => matchExact ?
-				item.name === searchNormalized : item.name.indexOf(searchNormalized) !== -1);
-
-			// Instant insert on exact match
-			if (items.length === 1)
+			if (search !== undefined)
 			{
-				await insert(codeConverter(items[0].code));
-				return;
+				const searchNormalized = search.toUpperCase();
+				pickItems = allDataQuickPicks.filter(quickPick =>
+					matchExact
+						? quickPick.entry.name === searchNormalized
+						: quickPick.entry.name.indexOf(searchNormalized) !== -1
+				);
+
+				// Instant insert on exact match
+				if (pickItems.length === 1)
+				{
+					await insert(codeConverter(pickItems[0].entry.code));
+					return;
+				}
+
+				if (pickItems.length === 0)
+				{
+					await filter(search, `No items found for "${search}".`);
+					return;
+				}
 			}
 
-			if (items.length === 0)
-			{
-				await filter(search, `No items found for "${search}".`);
-				return;
-			}
-
-			const pickItems = items.map(item => ({
-				label: String.fromCodePoint(item.code),
-				description: `${codeToHex(item.code)} - ${item.name}`,
-				code: item.code
-			}));
-
-			const selection = await showPaginatedQuickPick(pickItems, {
+			const quickPickOptions = <vscode.QuickPickOptions>{
 				matchOnDescription: true,
-				placeHolder: `Results for "${search}" (${items.length}). (Press ESC to search for another term.)`,
+				placeHolder: disableFiltering ? '' :
+					`Results for "${search}" (${pickItems.length}). (Press ESC to search for another term.)`,
 				pageSize: Config.section.get("page-size")
-			});
+			};
 
-			if (selection === undefined)
+			const selection = await (
+				disableFiltering
+					? vscode.window.showQuickPick(pickItems, quickPickOptions)
+					: showPaginatedQuickPick(pickItems, quickPickOptions)
+			);
+
+			if (selection !== undefined)
+				await insert(codeConverter(selection.entry.code));
+			else if (disableFiltering === false)
 				// Go back to search.
 				await filter(search);
-			else
-				await insert(codeConverter(selection.code));
 		};
 
 		if (typeof search === 'string')
 			await select(search);
+		else if (disableFiltering)
+			await select();
 		else
 			await filter();
 	};
@@ -113,14 +144,14 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 	const convertText = (text: string, style: Style) =>
 	{
 		const spaceReplacement = Config.section.get("unicode-font-use-regular-space") ?
-									spaceCode : style.space;
+			spaceCode : style.space;
 
 		return text.split('').map(e =>
 		{
 			const c = e.charCodeAt(0);
 			return c === spaceCode ? spaceReplacement :
 				c >= ACode && c <= ZCode ? (c - ACode + style.A) :
-				c >= aCode && c <= zCode ? (c - aCode + (style.a === undefined ? style.A : style.a)) : c;
+					c >= aCode && c <= zCode ? (c - aCode + (style.a === undefined ? style.A : style.a)) : c;
 		}).map(c => String.fromCodePoint(c)).join("");
 	};
 
