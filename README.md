@@ -52,7 +52,7 @@ This command can also be bound using an argument to specify the font, e.g.:
 
 ## Unicode Version
 
-Currently the characters from version 10.0.0 are listed.
+Currently the characters from version 11 are listed.
 
 ## Known Issues
 

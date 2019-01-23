@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.2.2] - 2019-01-23
+
+- Updated Unicode table to version 11 🦙.
+
 ## [0.2.1] - 2018-11-17
 - Added `insert-unicode.disable-pre-filtering` which can be used to skip the initial search step and disable paging.
 
