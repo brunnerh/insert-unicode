@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.2.2] - 2019-02-04
+
+- Renamed commands to avoid potential confusion:
+  - Suffix `(Text)` for insert commands was dropped.
+  - Suffix `(Hex Code)` was changed to `as Hex Code`.
+- Added command `Insert Unicode from Hex Code` which directly converts a code to text.
+
 ## [0.2.2] - 2019-01-23
 
 - Updated Unicode table to version 11 🦙.

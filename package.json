@@ -2,7 +2,7 @@
     "name": "insert-unicode",
     "displayName": "Insert Unicode",
     "description": "Search for unicode characters and insert them into documents.",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "publisher": "brunnerh",
     "license": "MIT",
     "icon": "icon/icon.png",
@@ -22,30 +22,35 @@
         "onCommand:insert-unicode.insertCode",
         "onCommand:insert-unicode.insertTextExact",
         "onCommand:insert-unicode.insertCodeExact",
-        "onCommand:insert-unicode.insertFont"
+        "onCommand:insert-unicode.insertFont",
+        "onCommand:insert-unicode.fromHexCode"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
                 "command": "insert-unicode.insertText",
-                "title": "Insert Unicode (Text)"
+                "title": "Insert Unicode"
             },
             {
                 "command": "insert-unicode.insertCode",
-                "title": "Insert Unicode (Hex Code)"
+                "title": "Insert Unicode as Hex Code"
             },
             {
                 "command": "insert-unicode.insertTextExact",
-                "title": "Insert Exact Unicode (Text)"
+                "title": "Insert Exact Unicode"
             },
             {
                 "command": "insert-unicode.insertCodeExact",
-                "title": "Insert Exact Unicode (Hex Code)"
+                "title": "Insert Exact Unicode as Hex Code"
             },
             {
                 "command": "insert-unicode.insertFont",
                 "title": "Insert/Replace Text With \"Unicode Font\""
+            },
+            {
+                "command": "insert-unicode.fromHexCode",
+                "title": "Insert Unicode from Hex Code"
             }
         ],
         "configuration": {

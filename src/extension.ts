@@ -14,6 +14,11 @@ const allDataQuickPicks = data.map(entry => ({
 	entry
 }));
 
+
+const insert = (editor: TextEditor, value: string) =>
+	editor.edit(builder => editor.selection.isEmpty ?
+		builder.insert(editor.selection.active, value) : builder.replace(editor.selection, value));
+
 /**
  * Creates a command function with the specified settings.
  * @param codeConverter Conversion from selected Unicode code to text to insert into the editor.
@@ -24,10 +29,6 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 	{
 		const search = <string | object>args[0];
 		const disableFiltering = Config.section.get("disable-pre-filtering");
-
-		const insert = (value: string) =>
-			editor.edit(builder => editor.selection.isEmpty ?
-				builder.insert(editor.selection.active, value) : builder.replace(editor.selection, value));
 
 		/**
 		 * Prompts the user for an initial search term.
@@ -68,7 +69,7 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 				// Instant insert on exact match
 				if (pickItems.length === 1)
 				{
-					await insert(codeConverter(pickItems[0].entry.code));
+					await insert(editor, codeConverter(pickItems[0].entry.code));
 					return;
 				}
 
@@ -93,7 +94,7 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 			);
 
 			if (selection !== undefined)
-				await insert(codeConverter(selection.entry.code));
+				await insert(editor, codeConverter(selection.entry.code));
 			else if (disableFiltering === false)
 				// Go back to search.
 				await filter(search);
@@ -218,6 +219,23 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 	await insert(style);
 };
 
+const hexToText = async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
+{
+	const findEntry = (search: string) => data.find(item => item.code == parseInt(search, 16));
+
+	const code = await vscode.window.showInputBox({
+		placeHolder: 'e.g. "1f525" for the FIRE Unicode character.',
+		validateInput: value => value.match(/^[0-9a-f]*$/i) == null ? 'Input does not match number in hexadecimal.' :
+			findEntry(value) == undefined ? 'No character exists for this hex code.' : null,
+	});
+
+	if (code == null)
+		return;
+
+	const entry = findEntry(code)!;
+	insert(editor, codeToText(entry.code));
+};
+
 export function activate(context: vscode.ExtensionContext)
 {
 	const register = vscode.commands.registerTextEditorCommand;
@@ -228,6 +246,7 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertCode', insertCommandFactory(codeToHex, false)),
 		register('insert-unicode.insertCodeExact', insertCommandFactory(codeToHex, true)),
 		register('insert-unicode.insertFont', insertFont),
+		register('insert-unicode.fromHexCode', hexToText),
 	];
 
 	context.subscriptions.push(...tokens);

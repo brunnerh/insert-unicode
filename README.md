@@ -50,6 +50,10 @@ This command can also be bound using an argument to specify the font, e.g.:
 }
 ```
 
+### Direct Hex Code Input
+
+If you happen to know the exact code, the command `Insert Unicode from Hex Code` can be used.
+
 ## Unicode Version
 
 Currently the characters from version 11 are listed.
