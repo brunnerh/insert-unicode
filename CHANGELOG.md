@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.4.1] - 2019-02-18
+
+- Fix sequences not being found if pre-filtering is enabled (`disable-pre-filtering: false`) due to different casing.
+
 ## [0.4.0] - 2019-02-18
 
 - Added Emoji (v.12.0) sequences such as flags 🇳🇵.

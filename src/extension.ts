@@ -75,8 +75,8 @@ const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchE
 				const searchNormalized = search.toUpperCase();
 				pickItems = pickItems.filter(quickPick =>
 					matchExact
-						? quickPick.entry.name === searchNormalized
-						: quickPick.entry.name.indexOf(searchNormalized) !== -1
+						? quickPick.entry.name.toUpperCase() === searchNormalized
+						: quickPick.entry.name.toUpperCase().indexOf(searchNormalized) !== -1
 				);
 
 				// Instant insert on exact match
