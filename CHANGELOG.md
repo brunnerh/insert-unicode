@@ -1,6 +1,13 @@
 # Change Log
 
-## [0.2.2] - 2019-02-04
+## [0.4.0] - 2019-02-18
+
+- Added Emoji (v.12.0) sequences such as flags 🇳🇵.
+  - Whether these sequences appear as entries in the list can be controlled with the setting `insert-unicode.include-sequences`.
+  - Likewise the appearance of skin tone variation entries is controlled via the setting `insert-unicode.include-skin-tone-variants`.<br/>
+    These variations are not included by default as they clutter the list significantly.
+
+## [0.3.0] - 2019-02-04
 
 - Renamed commands to avoid potential confusion:
   - Suffix `(Text)` for insert commands was dropped.

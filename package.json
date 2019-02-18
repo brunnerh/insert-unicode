@@ -2,7 +2,7 @@
     "name": "insert-unicode",
     "displayName": "Insert Unicode",
     "description": "Search for unicode characters and insert them into documents.",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "publisher": "brunnerh",
     "license": "MIT",
     "icon": "icon/icon.png",
@@ -72,6 +72,18 @@
                 "insert-unicode.disable-pre-filtering": {
                     "title": "Disable Pre-Filtering",
                     "description": "Disable the paged search and perform live filtering on the entire Unicode set. Can have performance issues.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "insert-unicode.include-sequences": {
+                    "title": "Include Sequences",
+                    "description": "Include entries made up of a sequence of Unicode code points; some Emoji are defined this way.",
+                    "type": "boolean",
+                    "default": true
+                },
+                "insert-unicode.include-skin-tone-variants": {
+                    "title": "Include Skin Tone Variants",
+                    "description": "Include skin tone variations of Emoji in the search. This adds five entries for every Emoji that supports skin tone modifiers. (Only has an impact if sequences are enabled; See: include-sequences)",
                     "type": "boolean",
                     "default": false
                 }

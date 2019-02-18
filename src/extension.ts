@@ -5,15 +5,28 @@ import { Config } from './config-interface';
 import { TextEditor, TextEditorEdit } from 'vscode';
 import { showPaginatedQuickPick } from './utility';
 
-const codeToHex = (code: number) => `0x${code.toString(16)}`;
-const codeToText = (code: number) => String.fromCodePoint(code);
+const codesToHex = (codes: number[]) => codes.map(code => `0x${code.toString(16)}`).join(' ');
+const codesToText = (codes: number[]) => codes.map(code => String.fromCodePoint(code)).join('');
 
 const allDataQuickPicks = data.map(entry => ({
-	label: String.fromCodePoint(entry.code),
-	description: `${codeToHex(entry.code)} - ${entry.name}`,
+	label: entry.codes.map(code => String.fromCodePoint(code)).join(''),
+	description: `${codesToHex(entry.codes)} - ${entry.name}`,
 	entry
 }));
 
+const getDataQuickPicks = () =>
+{
+	let picks = allDataQuickPicks;
+
+	if (Config.section.get('include-sequences') === false)
+		picks = picks.filter(item => item.entry.codes.length === 1);
+
+	if (Config.section.get('include-skin-tone-variants') === false)
+		picks = picks.filter(item => item.entry.codes.length === 1
+			|| item.entry.codes.some(code => code >= 0x1f3fb && code <= 0x1f3ff) === false);
+
+	return picks;
+};
 
 const insert = (editor: TextEditor, value: string) =>
 	editor.edit(builder => editor.selection.isEmpty ?
@@ -24,7 +37,7 @@ const insert = (editor: TextEditor, value: string) =>
  * @param codeConverter Conversion from selected Unicode code to text to insert into the editor.
  * @param matchExact Whether to search the Unicode characters for the exact search term.
  */
-const insertCommandFactory = (codeConverter: (code: number) => string, matchExact: boolean) =>
+const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchExact: boolean) =>
 	async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
 	{
 		const search = <string | object>args[0];
@@ -55,12 +68,12 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 		 */
 		const select = async (search?: string) =>
 		{
-			let pickItems = allDataQuickPicks;
+			let pickItems = getDataQuickPicks();
 
 			if (search !== undefined)
 			{
 				const searchNormalized = search.toUpperCase();
-				pickItems = allDataQuickPicks.filter(quickPick =>
+				pickItems = pickItems.filter(quickPick =>
 					matchExact
 						? quickPick.entry.name === searchNormalized
 						: quickPick.entry.name.indexOf(searchNormalized) !== -1
@@ -69,7 +82,7 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 				// Instant insert on exact match
 				if (pickItems.length === 1)
 				{
-					await insert(editor, codeConverter(pickItems[0].entry.code));
+					await insert(editor, codeConverter(pickItems[0].entry.codes));
 					return;
 				}
 
@@ -94,7 +107,7 @@ const insertCommandFactory = (codeConverter: (code: number) => string, matchExac
 			);
 
 			if (selection !== undefined)
-				await insert(editor, codeConverter(selection.entry.code));
+				await insert(editor, codeConverter(selection.entry.codes));
 			else if (disableFiltering === false)
 				// Go back to search.
 				await filter(search);
@@ -221,19 +234,20 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 
 const hexToText = async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
 {
-	const findEntry = (search: string) => data.find(item => item.code == parseInt(search, 16));
+	const findEntry = (search: string) => data.find(item =>
+		item.codes.length === 1 && item.codes[0] === parseInt(search, 16));
 
 	const code = await vscode.window.showInputBox({
 		placeHolder: 'e.g. "1f525" for the FIRE Unicode character.',
-		validateInput: value => value.match(/^[0-9a-f]*$/i) == null ? 'Input does not match number in hexadecimal.' :
-			findEntry(value) == undefined ? 'No character exists for this hex code.' : null,
+		validateInput: value => value.match(/^[0-9a-f]*$/i) === null ? 'Input does not match number in hexadecimal.' :
+			findEntry(value) === undefined ? 'No character exists for this hex code.' : null,
 	});
 
-	if (code == null)
+	if (code === undefined)
 		return;
 
 	const entry = findEntry(code)!;
-	insert(editor, codeToText(entry.code));
+	insert(editor, codesToText(entry.codes));
 };
 
 export function activate(context: vscode.ExtensionContext)
@@ -241,11 +255,13 @@ export function activate(context: vscode.ExtensionContext)
 	const register = vscode.commands.registerTextEditorCommand;
 
 	const tokens = [
-		register('insert-unicode.insertText', insertCommandFactory(codeToText, false)),
-		register('insert-unicode.insertTextExact', insertCommandFactory(codeToText, true)),
-		register('insert-unicode.insertCode', insertCommandFactory(codeToHex, false)),
-		register('insert-unicode.insertCodeExact', insertCommandFactory(codeToHex, true)),
+		register('insert-unicode.insertText', insertCommandFactory(codesToText, false)),
+		register('insert-unicode.insertTextExact', insertCommandFactory(codesToText, true)),
+		register('insert-unicode.insertCode', insertCommandFactory(codesToHex, false)),
+		register('insert-unicode.insertCodeExact', insertCommandFactory(codesToHex, true)),
+
 		register('insert-unicode.insertFont', insertFont),
+
 		register('insert-unicode.fromHexCode', hexToText),
 	];
 

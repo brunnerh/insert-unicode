@@ -1,12 +1,12 @@
 # Insert Unicode
 
-This is an extension for [Visual Studio Code](https://code.visualstudio.com/) which adds commands for inserting unicode characters/codes.
+This is an extension for [Visual Studio Code](https://code.visualstudio.com/) which adds commands for inserting Unicode characters/codes and Emoji.
 
 ## Features
 
 ### Inserting Individual Characters/Codes
 
-There are commands for inserting unicode characters as text or as hex codes. There are variations for both commands that search for an exact name rather than a substring to facilitate faster insertion when the name is known.
+There are commands for inserting Unicode characters as text or as hex codes. There are variations for both commands that search for an exact name rather than a substring to facilitate faster insertion when the name is known.
 
 ![search-prompt](./readme-files/search-prompt.gif)
 
@@ -54,9 +54,10 @@ This command can also be bound using an argument to specify the font, e.g.:
 
 If you happen to know the exact code, the command `Insert Unicode from Hex Code` can be used.
 
-## Unicode Version
+## Unicode Standards Versions
 
-Currently the characters from version 11 are listed.
+- Unicode Standard: 11.0.0
+- Unicode Emoji: 12.0
 
 ## Known Issues
 
