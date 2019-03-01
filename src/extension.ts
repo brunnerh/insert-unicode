@@ -1,9 +1,11 @@
 'use strict';
 import * as vscode from 'vscode';
-import { data } from './data';
+import { QuickPickItem, QuickPickOptions, TextEditor, TextEditorEdit, window, workspace } from 'vscode';
 import { Config } from './config-interface';
-import { TextEditor, TextEditorEdit } from 'vscode';
+import { data } from './data';
 import { showPaginatedQuickPick } from './utility';
+
+type CommandCallback = (textEditor: TextEditor, edit: TextEditorEdit, ...args: any[]) => void;
 
 const codesToHex = (codes: number[]) => codes.map(code => `0x${code.toString(16)}`).join(' ');
 const codesToText = (codes: number[]) => codes.map(code => String.fromCodePoint(code)).join('');
@@ -37,8 +39,8 @@ const insert = (editor: TextEditor, value: string) =>
  * @param codeConverter Conversion from selected Unicode code to text to insert into the editor.
  * @param matchExact Whether to search the Unicode characters for the exact search term.
  */
-const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchExact: boolean) =>
-	async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
+const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchExact: boolean): CommandCallback =>
+	async (editor, _edit, ...args) =>
 	{
 		const search = <string | object>args[0];
 		const disableFiltering = Config.section.get("disable-pre-filtering");
@@ -50,7 +52,7 @@ const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchE
 		 */
 		const filter = async (search?: string, prompt?: string) =>
 		{
-			const filter = await vscode.window.showInputBox({
+			const filter = await window.showInputBox({
 				placeHolder: 'e.g. "ok hand"',
 				prompt: prompt === undefined ? "Enter a search term." : prompt,
 				value: search
@@ -93,7 +95,7 @@ const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchE
 				}
 			}
 
-			const quickPickOptions = <vscode.QuickPickOptions>{
+			const quickPickOptions = <QuickPickOptions>{
 				matchOnDescription: true,
 				placeHolder: disableFiltering ? '' :
 					`Results for "${search}" (${pickItems.length}). (Press ESC to search for another term.)`,
@@ -102,7 +104,7 @@ const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchE
 
 			const selection = await (
 				disableFiltering
-					? vscode.window.showQuickPick(pickItems, quickPickOptions)
+					? window.showQuickPick(pickItems, quickPickOptions)
 					: showPaginatedQuickPick(pickItems, quickPickOptions)
 			);
 
@@ -121,7 +123,7 @@ const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchE
 			await filter();
 	};
 
-const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
+const insertFont: CommandCallback = async (editor, edit, ...args) =>
 {
 	var fontStyle = <string | object>args[0];
 
@@ -171,8 +173,8 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 
 	const pickStyle = async () =>
 	{
-		const item = await vscode.window.showQuickPick(
-			fontStyles.map(style => <vscode.QuickPickItem & { style: Style }>{
+		const item = await window.showQuickPick(
+			fontStyles.map(style => <QuickPickItem & { style: Style }>{
 				label: convertText(style.label, style),
 				description: style.label,
 				style: style
@@ -188,7 +190,7 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 	{
 		if (editor.selection.isEmpty)
 		{
-			const text = await vscode.window.showInputBox({
+			const text = await window.showInputBox({
 				prompt: "Text to insert."
 			});
 
@@ -216,7 +218,7 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 		style = fontStyles.filter(style => style.label === fontStyle)[0];
 		if (style === undefined)
 		{
-			vscode.window.showErrorMessage(`Unknown font style argument: ${fontStyle}.\nKnown styles: ${fontStyles.map(s => s.label).join(", ")}`);
+			window.showErrorMessage(`Unknown font style argument: ${fontStyle}.\nKnown styles: ${fontStyles.map(s => s.label).join(", ")}`);
 			return;
 		}
 	}
@@ -232,12 +234,12 @@ const insertFont = async (editor: TextEditor, _edit: TextEditorEdit, ...args: an
 	await insert(style);
 };
 
-const hexToText = async (editor: TextEditor, _edit: TextEditorEdit, ...args: any[]) =>
+const hexToText: CommandCallback = async editor =>
 {
 	const findEntry = (search: string) => data.find(item =>
 		item.codes.length === 1 && item.codes[0] === parseInt(search, 16));
 
-	const code = await vscode.window.showInputBox({
+	const code = await window.showInputBox({
 		placeHolder: 'e.g. "1f525" for the FIRE Unicode character.',
 		validateInput: value => value.match(/^[0-9a-f]*$/i) === null ? 'Input does not match number in hexadecimal.' :
 			findEntry(value) === undefined ? 'No character exists for this hex code.' : null,
@@ -248,6 +250,44 @@ const hexToText = async (editor: TextEditor, _edit: TextEditorEdit, ...args: any
 
 	const entry = findEntry(code)!;
 	insert(editor, codesToText(entry.codes));
+};
+
+const identifyCharacters: CommandCallback = async editor =>
+{
+	if (editor.selection.isEmpty)
+	{
+		window.showWarningMessage("No text selected.");
+		return;
+	}
+
+	const text = editor.document.getText(editor.selection);
+	const message = Array.from(text)
+		.map(char => ({
+			char,
+			code: char.codePointAt(0) ? char.codePointAt(0)! : char.charCodeAt(0)
+		}))
+		.map(item => ({
+			...item,
+			entry: data.find(d => d.codes.length === 1 && d.codes[0] === item.code)
+		}))
+		.map(item => item.entry === undefined
+			? `Unknown character code: ${codesToHex([item.code])}`
+			: `${item.char}: ${item.entry.name} (${codesToHex([item.code])})`
+		)
+		.join('\n');
+
+	let showFile: boolean = Config.section.get('show-identified-characters-in-file');
+	if (showFile === false)
+		showFile = (await window.showInformationMessage(message, 'Show in New File')) !== undefined;
+
+	if (showFile)
+	{
+		const document = await workspace.openTextDocument({
+			content: message,
+		});
+
+		await window.showTextDocument(document, vscode.ViewColumn.Two);
+	}
 };
 
 export function activate(context: vscode.ExtensionContext)
@@ -261,8 +301,8 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertCodeExact', insertCommandFactory(codesToHex, true)),
 
 		register('insert-unicode.insertFont', insertFont),
-
 		register('insert-unicode.fromHexCode', hexToText),
+		register('insert-unicode.identify', identifyCharacters),
 	];
 
 	context.subscriptions.push(...tokens);

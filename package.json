@@ -1,107 +1,118 @@
 {
-    "name": "insert-unicode",
-    "displayName": "Insert Unicode",
-    "description": "Search for unicode characters and insert them into documents.",
-    "version": "0.4.1",
-    "publisher": "brunnerh",
-    "license": "MIT",
-    "icon": "icon/icon.png",
-    "homepage": "https://github.com/brunnerh/insert-unicode",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/brunnerh/insert-unicode.git"
-    },
-    "engines": {
-        "vscode": "^1.23.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:insert-unicode.insertText",
-        "onCommand:insert-unicode.insertCode",
-        "onCommand:insert-unicode.insertTextExact",
-        "onCommand:insert-unicode.insertCodeExact",
-        "onCommand:insert-unicode.insertFont",
-        "onCommand:insert-unicode.fromHexCode"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "insert-unicode.insertText",
-                "title": "Insert Unicode"
-            },
-            {
-                "command": "insert-unicode.insertCode",
-                "title": "Insert Unicode as Hex Code"
-            },
-            {
-                "command": "insert-unicode.insertTextExact",
-                "title": "Insert Exact Unicode"
-            },
-            {
-                "command": "insert-unicode.insertCodeExact",
-                "title": "Insert Exact Unicode as Hex Code"
-            },
-            {
-                "command": "insert-unicode.insertFont",
-                "title": "Insert/Replace Text With \"Unicode Font\""
-            },
-            {
-                "command": "insert-unicode.fromHexCode",
-                "title": "Insert Unicode from Hex Code"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "Insert Unicode",
-            "properties": {
-                "insert-unicode.page-size": {
-                    "title": "Search Page Size",
-                    "description": "The maximal number of items shown on one search page.",
-                    "type": "number",
-                    "default": 500
-                },
-                "insert-unicode.unicode-font-use-regular-space": {
-                    "title": "Use Regular Space for Unicode Fonts",
-                    "description": "Always use a normal space character instead of higher width spaces when using the 'insertFont' command. Some of the fonts use a different space character to account for larger character widths.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "insert-unicode.disable-pre-filtering": {
-                    "title": "Disable Pre-Filtering",
-                    "description": "Disable the paged search and perform live filtering on the entire Unicode set. Can have performance issues.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "insert-unicode.include-sequences": {
-                    "title": "Include Sequences",
-                    "description": "Include entries made up of a sequence of Unicode code points; some Emoji are defined this way.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "insert-unicode.include-skin-tone-variants": {
-                    "title": "Include Skin Tone Variants",
-                    "description": "Include skin tone variations of Emoji in the search. This adds five entries for every Emoji that supports skin tone modifiers. (Only has an impact if sequences are enabled; See: include-sequences)",
-                    "type": "boolean",
-                    "default": false
-                }
-            }
-        }
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "tslint": "^5.8.0",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
-    }
+	"name": "insert-unicode",
+	"displayName": "Insert Unicode",
+	"description": "Search for unicode characters and insert them into documents.",
+	"version": "0.5.0",
+	"publisher": "brunnerh",
+	"license": "MIT",
+	"icon": "icon/icon.png",
+	"homepage": "https://github.com/brunnerh/insert-unicode",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brunnerh/insert-unicode.git"
+	},
+	"engines": {
+		"vscode": "^1.23.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:insert-unicode.insertText",
+		"onCommand:insert-unicode.insertCode",
+		"onCommand:insert-unicode.insertTextExact",
+		"onCommand:insert-unicode.insertCodeExact",
+		"onCommand:insert-unicode.insertFont",
+		"onCommand:insert-unicode.fromHexCode",
+		"onCommand:insert-unicode.identify"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "insert-unicode.insertText",
+				"title": "Insert Unicode"
+			},
+			{
+				"command": "insert-unicode.insertCode",
+				"title": "Insert Unicode as Hex Code"
+			},
+			{
+				"command": "insert-unicode.insertTextExact",
+				"title": "Insert Exact Unicode"
+			},
+			{
+				"command": "insert-unicode.insertCodeExact",
+				"title": "Insert Exact Unicode as Hex Code"
+			},
+			{
+				"command": "insert-unicode.insertFont",
+				"title": "Insert/Replace Text With \"Unicode Font\""
+			},
+			{
+				"command": "insert-unicode.fromHexCode",
+				"title": "Insert Unicode from Hex Code"
+			},
+			{
+				"command": "insert-unicode.identify",
+				"title": "Identify Unicode Characters"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Insert Unicode",
+			"properties": {
+				"insert-unicode.page-size": {
+					"title": "Search Page Size",
+					"description": "The maximal number of items shown on one search page.",
+					"type": "number",
+					"default": 500
+				},
+				"insert-unicode.unicode-font-use-regular-space": {
+					"title": "Use Regular Space for Unicode Fonts",
+					"description": "Always use a normal space character instead of higher width spaces when using the 'insertFont' command. Some of the fonts use a different space character to account for larger character widths.",
+					"type": "boolean",
+					"default": false
+				},
+				"insert-unicode.disable-pre-filtering": {
+					"title": "Disable Pre-Filtering",
+					"description": "Disable the paged search and perform live filtering on the entire Unicode set. Can have performance issues.",
+					"type": "boolean",
+					"default": false
+				},
+				"insert-unicode.include-sequences": {
+					"title": "Include Sequences",
+					"description": "Include entries made up of a sequence of Unicode code points; some Emoji are defined this way.",
+					"type": "boolean",
+					"default": true
+				},
+				"insert-unicode.include-skin-tone-variants": {
+					"title": "Include Skin Tone Variants",
+					"description": "Include skin tone variations of Emoji in the search. This adds five entries for every Emoji that supports skin tone modifiers. (Only has an impact if sequences are enabled; See: include-sequences)",
+					"type": "boolean",
+					"default": false
+				},
+				"insert-unicode.show-identified-characters-in-file": {
+					"title": "Show Identified Characters in File",
+					"description": "Relevant for the 'Identify Unicode Characters' command. If set to 'true', the results of the 'Identify Unicode Characters' command will always be displayed in a new file. When 'false', an info notification is shown which also offers the option to open the contents as file.",
+					"type": "boolean",
+					"default": false
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.6",
+		"tslint": "^5.8.0",
+		"@types/node": "^7.0.43",
+		"@types/mocha": "^2.2.42"
+	}
 }

@@ -15,4 +15,5 @@ interface TypedConfig
 	get(item: "disable-pre-filtering"): boolean;
 	get(item: "include-sequences"): boolean;
 	get(item: "include-skin-tone-variants"): boolean;
+	get(item: "show-identified-characters-in-file"): boolean;
 }

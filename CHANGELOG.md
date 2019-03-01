@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.5.0] - 2019-03-01
+
+- Added `Identify Unicode Characters` command and option to control whether the results are always displayed as file (`show-identified-characters-in-file`).
+
 ## [0.4.1] - 2019-02-18
 
 - Fix sequences not being found if pre-filtering is enabled (`disable-pre-filtering: false`) due to different casing.

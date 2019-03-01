@@ -50,6 +50,30 @@ This command can also be bound using an argument to specify the font, e.g.:
 }
 ```
 
+### Identify Unicode Characters
+
+This command will show the Unicode name and code point of the selected characters.
+
+Example text:
+
+```plain
+🇳🇵👌🏻🔥
+```
+
+Output:
+
+```plain
+🇳: REGIONAL INDICATOR SYMBOL LETTER N (0x1f1f3)
+🇵: REGIONAL INDICATOR SYMBOL LETTER P (0x1f1f5)
+👌: OK HAND SIGN (0x1f44c)
+🏻: EMOJI MODIFIER FITZPATRICK TYPE-1-2 (0x1f3fb)
+🔥: FIRE (0x1f525)
+```
+
+Note that joint characters are split up in the analysis.
+
+(The message window will not display line breaks, but there is a button that opens the result in a new file. Right clicking the notification and selecting "Copy" will also preserve the line breaks.)
+
 ### Direct Hex Code Input
 
 If you happen to know the exact code, the command `Insert Unicode from Hex Code` can be used.
