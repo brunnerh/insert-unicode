@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.6.0] - 2019-03-05
+
+- Update Unicode table to version 12 🧇.
+- Add [README section on supporting Unicode Consortium](./README.md#supporting-the-unicode-consortium) through character adoption.
+
 ## [0.5.0] - 2019-03-01
 
 - Added `Identify Unicode Characters` command and option to control whether the results are always displayed as file (`show-identified-characters-in-file`).
