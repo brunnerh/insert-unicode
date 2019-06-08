@@ -1,3 +1,4 @@
+// #region Data
 // cSpell: disable
 /** https://unicode.org/Public/12.0.0/ucd/UnicodeData.txt */
 const str = `0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
@@ -35065,6 +35066,7 @@ const seqZwj = `# emoji-zwj-sequences.txt
 
 #EOF`;
 // cSpell: enable
+// #endregion
 
 export interface UnicodeEntry
 {
@@ -35080,7 +35082,7 @@ const processSequenceCsv = (csv: string) =>
 		.filter(line => line.match(/^\s*$/) === null) // Skip empty lines
 		.map(line => line.split(';'))
 		.filter(([sequence]) => sequence.indexOf('..') === -1) // Skip code ranges
-		.map(([sequence, category, name]) => (<UnicodeEntry>{
+		.map(([sequence, category, name]): UnicodeEntry => ({
 			codes: sequence.trim().split(' ').map(code => parseInt(code, 16)),
 			name: name.trim(),
 		}))
@@ -35088,7 +35090,7 @@ const processSequenceCsv = (csv: string) =>
 
 export const data = str.split('\n')
 	.map(line => line.split(';'))
-	.map(([code, name]) => (<UnicodeEntry>{
+	.map(([code, name]): UnicodeEntry => ({
 		codes: [parseInt(code, 16)],
 		name,
 	}))

@@ -1,5 +1,4 @@
-import * as vscode from "vscode";
-import { QuickPickItem, QuickPickOptions, CancellationToken } from "vscode";
+import { CancellationToken, QuickPickItem, QuickPickOptions, window } from "vscode";
 
 export async function showPaginatedQuickPick<T extends QuickPickItem>(
 	items: T[] | Thenable<T[]>,
@@ -41,7 +40,7 @@ export async function showPaginatedQuickPick<T extends QuickPickItem>(
 		if ((page + 1) * pageSize < resolvedItems.length)
 			pageItems.push(nextPageItem);
 
-		const selection = await vscode.window.showQuickPick(pageItems, options, token);
+		const selection = await window.showQuickPick(pageItems, options, token);
 
 		// Paging item selected
 		if (selection && '_callback' in selection)
