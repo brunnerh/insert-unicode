@@ -16,4 +16,15 @@ interface TypedConfig
 	get(item: "include-sequences"): boolean;
 	get(item: "include-skin-tone-variants"): boolean;
 	get(item: "show-identified-characters-in-file"): boolean;
+	get(item: "favorites"): FavoritesNode;
+}
+
+export interface FavoritesNode
+{
+	directories?:
+	{
+		[key: string]: FavoritesNode,
+	};
+
+	items?: (number | string)[][];
 }

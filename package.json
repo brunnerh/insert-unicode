@@ -19,9 +19,14 @@
 	],
 	"activationEvents": [
 		"onCommand:insert-unicode.insertText",
+		"onCommand:insert-unicode.insertDecimalCode",
 		"onCommand:insert-unicode.insertCode",
 		"onCommand:insert-unicode.insertTextExact",
+		"onCommand:insert-unicode.insertDecimalCodeExact",
 		"onCommand:insert-unicode.insertCodeExact",
+		"onCommand:insert-unicode.insertFavoriteText",
+		"onCommand:insert-unicode.insertFavoriteDecimalCode",
+		"onCommand:insert-unicode.insertFavoriteHexCode",
 		"onCommand:insert-unicode.insertFont",
 		"onCommand:insert-unicode.fromHexCode",
 		"onCommand:insert-unicode.identify"
@@ -31,31 +36,51 @@
 		"commands": [
 			{
 				"command": "insert-unicode.insertText",
-				"title": "Insert Unicode"
+				"title": "Insert Unicode: Insert"
+			},
+			{
+				"command": "insert-unicode.insertDecimalCode",
+				"title": "Insert Unicode: Insert as Decimal Code"
 			},
 			{
 				"command": "insert-unicode.insertCode",
-				"title": "Insert Unicode as Hex Code"
+				"title": "Insert Unicode: Insert as Hex Code"
 			},
 			{
 				"command": "insert-unicode.insertTextExact",
-				"title": "Insert Exact Unicode"
+				"title": "Insert Unicode: Insert Exact"
+			},
+			{
+				"command": "insert-unicode.insertDecimalCodeExact",
+				"title": "Insert Unicode: Insert Exact as Decimal Code"
 			},
 			{
 				"command": "insert-unicode.insertCodeExact",
-				"title": "Insert Exact Unicode as Hex Code"
+				"title": "Insert Unicode: Insert Exact as Hex Code"
+			},
+			{
+				"command": "insert-unicode.insertFavoriteText",
+				"title": "Insert Unicode: Insert from Favorites"
+			},
+			{
+				"command": "insert-unicode.insertFavoriteDecimalCode",
+				"title": "Insert Unicode: Insert from Favorites as Decimal Code"
+			},
+			{
+				"command": "insert-unicode.insertFavoriteHexCode",
+				"title": "Insert Unicode: Insert from Favorites as Hex Code"
 			},
 			{
 				"command": "insert-unicode.insertFont",
-				"title": "Insert/Replace Text With \"Unicode Font\""
+				"title": "Insert Unicode: Insert/Replace Text With \"Unicode Font\""
 			},
 			{
 				"command": "insert-unicode.fromHexCode",
-				"title": "Insert Unicode from Hex Code"
+				"title": "Insert Unicode: Insert from Hex Code"
 			},
 			{
 				"command": "insert-unicode.identify",
-				"title": "Identify Unicode Characters"
+				"title": "Insert Unicode: Identify Characters"
 			}
 		],
 		"configuration": {
@@ -97,6 +122,36 @@
 					"description": "Relevant for the 'Identify Unicode Characters' command. If set to 'true', the results of the 'Identify Unicode Characters' command will always be displayed in a new file. When 'false', an info notification is shown which also offers the option to open the contents as file.",
 					"type": "boolean",
 					"default": false
+				},
+				"insert-unicode.favorites": {
+					"title": "Directory tree of favorite unicode characters which can be accessed via the 'Insert from Favorites' commands. Every tree node can have a 'directories' and 'items' property. 'directories' is a dictionary where the keys are the directory names and the values are tree nodes. 'items' is an array of arrays, because some emoji are constructed from sequences of code points. JSON does not support hex notation, but it can be passed wrapped in a string, e.g.: \"0x1f525\".",
+					"type": "object",
+					"default": {
+						"directories": {
+							"Other Emoji": {
+								"directories": {
+									"Smilies": {
+										"items": [
+											[128515],
+											[128558]
+										]
+									},
+									"Animals": {
+										"items": [
+											[128008],
+											[128021]
+										]
+									}
+								},
+								"items": [
+									[10024]
+								]
+							}
+						},
+						"items": [
+							["0x1f525"]
+						]
+					}
 				}
 			}
 		}

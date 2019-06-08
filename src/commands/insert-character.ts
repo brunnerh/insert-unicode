@@ -2,15 +2,10 @@ import { QuickPickOptions, window } from 'vscode';
 import { Config } from '../config-interface';
 import { data } from '../data';
 import { insert } from '../utility/editor';
-import { showPaginatedQuickPick } from '../utility/quick-pick';
-import { codesToHex } from './code-conversion';
+import { showPaginatedQuickPick, unicodeEntryToQuickPick } from '../utility/quick-pick';
 import { CommandCallback } from './command-callback';
 
-const allDataQuickPicks = data.map(entry => ({
-	label: entry.codes.map(code => String.fromCodePoint(code)).join(''),
-	description: `${codesToHex(entry.codes)} - ${entry.name}`,
-	entry
-}));
+const allDataQuickPicks = data.map(unicodeEntryToQuickPick);
 
 const getDataQuickPicks = () =>
 {

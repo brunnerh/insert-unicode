@@ -1,4 +1,6 @@
 import { CancellationToken, QuickPickItem, QuickPickOptions, window } from "vscode";
+import { codesToHex } from "./code-conversion";
+import { UnicodeEntry } from "../data";
 
 export async function showPaginatedQuickPick<T extends QuickPickItem>(
 	items: T[] | Thenable<T[]>,
@@ -50,4 +52,13 @@ export async function showPaginatedQuickPick<T extends QuickPickItem>(
 	};
 
 	return await showPage(0);
+}
+
+export function unicodeEntryToQuickPick(entry: UnicodeEntry): QuickPickItem & { entry: UnicodeEntry }
+{
+	return {
+		label: entry.codes.map(code => String.fromCodePoint(code)).join(''),
+		description: `${codesToHex(entry.codes)} - ${entry.name}`,
+		entry
+	};
 }
