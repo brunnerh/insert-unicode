@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased]
+
+- Change default for `disable-pre-filtering` to `true`. Pre-filtering may be removed in the future.
+
 ## [0.6.0] - 2019-03-05
 
 - Update Unicode table to version 12 🧇.

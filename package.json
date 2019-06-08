@@ -78,7 +78,7 @@
 					"title": "Disable Pre-Filtering",
 					"description": "Disable the paged search and perform live filtering on the entire Unicode set. Can have performance issues.",
 					"type": "boolean",
-					"default": false
+					"default": true
 				},
 				"insert-unicode.include-sequences": {
 					"title": "Include Sequences",
