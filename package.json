@@ -27,6 +27,7 @@
 		"onCommand:insert-unicode.insertFavoriteText",
 		"onCommand:insert-unicode.insertFavoriteDecimalCode",
 		"onCommand:insert-unicode.insertFavoriteHexCode",
+		"onCommand:insert-unicode.manageFavorites",
 		"onCommand:insert-unicode.insertFont",
 		"onCommand:insert-unicode.fromHexCode",
 		"onCommand:insert-unicode.identify"
@@ -69,6 +70,10 @@
 			{
 				"command": "insert-unicode.insertFavoriteHexCode",
 				"title": "Insert Unicode: Insert from Favorites as Hex Code"
+			},
+			{
+				"command": "insert-unicode.manageFavorites",
+				"title": "Insert Unicode: Manage Favorites"
 			},
 			{
 				"command": "insert-unicode.insertFont",

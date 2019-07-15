@@ -1,11 +1,12 @@
 'use strict';
 import * as vscode from 'vscode';
-import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
 import { hexToText } from './commands/hex-to-text';
 import { identifyCharacters } from './commands/identify-characters';
 import { insertCommandFactory } from './commands/insert-character';
 import { insertFavoriteCommandFactory } from './commands/insert-favorite';
 import { insertFont } from './commands/insert-font';
+import { manageFavorites } from './commands/manage-favorites';
+import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
 
 export function activate(context: vscode.ExtensionContext)
 {
@@ -22,6 +23,7 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertFavoriteText', insertFavoriteCommandFactory(codesToText)),
 		register('insert-unicode.insertFavoriteDecimalCode', insertFavoriteCommandFactory(codesToDecimal)),
 		register('insert-unicode.insertFavoriteHexCode', insertFavoriteCommandFactory(codesToHex)),
+		register('insert-unicode.manageFavorites', manageFavorites),
 
 		register('insert-unicode.insertFont', insertFont),
 		register('insert-unicode.fromHexCode', hexToText),
