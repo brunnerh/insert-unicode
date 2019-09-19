@@ -5,8 +5,8 @@
 - Change default for `disable-pre-filtering` to `true`. Pre-filtering may be removed in the future.
 - Add commands for inserting characters as decimal number.
 - Prefix all command labels with `Insert Unicode`.
-- Add preference `favorites` for configuring a virtual directory of favorite characters.
-- Add `Insert from Favorites` commands to insert characters from the favorites (see `favorites` preference).
+- Add setting `favorites` for configuring a virtual directory of favorite characters. (A UI for managing them more easily should be added later.)
+- Add `Insert from Favorites` commands to insert characters from the favorites (see/edit `favorites` setting).
 
 ## [0.6.0] - 2019-03-05
 
