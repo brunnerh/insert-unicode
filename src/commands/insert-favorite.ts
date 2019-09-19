@@ -22,7 +22,7 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 					directory.parent = node;
 
 					picks.push({
-						label: key,
+						label: `$(file-directory) ${key}`,
 						onSelected: async () =>
 						{
 							const success = await showNode(directory);
@@ -39,14 +39,21 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 					// JSON does not support hex numbers (0x...), so it has to be parsed from a string.
 					const normalized = codes.map(c => typeof c === 'number' ? c : parseInt(c));
 
-					const entry = data.find(entry =>
+					let entry = data.find(entry =>
 						entry.codes.length === normalized.length &&
 						entry.codes.every((c, i) => c === normalized[i]));
 
+					// Get individual Unicode character names and create synthetic entry.
 					if (entry === undefined)
 					{
-						window.showErrorMessage(`Unicode entry for codes ${JSON.stringify(normalized)} not found.`);
-						continue;
+						const names = normalized
+							.map(code => data.find(entry => entry.codes.length === 1 && entry.codes[0] === code))
+							.map(entry => entry === undefined ? '?' : entry.name);
+
+						entry = {
+							codes: normalized,
+							name: `[${names.join(', ')}]`,
+						};
 					}
 
 					picks.push({
@@ -67,7 +74,7 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 
 			if (node.parent !== undefined)
 				picks.unshift({
-					label: '..',
+					label: '$(arrow-left) ..',
 					onSelected: async () =>
 					{
 						await showNode(node.parent!);
