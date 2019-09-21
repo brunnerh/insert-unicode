@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [0.7.0] - 2019-09-21
 
 - Change default for `disable-pre-filtering` to `true`. Pre-filtering may be removed in the future.
 - Add commands for inserting characters as decimal number.
