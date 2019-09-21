@@ -7,6 +7,8 @@
 - Prefix all command labels with `Insert Unicode`.
 - Add setting `favorites` for configuring a virtual directory of favorite characters. (A UI for managing them more easily should be added later.)
 - Add `Insert from Favorites` commands to insert characters from the favorites (see/edit `favorites` setting).
+- Overhaul Read-Me format to explicitly list all commands.
+- Add small *How To* section to Read-Me.
 
 ## [0.6.0] - 2019-03-05
 

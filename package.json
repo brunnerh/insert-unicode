@@ -124,7 +124,8 @@
 					"default": false
 				},
 				"insert-unicode.favorites": {
-					"title": "Directory tree of favorite unicode characters which can be accessed via the 'Insert from Favorites' commands.\nEvery tree node can have a 'directories' and 'items' property. 'directories' is a dictionary where the keys are the directory names and the values are tree nodes. 'items' is an array of arrays, because some emoji are constructed from sequences of code points. Any sequence of code points can be used.\nJSON does not support hex notation, but it can be passed wrapped in a string, e.g.: \"0x1f525\".",
+					"title": "Unicode Favorites",
+					"description": "Directory tree of favorite unicode characters which can be accessed via the 'Insert from Favorites' commands.\nEvery tree node can have a 'directories' and 'items' property. 'directories' is a dictionary where the keys are the directory names and the values are tree nodes. 'items' is an array of arrays, because some emoji are constructed from sequences of code points. Any sequence of code points can be used.\nJSON does not support hex notation, but it can be passed wrapped in a string, e.g.: \"0x1f525\".",
 					"type": "object",
 					"default": {
 						"directories": {

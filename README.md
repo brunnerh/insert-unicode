@@ -2,15 +2,36 @@
 
 This is an extension for [Visual Studio Code](https://code.visualstudio.com/) which adds commands for inserting Unicode characters/codes and Emoji.
 
+The commands can be executed via the command palette (`View` > `Command Palette...`/ `Ctrl` + `Shift` + `P`) or bound to keyboard shortcuts.
+
+No keys are bound by default. Use the command `Preferences: Open Keyboard Shortcuts` to add custom keyboard shortcuts.
+
 ## Features
+
+In this section the various commands will be explained. Every subsection first lists the commands that it is about (the prefix common to all commands, `Insert Unicode:`, is omitted for brevity).
+
+The command identifier (used in custom keyboard shortcuts) will be given in parentheses (again, the prefix `insert-unicode.` is omitted).
 
 ### Inserting Individual Characters/Codes
 
-There are commands for inserting Unicode characters as text or as hex codes. There are variations for both commands that search for an exact name rather than a substring to facilitate faster insertion when the name is known.
+- *Insert* (`insertText`)
+- *Insert as Decimal Code* (`insertDecimalCode`)
+- *Insert as Hex Code* (`insertCode`)
+- *Insert Exact* (`insertTextExact`)
+- *Insert Exact as Decimal Code* (`insertDecimalCodeExact`)
+- *Insert Exact as Hex Code* (`insertCodeExact`)
+
+These commands insert Unicode characters as text, decimal or hex codes.
+
+The "exact" variations search for an exact name rather than a substring to facilitate faster insertion when the name is known (particularly useful for custom keyboard shortcuts).
+
+Example for *Insert*, searching for `fire`:
 
 ![search-prompt](./readme-files/search-prompt.gif)
 
-When binding a command to a keyboard shortcut, the search string can be provided as an argument. E.g. to quickly insert skintone modifier characters:
+When binding a command to a keyboard shortcut, the search string can be provided as an argument. Note that the UI for binding keyboard shortcuts currently does not support setting arguments, so the JSON file has to be edited (execute command `Preferences: Open Keyboard Shortcuts (JSON)`).
+
+E.g. to quickly insert skintone modifier characters:
 
 ```json
 {
@@ -20,9 +41,7 @@ When binding a command to a keyboard shortcut, the search string can be provided
 }
 ```
 
-![search-keyboard](./readme-files/search-keyboard.gif)
-
-The exact command variants can be used to directly insert a given character, e.g. `FIRE`:
+The "exact" directly inserts a given character, e.g. `FIRE`, which otherwise would lead to multiple results, including characters like `FIREWORKS` and `FIRE ENGINE`:
 
 ```json
 {
@@ -32,7 +51,27 @@ The exact command variants can be used to directly insert a given character, e.g
 }
 ```
 
+### Insert From Favorites
+
+- *Insert from Favorites* (`insertFavoriteText`)
+- *Insert from Favorites as Decimal Code* (`insertFavoriteDecimalCode`)
+- *Insert from Favorites as Hex Code* (`insertFavoriteHexCode`)
+
+These commands insert characters from a favorites directory tree.
+
+![favorites](./readme-files/favorites.png)
+
+Favorites can be configured using the setting *Unicode Favorites* (`insert-unicode.favorites`). Since this setting has a somewhat complicated structure, it can not be edited via the default graphical settings editor. A command for editing the favorites via a user interface may be added at some point.
+
+To edit the favorites as JSON, open the settings file (`Preferences: Open Settings (JSON)`) and start typing the name of the setting:
+
+![adding-favorites-setting](./readme-files/favorites-json.png)
+
+If you select the setting and confirm with `Enter`, the setting should be inserted with its default values, which has some example directories and entries for you to modify. If you hover over the setting name an explanation of the structure will appear.
+
 ### Inserting/Replacing Text With a "Unicode Font"
+
+- *Insert/Replace Text With "Unicode Font"* (`insertFont`)
 
 This command inserts/replaces Latin alphabetic characters with unicode variations that give them another appearance. Whether these characters can be displayed properly depends on the font, of course.
 
@@ -51,6 +90,8 @@ This command can also be bound using an argument to specify the font, e.g.:
 ```
 
 ### Identify Unicode Characters
+
+- *Identify Characters* (`identify`)
 
 This command will show the Unicode name and code point of the selected characters.
 
@@ -72,11 +113,27 @@ Output:
 
 Note that joint characters are split up in the analysis.
 
-(The message window will not display line breaks, but there is a button that opens the result in a new file. Right clicking the notification and selecting "Copy" will also preserve the line breaks.)
+The message window will not display line breaks, but there is a button that opens the result in a new file. Right clicking the notification and selecting "Copy" will also preserve the line breaks.
+
+You can always open the output in a new file by changing the setting *Show Identified Characters in File* (`insert-unicode.show-identified-characters-in-file`).
 
 ### Direct Hex Code Input
 
-If you happen to know the exact code, the command `Insert Unicode from Hex Code` can be used.
+- *Insert from Hex Code* (`fromHexCode`)
+
+If you happen to know the exact hexadecimal code, this command can be used to insert the corresponding character.
+
+## How To?
+
+### Insert Compound Characters, Apply Accents and Modifiers
+
+If you e.g. want to apply a *grave accent* to an `e` (resulting in `è`), you first type out the character to be modified and then insert the modifier, in this case `COMBINING GRAVE ACCENT` (`0x300`).
+
+Modifiers that can be applied to the previous character generally have *combining* in their name. The stand-alone character version of grave accent would be `GRAVE ACCENT` (`0x60`).
+
+There is another method of combining characters that uses a dedicated character for joining other characters, e.g. the `ZERO WIDTH JOINER` (`0x200d`) which is used e.g. in the various family emoji. The family consisting of a man, woman and a girl (👨‍👩‍👧), e.g. is written as `MAN` `ZWJ` `WOMAN` `ZWJ` `GIRL` (`0x1f468` `0x200d` `0x1f469` `0x200d` `0x1f467`).
+
+In general, if you see a special character or symbol and do not know how to write it, try copying it into VS Code and execute the [*Identify Characters*](#identify-unicode-characters) command on it.
 
 ## Unicode Standards Versions
 
