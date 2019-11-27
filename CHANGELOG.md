@@ -1,5 +1,14 @@
 # Change Log
 
+## [unreleased]
+
+- Add digit conversion to the fonts command. Supported are:
+  - Math Bold
+  - Math Double-Struck
+  - Math Sans-Serif
+  - Math Sans-Serif Bold
+  - Math Monospace
+
 ## [0.7.0] - 2019-09-21
 
 - Change default for `disable-pre-filtering` to `true`. Pre-filtering may be removed in the future.

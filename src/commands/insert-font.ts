@@ -10,6 +10,7 @@ export const insertFont: CommandCallback = async (editor, edit, ...args) =>
 		label: string;
 		A: number;
 		a?: number;
+		zero?: number;
 		space: number;
 	};
 
@@ -19,24 +20,26 @@ export const insertFont: CommandCallback = async (editor, edit, ...args) =>
 	const aCode = 'a'.charCodeAt(0);
 	const ZCode = 'Z'.charCodeAt(0);
 	const zCode = 'z'.charCodeAt(0);
+	const d0Code = '0'.charCodeAt(0);
+	const d9Code = '9'.charCodeAt(0);
 
 	const enSpace = 0x2002;
 	const emSpace = 0x2003;
 
 	const fontStyles: Style[] = [
-		{ label: "Math Bold", A: 0x1D400, a: 0x1D41A, space: spaceCode },
+		{ label: "Math Bold", A: 0x1D400, a: 0x1D41A, zero: 0x1D7CE, space: spaceCode },
 		{ label: "Math Italic", A: 0x1D434, a: 0x1D44E, space: spaceCode },
 		{ label: "Math Bold Italic", A: 0x1D468, a: 0x1D482, space: spaceCode },
 		{ label: "Math Script", A: 0x1D49C, a: 0x1D4B6, space: spaceCode },
 		{ label: "Math Script Bold", A: 0x1D4D0, a: 0x1D4EA, space: enSpace },
 		{ label: "Math Fraktur", A: 0x1D504, a: 0x1D51E, space: spaceCode },
 		{ label: "Math Fraktur Bold", A: 0x1D56C, a: 0x1D586, space: enSpace },
-		{ label: "Math Double-Struck", A: 0x1D538, a: 0x1D552, space: enSpace },
-		{ label: "Math Sans-Serif", A: 0x1D5A0, a: 0x1D5BA, space: spaceCode },
-		{ label: "Math Sans-Serif Bold", A: 0x1D5D4, a: 0x1D5EE, space: spaceCode },
+		{ label: "Math Double-Struck", A: 0x1D538, a: 0x1D552, zero: 0x1D7D8, space: enSpace },
+		{ label: "Math Sans-Serif", A: 0x1D5A0, a: 0x1D5BA, zero: 0x1D7E2, space: spaceCode },
+		{ label: "Math Sans-Serif Bold", A: 0x1D5D4, a: 0x1D5EE, zero: 0x1D7EC, space: spaceCode },
 		{ label: "Math Sans-Serif Italic", A: 0x1D608, a: 0x1D622, space: spaceCode },
 		{ label: "Math Sans-Serif Bold Italic", A: 0x1D63C, a: 0x1D656, space: spaceCode },
-		{ label: "Math Monospace", A: 0x1D670, a: 0x1D68A, space: spaceCode },
+		{ label: "Math Monospace", A: 0x1D670, a: 0x1D68A, zero: 0x1D7F6, space: spaceCode },
 		{ label: "Squared Latin", A: 0x1F130, space: emSpace },
 		{ label: "Negative Circled Latin", A: 0x1F150, space: emSpace },
 		{ label: "Negative Squared Latin", A: 0x1F170, space: emSpace },
@@ -50,10 +53,23 @@ export const insertFont: CommandCallback = async (editor, edit, ...args) =>
 		return text.split('').map(e =>
 		{
 			const c = e.charCodeAt(0);
-			return c === spaceCode ? spaceReplacement :
-				c >= ACode && c <= ZCode ? (c - ACode + style.A) :
-					c >= aCode && c <= zCode ? (c - aCode + (style.a === undefined ? style.A : style.a)) : c;
-		}).map(c => String.fromCodePoint(c)).join("");
+			if (c === spaceCode)
+				return spaceReplacement;
+
+			// Capitals
+			if (c >= ACode && c <= ZCode)
+				return c - ACode + style.A;
+
+			// Small (with fallback to caps)
+			if (c >= aCode && c <= zCode)
+				return (c - aCode + (style.a === undefined ? style.A : style.a));
+
+			// Digits
+			if (c >= d0Code && c <= d9Code && style.zero !== undefined)
+				return c - d0Code + style.zero;
+
+			return c;
+		}).map(c => String.fromCodePoint(c)).join('');
 	};
 
 	const pickStyle = async () =>
