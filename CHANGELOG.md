@@ -1,6 +1,6 @@
 # Change Log
 
-## [unreleased]
+## [0.7.1] - 2019-11-27
 
 - Add digit conversion to the fonts command. Supported are:
   - Math Bold
