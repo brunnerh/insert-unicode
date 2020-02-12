@@ -56,13 +56,15 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 						};
 					}
 
-					picks.push({
+					const item = {
 						...unicodeEntryToQuickPick(entry),
 						onSelected: async () =>
 						{
 							await insert(editor, codeConverter(normalized));
 						}
-					});
+					};
+
+					picks.push(item);
 				}
 			}
 

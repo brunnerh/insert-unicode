@@ -12,7 +12,7 @@
 		"url": "https://github.com/brunnerh/insert-unicode.git"
 	},
 	"engines": {
-		"vscode": "^1.23.0"
+		"vscode": "^1.42.0"
 	},
 	"categories": [
 		"Other"
@@ -177,14 +177,14 @@
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+		"test": "npm run compile && node out/test/index.js"
 	},
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^7.0.43",
+		"@types/vscode": "^1.41.0",
 		"tslint": "^5.8.0",
 		"typescript": "^3.6.3",
-		"vscode": "^1.1.30"
+		"vscode-test": "^1.0.2"
 	}
 }

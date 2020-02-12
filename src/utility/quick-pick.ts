@@ -54,7 +54,9 @@ export async function showPaginatedQuickPick<T extends QuickPickItem>(
 	return await showPage(0);
 }
 
-export function unicodeEntryToQuickPick(entry: UnicodeEntry): QuickPickItem & { entry: UnicodeEntry }
+export type UnicodeQuickPickItem = QuickPickItem & { entry: UnicodeEntry }
+
+export function unicodeEntryToQuickPick(entry: UnicodeEntry): UnicodeQuickPickItem
 {
 	return {
 		label: entry.codes.map(code => String.fromCodePoint(code)).join(''),
