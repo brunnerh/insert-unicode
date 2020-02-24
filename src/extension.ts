@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertFavoriteText', insertFavoriteCommandFactory(codesToText)),
 		register('insert-unicode.insertFavoriteDecimalCode', insertFavoriteCommandFactory(codesToDecimal)),
 		register('insert-unicode.insertFavoriteHexCode', insertFavoriteCommandFactory(codesToHex)),
-		register('insert-unicode.manageFavorites', manageFavorites),
+		vscode.commands.registerCommand('insert-unicode.manageFavorites', manageFavorites(context)),
 
 		register('insert-unicode.insertFont', insertFont),
 		register('insert-unicode.fromHexCode', hexToText),
