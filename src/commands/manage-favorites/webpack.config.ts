@@ -34,12 +34,12 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 				test: /\.css$/,
 				use: [
 					'style-loader',
-					'css-loader'
+					'css-loader',
 				],
 			},
 			{
 				test: /\.ts$/,
-				loader: 'ts-loader'
+				loader: 'ts-loader',
 			},
 		],
 	},

@@ -1,15 +1,14 @@
 <script>
 	import Directory from './directory.svelte';
-	import Dialog from './dialog.svelte';
+	import Button from './button.svelte';
 	import { eventBus } from '../utility/event-bus.ts';
-	import { showConfirmDialog } from '../utility/dialog-utility.ts';
 	import { onMount } from 'svelte';
 
 	let favorites = null;
 
 	onMount(() =>
 	{
-		eventBus.listen(m =>
+		eventBus.subscribe(m =>
 		{
 			switch (m.type)
 			{
@@ -55,11 +54,11 @@
 
 {#if favorites}
 	<Directory node={favorites}/>
+
+	<div class="button-bar">
+		<Button type="button" on:click={save}>Save</Button>
+		<Button type="button" on:click={revert}>Revert</Button>
+	</div>
 {:else}
 	Loading...
 {/if}
-
-<div class="button-bar">
-	<button type="button" on:click={save}>Save</button>
-	<button type="button" on:click={revert}>Revert</button>
-</div>

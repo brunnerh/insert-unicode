@@ -22,6 +22,7 @@
 	 */
 
 	import { createEventDispatcher, onMount } from 'svelte';
+	import Button from './button.svelte';
 
 	export let content;
 	export let isModal = true;
@@ -60,30 +61,17 @@
 		margin-top: 5px;
 		text-align: right;
 	}
-	.dialog-buttons > button
-	{
-		background: var(--vscode-button-background);
-		color: var(--vscode-button-foreground);
-		border: none;
-		max-width: fit-content;
-		padding: 5px 10px;
-		margin: 4px 5px;
-	}
-	.dialog-buttons > button:hover
-	{
-		background: var(--vscode-button-hoverBackground);
-	}
 </style>
 
 <dialog class="dialog"
 		bind:this={dialog}>
 	<div class="dialog-content">{content}</div>
 	<div class="dialog-buttons">
-		<button type="button" on:click={() => buttonClick('ok')}>
+		<Button on:click={() => buttonClick('ok')}>
 			OK
-		</button>
-		<button type="button" on:click={() => buttonClick('cancel')}>
+		</Button>
+		<Button on:click={() => buttonClick('cancel')}>
 			Cancel
-		</button>
+		</Button>
 	</div>
 </dialog>

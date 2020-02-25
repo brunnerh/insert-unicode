@@ -1,20 +1,9 @@
-// Place your settings in this file to overwrite default and user settings.
 {
     "files.exclude": {
-        "out": false // set this to true to hide the "out" folder with the compiled JS files
+        "out": false
     },
     "search.exclude": {
-        "out": true // set this to false to include "out" folder in search results
+        "out": true
     },
-    "workbench.colorCustomizations": {
-        "statusBar.noFolderBackground": "#333",
-        "titleBar.activeBackground": "#4d4d4d",
-        "titleBar.inactiveBackground": "#4d4d4d99",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "statusBar.background": "#333333",
-        "statusBarItem.hoverBackground": "#4d4d4d",
-        "statusBar.foreground": "#e7e7e7"
-	},
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
 }

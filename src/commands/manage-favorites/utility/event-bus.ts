@@ -1,9 +1,13 @@
 import { FavoritesViewMessage } from "../favorites-view-message";
 import { FavoritesBackEndMessage } from "../favorites-back-end-message";
 
+type BackEndEventHandler = (message: FavoritesBackEndMessage) => void;
+
 class EventBus
 {
-	#vscode: { postMessage(data: any): void; };
+	private _listeners = new Map<BackEndEventHandler, any>();
+
+	#vscode: { postMessage(data: any): void };
 
 	constructor()
 	{
@@ -16,14 +20,24 @@ class EventBus
 		this.#vscode.postMessage(message);
 	}
 
-	listen(callback: (message: FavoritesBackEndMessage) => void)
+	subscribe(callback: BackEndEventHandler)
 	{
-		// @ts-ignore
-		addEventListener('message', e =>
+		const listener = (e: any) =>
 		{
 			const message = e.data;
 			callback(message);
-		});
+		};
+
+		addEventListener('message', listener);
+
+		this._listeners.set(callback, listener);
+	}
+
+	unsubscribe(callback: BackEndEventHandler)
+	{
+		const listener = this._listeners.get(callback);
+		removeEventListener('message', listener);
+		this._listeners.delete(callback);
 	}
 }
 
