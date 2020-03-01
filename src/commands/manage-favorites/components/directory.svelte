@@ -1,15 +1,30 @@
 <script>
 	import Item from './item.svelte';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let name;
 	export let node;
+	export let indent = -1;
+
+	function deleteDirectory()
+	{
+		dispatch('delete');
+	}
+	function deleteChildDirectory(childDirectory)
+	{
+		node.directories = node.directories.filter(d => d != childDirectory);
+		dispatch('change');
+	}
+	function deleteChildItem(childItem)
+	{
+		node.items = node.items.filter(i => i != childItem);
+		dispatch('change');
+	}
 </script>
 
 <style>
-	.directory > .contents
-	{
-		margin-left: 20px;
-	}
 	.name
 	{
 		background: var(--vscode-editor-background);
@@ -24,25 +39,30 @@
 	}
 </style>
 
-<div class="directory">
-	{#if name}
-		<div class="header">
-			<input class="name" bind:value={name}/>
-			<button class="icon-btn delete-btn">X</button>
-		</div>
-	{/if}
-	<div class="contents">
-		{#if node.directories}
-			{#each Object.keys(node.directories) as childName}
-				<svelte:self
-					name={childName}
-					node={node.directories[childName]}/>
-			{/each}
-		{/if}
-		{#if node.items}
-			{#each node.items as codes}
-				<Item {codes} />
-			{/each}
-		{/if}
-	</div>
-</div>
+{#if name}
+	<input class="name" style="margin-left: {indent * 20}px"
+		bind:value={name}
+		on:input={() => dispatch('change')}/>
+
+	<button type="button" class="icon-btn"
+		title="Delete directory"
+		on:click={deleteDirectory}>
+		X
+	</button>
+{/if}
+
+{#each node.directories as childDirectory}
+	<svelte:self
+		bind:name={childDirectory.name}
+		node={childDirectory.content}
+		indent={indent + 1}
+		on:delete={() => deleteChildDirectory(childDirectory)}
+		on:change/>
+{/each}
+
+{#each node.items as item}
+	<Item
+		{item}
+		indent={indent + 1}
+		on:delete={() => deleteChildItem(item)}/>
+{/each}

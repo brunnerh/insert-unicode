@@ -8,10 +8,9 @@ import Dialog from '../components/dialog.svelte';
  */
 export async function showConfirmDialog(content: string): Promise<boolean>
 {
-	return new Promise((res) =>
+	return new Promise(res =>
 	{
 		const dialog = new Dialog({
-			// @ts-ignore
 			target: document.body,
 			props: { content },
 		});
@@ -23,6 +22,30 @@ export async function showConfirmDialog(content: string): Promise<boolean>
 		dialog.$on('closed', () =>
 		{
 			res(confirmed);
+			dialog.$destroy();
+		});
+	});
+}
+
+/**
+ * Shows a message dialog.
+ * @param content The dialog text content.
+ */
+export async function showMessageDialog(content: string): Promise<void>
+{
+	return new Promise(res =>
+	{
+		const dialog = new Dialog({
+			target: document.body,
+			props: {
+				content,
+				buttons: [{ value: 'ok', label: 'OK' }],
+			},
+		});
+
+		dialog.$on('closed', () =>
+		{
+			res();
 			dialog.$destroy();
 		});
 	});

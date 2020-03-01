@@ -1,7 +1,3 @@
-<script>
-	export let type = 'button';
-</script>
-
 <style>
 	button
 	{
@@ -18,6 +14,6 @@
 	}
 </style>
 
-<button {type} on:click>
+<button {...$$props} on:click>
 	<slot/>
 </button>

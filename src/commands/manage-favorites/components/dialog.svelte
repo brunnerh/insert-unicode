@@ -25,6 +25,10 @@
 	import Button from './button.svelte';
 
 	export let content;
+	export let buttons = [
+		{ value: 'ok', label: 'OK' },
+		{ value: 'cancel', label: 'Cancel' },
+	];
 	export let isModal = true;
 
 	const dispatch = createEventDispatcher();
@@ -38,7 +42,7 @@
 
 	onMount(() =>
 	{
-		dialog.addEventListener('close', () => dispatch('closed', null));
+		dialog.addEventListener('close', () => dispatch('closed'));
 
 		if (isModal)
 			dialog.showModal();
@@ -67,11 +71,10 @@
 		bind:this={dialog}>
 	<div class="dialog-content">{content}</div>
 	<div class="dialog-buttons">
-		<Button on:click={() => buttonClick('ok')}>
-			OK
-		</Button>
-		<Button on:click={() => buttonClick('cancel')}>
-			Cancel
-		</Button>
+		{#each buttons as button}
+			<Button on:click={() => buttonClick(button.value)}>
+				{button.label}
+			</Button>
+		{/each}
 	</div>
 </dialog>

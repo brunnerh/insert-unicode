@@ -23,7 +23,7 @@ export interface FavoritesNode
 {
 	directories?:
 	{
-		[key: string]: FavoritesNode,
+		[key: string]: FavoritesNode;
 	};
 
 	items?: (number | string)[][];

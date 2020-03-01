@@ -6,9 +6,11 @@ import * as path from 'path';
 
 export const manageFavorites = (context: ExtensionContext) => () =>
 {
+	const title = 'Manage Unicode Favorites';
+
 	const view = window.createWebviewPanel(
 		'insert-unicode-favorite-manager',
-		'Manage Unicode Favorites',
+		title,
 		ViewColumn.Active,
 		{
 			enableScripts: true,
@@ -31,6 +33,14 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 			case 'get-favorites':
 				const favorites = Config.section.get('favorites');
 				postMessage({ type: 'favorites', favorites });
+				view.title = title;
+				break;
+			case 'changed':
+				view.title = title + '*';
+				break;
+			case 'save':
+				Config.section.update('favorites', message.favorites);
+				view.title = title;
 				break;
 			default:
 				break;
@@ -44,7 +54,7 @@ const html = (scriptPath: string) => /*html*/`
 		<head>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Favorites Manager</title>
+			<title>Manage Unicode Favorites</title>
 		</head>
 		<body>
 			<script src="${scriptPath}"></script>
