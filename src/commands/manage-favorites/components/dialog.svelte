@@ -38,6 +38,8 @@
 
 	const dispatch = createEventDispatcher();
 
+	let isOpen = false;
+
 	let dialog;
 	function buttonClick(type)
 	{
@@ -51,10 +53,14 @@
 			dialog.showModal();
 		else
 			dialog.show();
+
+		isOpen = true;
 	}
 	function close()
 	{
 		dialog.close();
+
+		isOpen = false;
 	}
 
 	onMount(() =>
@@ -104,7 +110,7 @@
 		{#if content !== undefined}
 			{content}
 		{:else}
-			<slot />
+			<slot {isOpen} />
 		{/if}
 	</div>
 	<div class="dialog-buttons">

@@ -75,11 +75,14 @@
 </div>
 
 <Dialog bind:this={editDialog} autoOpen={false}
-	title={"Edit Entries"}
-	on:ok={saveEditedCodes}>
+	title={"Edit Characters"}
+	on:ok={saveEditedCodes}
+	let:isOpen={editDialogOpen}>
 	{#await asyncData}
 		Loading...
 	{:then data}
-		<ItemCodesEditor {data} bind:codes={editDialogCodes}/>
+		{#if editDialogOpen}
+			<ItemCodesEditor {data} bind:codes={editDialogCodes}/>
+		{/if}
 	{/await}
 </Dialog>

@@ -25,10 +25,10 @@
 
 	function encode(text)
 	{
-		var node = document.createElement('span');
-		node.textContent = text;
-
-		return node.innerHTML;
+		// Good enough for non-external data
+		return text
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;');
 	}
 
 	onMount(() =>
