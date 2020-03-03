@@ -18,10 +18,10 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 		},
 	);
 
-	const viewScriptPath = 'vscode-resource:' +
-		path.join(context.extensionPath, 'out', 'commands', 'manage-favorites', 'view.js');
-
-	view.webview.html = html(viewScriptPath);
+	const viewScriptRoot = view.webview.asWebviewUri(
+		Uri.file(path.join(context.extensionPath, 'out', 'commands', 'manage-favorites'))
+	);
+	view.webview.html = html(viewScriptRoot.toString() + '/');
 
 	const postMessage = (message: FavoritesBackEndMessage) =>
 		view.webview.postMessage(message);
@@ -34,6 +34,10 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 				const favorites = Config.section.get('favorites');
 				postMessage({ type: 'favorites', favorites });
 				view.title = title;
+				break;
+			case 'get-unicode-data':
+				const dataModule = await import('../../data');
+				postMessage({ type: 'unicode-data', data: dataModule.data });
 				break;
 			case 'changed':
 				view.title = title + '*';
@@ -48,16 +52,22 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 	});
 };
 
-const html = (scriptPath: string) => /*html*/`
+const html = (scriptRoot: string) => /*html*/`
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="Content-Security-Policy"
+				content="default-src 'self' vscode-resource: https:;
+					script-src vscode-resource: 'self' 'unsafe-inline' 'unsafe-eval' https:;
+					style-src vscode-resource: 'self' 'unsafe-inline';
+					img-src 'self' vscode-resource: data:"/>
+			<base href="${scriptRoot}">
 			<title>Manage Unicode Favorites</title>
 		</head>
 		<body>
-			<script src="${scriptPath}"></script>
+			<script src="./view.js"></script>
 		</body>
 	</html>
 `;

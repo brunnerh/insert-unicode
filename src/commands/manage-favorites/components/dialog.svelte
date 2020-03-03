@@ -2,7 +2,10 @@
 	/**
 	 * Dialog Component
 	 *
-	 * Events: ok, cancel, closed
+	 * Raises an event for the clicked button.
+	 *
+	 * Events: closed
+	 * Additional events for default buttons: ok, cancel
 	 *
 	 * @example
 	 *	const dialog = new Dialog({
@@ -24,12 +27,14 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import Button from './button.svelte';
 
-	export let content;
+	export let title = undefined;
+	export let content = undefined;
 	export let buttons = [
 		{ value: 'ok', label: 'OK' },
 		{ value: 'cancel', label: 'Cancel' },
 	];
 	export let isModal = true;
+	export let autoOpen = true;
 
 	const dispatch = createEventDispatcher();
 
@@ -40,15 +45,30 @@
 		dialog.close();
 	}
 
-	onMount(() =>
+	function open()
 	{
-		dialog.addEventListener('close', () => dispatch('closed'));
-
 		if (isModal)
 			dialog.showModal();
 		else
 			dialog.show();
+	}
+	function close()
+	{
+		dialog.close();
+	}
+
+	onMount(() =>
+	{
+		dialog.addEventListener('close', () => dispatch('closed'));
+
+		if (autoOpen)
+			open();
 	});
+
+	export {
+		open,
+		close,
+	};
 </script>
 
 <style>
@@ -65,11 +85,28 @@
 		margin-top: 5px;
 		text-align: right;
 	}
+	.dialog-title
+	{
+		text-align: center;
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
 </style>
 
 <dialog class="dialog"
 		bind:this={dialog}>
-	<div class="dialog-content">{content}</div>
+	{#if title != null}
+		<div class="dialog-title">
+			{title}
+		</div>
+	{/if}
+	<div class="dialog-content">
+		{#if content !== undefined}
+			{content}
+		{:else}
+			<slot />
+		{/if}
+	</div>
 	<div class="dialog-buttons">
 		{#each buttons as button}
 			<Button on:click={() => buttonClick(button.value)}>

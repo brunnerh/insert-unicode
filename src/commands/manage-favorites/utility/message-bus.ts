@@ -26,6 +26,7 @@ class MessageBus
 		const listener = (e: any) =>
 		{
 			const message = e.data;
+			// console.log(`Received message '${message.type}'`, message);
 			callback(message);
 		};
 
@@ -50,17 +51,23 @@ class MessageBus
 	 * @param responseType The type of the expected response message.
 	 * @param message The message to send to the back-end.
 	 */
-	call(responseType: FavoritesBackEndMessage['type'], message: FavoritesViewMessage)
-		: Promise<FavoritesBackEndMessage>
+	call<T extends FavoritesBackEndMessage>(
+		responseType: FavoritesBackEndMessage['type'],
+		message: FavoritesViewMessage
+	) : Promise<T>
 	{
 		return new Promise(res =>
 		{
-			this.subscribe(m =>
+			const callback: BackEndEventHandler = m =>
 			{
-				if (m.type === responseType)
-					res(m);
-			});
+				if (m.type !== responseType)
+					return;
 
+				this.unsubscribe(callback);
+				res(m as T);
+			};
+
+			this.subscribe(callback);
 			this.send(message);
 		});
 	}

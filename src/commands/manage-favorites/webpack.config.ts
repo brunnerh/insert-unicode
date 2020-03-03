@@ -17,11 +17,11 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 		filename: '[name].js',
 		chunkFilename: '[name].[id].js',
 	},
-	devtool: argv.mode === 'production' ? false : 'source-map',
+	devtool: argv.mode === 'production' ? false : 'eval-source-map',
 	module: {
 		rules: [
 			{
-				test: /\.svelte$/,
+				test: /\.svelte$/i,
 				use: {
 					loader: 'svelte-loader',
 					options: {
@@ -31,15 +31,26 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 				},
 			},
 			{
-				test: /\.css$/,
+				test: /\.css$/i,
 				use: [
 					'style-loader',
 					'css-loader',
 				],
 			},
 			{
-				test: /\.ts$/,
+				test: /\.ts$/i,
 				loader: 'ts-loader',
+			},
+			{
+				test: /\.svg$/i,
+				loader: 'raw-loader',
+			},
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				loader: 'file-loader',
+				options: {
+					name: '[path][name].[ext]',
+				},
 			},
 		],
 	},

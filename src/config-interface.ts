@@ -21,10 +21,7 @@ interface TypedConfig
 
 export interface FavoritesNode
 {
-	directories?:
-	{
-		[key: string]: FavoritesNode;
-	};
+	directories?: Record<string, FavoritesNode>;
 
 	items?: (number | string)[][];
 }

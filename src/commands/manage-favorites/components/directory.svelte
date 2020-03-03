@@ -1,5 +1,10 @@
 <script>
 	import Item from './item.svelte';
+	import AddButton from './add-button.svelte';
+	import IconButton from './icon-button.svelte';
+	import Dialog from './dialog.svelte';
+	import { folder, smiley, close } from '../icons';
+	import { indentSize } from '../utility/constants.ts';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
@@ -7,6 +12,10 @@
 	export let name;
 	export let node;
 	export let indent = -1;
+
+	$: nameForTooltips = name == null
+		? 'favorites root folder'
+		: `"${name}"`;
 
 	function deleteDirectory()
 	{
@@ -22,33 +31,46 @@
 		node.items = node.items.filter(i => i != childItem);
 		dispatch('change');
 	}
+
+	function addFolder()
+	{
+		node.directories = [
+			...node.directories,
+			{
+				name: 'New Folder',
+				content: { directories: [], items: [] },
+			},
+		];
+		dispatch('change');
+	}
+	function addItem()
+	{
+		node.items = [
+			...node.items,
+			{ codes: [] },
+		];
+		dispatch('change');
+	}
 </script>
 
 <style>
-	.name
+	input.name
 	{
-		background: var(--vscode-editor-background);
+		background: transparent;
 		color: var(--vscode-editor-foreground);
-		border: 1px solid transparent;
-		transition: border ease-in-out 0.3s;
-	}
-	.name:hover,
-	.name:focus
-	{
-		border: 1px solid var(--vscode-editor-foreground);
 	}
 </style>
 
 {#if name}
-	<input class="name" style="margin-left: {indent * 20}px"
+	<input class="name" style="margin-left: {indent * indentSize}px"
 		bind:value={name}
 		on:input={() => dispatch('change')}/>
 
-	<button type="button" class="icon-btn"
+	<IconButton
 		title="Delete directory"
 		on:click={deleteDirectory}>
-		X
-	</button>
+		{@html close}
+	</IconButton>
 {/if}
 
 {#each node.directories as childDirectory}
@@ -64,5 +86,19 @@
 	<Item
 		{item}
 		indent={indent + 1}
-		on:delete={() => deleteChildItem(item)}/>
+		on:delete={() => deleteChildItem(item)}
+		on:change/>
 {/each}
+
+
+
+<div style="margin-left: {(indent + 1) * indentSize}px">
+	<AddButton on:click={addFolder} title="Add new folder to {nameForTooltips}">
+		{@html folder}
+	</AddButton>
+
+	<AddButton on:click={addItem} title="Add new favorite entry to {nameForTooltips}">
+		{@html smiley}
+	</AddButton>
+</div>
+<div></div>

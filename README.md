@@ -151,3 +151,12 @@ I think it would be nice to jointly adopt a character at the silver level as the
 [[Progress Tracking Issue]](https://github.com/brunnerh/insert-unicode/issues/4)
 
 **Note:** I will keep donations open for at least one year starting with the Unicode v.12 release (🎉) on 2019-03-05. Donations will *not* be refundable. If reaching the target appears to be unfeasible at any point after the elapsed year, the donations may be given to another charitable cause!
+
+
+# Attribution
+
+- [microsoft/vscode-codicons][1] ([License][2]) - Slightly modified icons from this project are used.
+
+
+ [1]: https://github.com/microsoft/vscode-codicons
+ [2]: https://github.com/microsoft/vscode-codicons/blob/master/LICENSE

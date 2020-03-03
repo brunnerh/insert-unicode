@@ -1,3 +1,4 @@
+import './styles/base.css';
 import Main from './components/main.svelte';
 
 const main = new Main({

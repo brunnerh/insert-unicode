@@ -4,6 +4,7 @@
 	import { messageBus } from '../utility/message-bus.ts';
 	import { fromSettings, toSettings, areFavoritesValid } from '../utility/favorites-transform.ts';
 	import { showMessageDialog } from '../utility/dialog-utility.ts';
+	import { asyncData } from '../utility/unicode-data.ts'; // Preload
 	import { vscode } from '../utility/vscode-api.ts';
 	import { onMount } from 'svelte';
 
@@ -83,23 +84,13 @@
 </script>
 
 <style>
-	:global(.icon-btn)
-	{
-		font-weight: bold;
-		background: transparent;
-		color: var(--vscode-foreground);
-		border: 1px solid transparent;
-		transition: border ease-in-out 0.3s;
-	}
-	:global(.icon-btn:hover),
-	:global(.icon-btn:focus)
-	{
-		border: 1px solid var(--vscode-foreground);
-	}
-
 	.fav-tree {
 		display: inline-grid;
 		grid-template-columns: auto auto;
+		grid-auto-rows: auto;
+		grid-column-gap: 5px;
+		grid-row-gap: 5px;
+		align-items: center;
 	}
 
 	.button-bar {
@@ -127,6 +118,4 @@
 			Revert
 		</Button>
 	</div>
-{:else}
-	Loading...
 {/if}

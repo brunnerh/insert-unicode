@@ -3,20 +3,26 @@ import { FavoritesNode } from "../../config-interface";
 /** Message sent by the favorites manager view. */
 export type FavoritesViewMessage =
 	GetFavorites |
+	GetUnicodeData |
 	ChangeEvent |
 	SaveEvent;
 
-interface GetFavorites
+export interface GetFavorites
 {
 	type: 'get-favorites';
 }
 
-interface ChangeEvent
+export interface GetUnicodeData
+{
+	type: 'get-unicode-data';
+}
+
+export interface ChangeEvent
 {
 	type: 'changed';
 }
 
-interface SaveEvent
+export interface SaveEvent
 {
 	type: 'save';
 	favorites: FavoritesNode;

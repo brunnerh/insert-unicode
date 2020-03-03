@@ -1,0 +1,7 @@
+input
+{
+	color: var(--vscode-input-foreground);
+	background: var(--vscode-input-background);
+	border: none;
+	padding: 3px;
+}
