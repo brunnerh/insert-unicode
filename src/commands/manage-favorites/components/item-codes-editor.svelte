@@ -1,14 +1,17 @@
 <script>
 	import IconButton from './icon-button.svelte';
 	import { close } from '../icons';
-	import { onMount } from 'svelte';
-	import autoComplete from '@tarekraafat/autocomplete.js';
+	import { AutoComplete } from '@brunnerh/autocomplete';
 
 	export let data;
 	export let codes;
 
-	let addNewInput;
-	let addNewAutoComplete;
+	let search = '';
+
+	$: autoCompleteItems = data.map(e => ({
+			key: `${String.fromCodePoint(e.codes[0])} - ${e.name} (0x${e.codes[0].toString(16)})`,
+			value: e.codes[0],
+		}));
 
 	function removeCodeAt(index)
 	{
@@ -23,76 +26,10 @@
 		return match == undefined ? '?' : match.name;
 	}
 
-	function encode(text)
-	{
-		// Good enough for non-external data
-		return text
-			.replace(/</g, '&lt;')
-			.replace(/>/g, '&gt;');
+	function onItemSelected(code) {
+		codes[codes.length] = code.value;
+		search = '';
 	}
-
-	onMount(() =>
-	{
-		new autoComplete({
-			data: {
-				src: data.map(e => ({
-					name: encode(`${String.fromCodePoint(e.codes[0])} - ${e.name} (0x${e.codes[0].toString(16)})`),
-					codes: e.codes,
-				})),
-				key: ['name'],
-				cache: true,
-			},
-			selector: () => addNewInput,
-			resultsList: {
-				render: true,
-				container(source) {
-					source.classList.add('auto-complete-list');
-				},
-				destination: addNewInput,
-				position: 'afterend',
-				element: 'ul'
-			},
-			maxResults: 100,
-			highlight: true,
-			trigger: {
-				event: ["input", "focusin", "focusout"],
-			},
-			noResults()
-			{
-				const result = document.createElement("li");
-				result.textContent = "No Results";
-				addNewInput.nextElementSibling.appendChild(result);
-			},
-			onSelection(feedback)
-			{
-				if (feedback.selection == null)
-					return;
-
-				addNewInput.value = "";
-
-				const entry = feedback.selection.value;
-				codes = [...codes, entry.codes[0]];
-			},
-		});
-
-		const resultsList = addNewInput.nextElementSibling;
-		resultsList.style.display = 'none';
-		['focus', 'blur'].forEach(eventType =>
-		{
-			addNewInput.addEventListener(eventType, () =>
-			{
-				switch (eventType)
-				{
-					case 'blur':
-						resultsList.style.display = 'none';
-						break;
-					case 'focus':
-						resultsList.style.display = 'block';
-						break;
-				}
-			});
-		});
-	});
 </script>
 
 <style>
@@ -112,42 +49,30 @@
 	.add-new-container {
 		grid-column: 1 / span 3;
 		position: relative;
+		min-width: 350px;
+
+		--ac-input-color: var(--vscode-input-foreground);
+		--ac-input-background: var(--vscode-input-background);
+		--ac-input-border: none;
+		--ac-input-padding: 3px;
+		--ac-input-margin: 0;
+
+		--ac-dropdown-background: var(--vscode-editor-background);
+		--ac-dropdown-border: 1px solid var(--vscode-input-foreground);
+		--ac-result-border: 1px solid transparent;
+		--ac-result-match-color: var(--vscode-textLink-activeForeground);
+		--ac-result-highlighted-background: var(--vscode-input-background);
+		--ac-result-highlighted-border: 1px solid var(--vscode-input-foreground);
 	}
-	.add-new-container :global(.auto-complete-list) {
-		top: 100%;
-		position: absolute;
-		min-width: 100%;
-		max-height: 300px;
-		box-sizing: border-box;
-		background: var(--vscode-editor-background);
-		border: 1px solid var(--vscode-editor-foreground);
-		margin: 0;
-		padding: 5px;
-		list-style-type: none;
-		overflow: auto;
-		display: none;
-	}
-	.add-new-container :global(.auto-complete-list > li) {
-		white-space: nowrap;
-		cursor: pointer;
-	}
-	.add-new-container :global(.auto-complete-list .autoComplete_selected),
-	.add-new-container :global(.auto-complete-list > li:hover) {
-		background: var(--vscode-input-background);
-	}
-	.add-new-container :global(.auto-complete-list .autoComplete_highlighted) {
-		font-weight: bold;
-		color: var(--vscode-textLink-activeForeground);
-	}
-	.add-new-input {
-		width: 100%;
-		box-sizing: border-box;
+
+	.as-text {
+		text-align: center;
 	}
 </style>
 
 <div class="editor-list">
 	{#each codes as code, i}
-		<div>{String.fromCodePoint(code)}</div>
+		<div class="as-text">{String.fromCodePoint(code)}</div>
 		<div>{getCodeName(data, code)}</div>
 		<IconButton
 			on:click={() => removeCodeAt(i)}>
@@ -156,7 +81,11 @@
 	{/each}
 
 	<div class="add-new-container">
-		<input bind:this={addNewInput} class="add-new-input"
-			placeholder="Type to search, select to add..."/>
+		<AutoComplete
+			placeholder="Type to search, select to add..."
+			items={() => autoCompleteItems}
+			maxItems={100}
+			bind:search
+			on:item-selected={e => onItemSelected(e.detail)}/>
 	</div>
 </div>
