@@ -3,7 +3,7 @@
 	import AddButton from './add-button.svelte';
 	import IconButton from './icon-button.svelte';
 	import Dialog from './dialog.svelte';
-	import { folder, smiley, close } from '../icons';
+	import { folder, folderOpened, smiley, close } from '../icons';
 	import { indentSize } from '../utility/constants.ts';
 	import { createEventDispatcher } from 'svelte';
 
@@ -54,6 +54,9 @@
 </script>
 
 <style>
+	.folder-label :global(svg) {
+		vertical-align: text-bottom;
+	}
 	input.name
 	{
 		background: transparent;
@@ -62,9 +65,13 @@
 </style>
 
 {#if name}
-	<input class="name" style="margin-left: {indent * indentSize}px"
-		bind:value={name}
-		on:input={() => dispatch('change')}/>
+	<div class="folder-label"
+		style="margin-left: {indent * indentSize}px">
+		{@html folderOpened}
+		<input class="name"
+			bind:value={name}
+			on:input={() => dispatch('change')}/>
+	</div>
 
 	<IconButton
 		title="Delete directory"
