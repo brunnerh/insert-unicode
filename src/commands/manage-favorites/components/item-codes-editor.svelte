@@ -68,24 +68,39 @@
 	.as-text {
 		text-align: center;
 	}
+
+	h2 {
+		font-size: 1em;
+	}
+
+	.inline {
+		display: inline;
+	}
 </style>
 
-<div class="editor-list">
-	{#each codes as code, i}
-		<div class="as-text">{String.fromCodePoint(code)}</div>
-		<div>{getCodeName(data, code)}</div>
-		<IconButton
-			on:click={() => removeCodeAt(i)}>
-			{@html close}
-		</IconButton>
-	{/each}
+<div>
+	<h2 class="inline">Text:</h2>
+	<span>{String.fromCodePoint(...codes)}</span>
 
-	<div class="add-new-container">
-		<AutoComplete
-			placeholder="Type to search, select to add..."
-			items={() => autoCompleteItems}
-			maxItems={100}
-			bind:search
-			on:item-selected={e => onItemSelected(e.detail)}/>
+	<h2>Characters:</h2>
+
+	<div class="editor-list">
+		{#each codes as code, i}
+			<div class="as-text">{String.fromCodePoint(code)}</div>
+			<div>{getCodeName(data, code)}</div>
+			<IconButton
+				on:click={() => removeCodeAt(i)}>
+				{@html close}
+			</IconButton>
+		{/each}
+
+		<div class="add-new-container">
+			<AutoComplete
+				placeholder="Type to search, select to add..."
+				items={() => autoCompleteItems}
+				maxItems={100}
+				bind:search
+				on:item-selected={e => onItemSelected(e.detail)}/>
+		</div>
 	</div>
 </div>

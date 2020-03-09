@@ -57,12 +57,10 @@
 	{#if item.codes.length == 0}
 		<span class="code">[Empty]</span>
 	{:else}
-		{#each item.codes as code}
-			<span class="code"
-				title="0x{code.toString(16)}">
-				{String.fromCodePoint(code)}
-			</span>
-		{/each}
+		<span class="code"
+			title="{item.codes.map(c => '0x' + c.toString(16)).join(' ')}">
+			{String.fromCodePoint(...item.codes)}
+		</span>
 	{/if}
 </button>
 
