@@ -5,5 +5,5 @@ export const asyncData = (async () =>
 {
 	const response = messageBus.call<SendUnicodeData>('unicode-data', { type: 'get-unicode-data' });
 
-	return (await response).data.filter(e => e.codes.length === 1);
+	return (await response).data;
 })();

@@ -3,6 +3,7 @@ import { Config } from "../../config-interface";
 import { FavoritesViewMessage } from "./favorites-view-message";
 import { FavoritesBackEndMessage } from "./favorites-back-end-message";
 import * as path from 'path';
+import { isSkintoneModifier } from "../../utility/code-operations";
 
 export const manageFavorites = (context: ExtensionContext) => () =>
 {
@@ -37,7 +38,17 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 				break;
 			case 'get-unicode-data':
 				const dataModule = await import('../../data');
-				postMessage({ type: 'unicode-data', data: dataModule.data });
+
+				let entries = dataModule.data;
+
+				if (Config.section.get('include-sequences') === false)
+					entries = entries.filter(entry => entry.codes.length === 1);
+
+				if (Config.section.get('include-skin-tone-variants') === false)
+					entries = entries.filter(entry => entry.codes.length === 1
+						|| entry.codes.some(isSkintoneModifier) === false);
+
+				postMessage({ type: 'unicode-data', data: entries });
 				break;
 			case 'changed':
 				view.title = title + '*';

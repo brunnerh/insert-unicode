@@ -6,6 +6,7 @@
 	import { indentSize } from '../utility/constants.ts';
 	import { asyncData } from '../utility/unicode-data.ts';
 	import { createEventDispatcher } from 'svelte';
+	import { codesToHex } from '../../../utility/code-conversion.ts';
 
 	export let item;
 	export let indent = 0;
@@ -58,7 +59,7 @@
 		<span class="code">[Empty]</span>
 	{:else}
 		<span class="code"
-			title="{item.codes.map(c => '0x' + c.toString(16)).join(' ')}">
+			title="{codesToHex(item.codes)}">
 			{String.fromCodePoint(...item.codes)}
 		</span>
 	{/if}

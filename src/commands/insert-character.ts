@@ -4,6 +4,7 @@ import { data } from '../data';
 import { insert } from '../utility/editor';
 import { showPaginatedQuickPick, unicodeEntryToQuickPick } from '../utility/quick-pick';
 import { CommandCallback } from './command-callback';
+import { isSkintoneModifier } from '../utility/code-operations';
 
 const allDataQuickPicks = data.map(unicodeEntryToQuickPick);
 
@@ -16,7 +17,7 @@ const getDataQuickPicks = () =>
 
 	if (Config.section.get('include-skin-tone-variants') === false)
 		picks = picks.filter(item => item.entry.codes.length === 1
-			|| item.entry.codes.some(code => code >= 0x1f3fb && code <= 0x1f3ff) === false);
+			|| item.entry.codes.some(isSkintoneModifier) === false);
 
 	return picks;
 };

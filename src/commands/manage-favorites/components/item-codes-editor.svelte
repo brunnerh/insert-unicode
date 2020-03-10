@@ -2,6 +2,7 @@
 	import IconButton from './icon-button.svelte';
 	import { close } from '../icons';
 	import { AutoComplete } from '@brunnerh/autocomplete';
+	import { codesToHex } from '../../../utility/code-conversion.ts';
 
 	export let data;
 	export let codes;
@@ -9,8 +10,8 @@
 	let search = '';
 
 	$: autoCompleteItems = data.map(e => ({
-			key: `${String.fromCodePoint(e.codes[0])} - ${e.name} (0x${e.codes[0].toString(16)})`,
-			value: e.codes[0],
+			key: `${String.fromCodePoint(...e.codes)} - ${e.name} (${codesToHex(e.codes)})`,
+			value: e.codes,
 		}));
 
 	function removeCodeAt(index)
@@ -21,13 +22,13 @@
 	}
 	function getCodeName(data, code)
 	{
-		const match = data.filter(e => e.codes[0] === code)[0];
+		const match = data.filter(e => e.codes.length == 1 && e.codes[0] === code)[0];
 
 		return match == undefined ? '?' : match.name;
 	}
 
-	function onItemSelected(code) {
-		codes[codes.length] = code.value;
+	function onItemSelected(item) {
+		codes = [...codes, ...item.value];
 		search = '';
 	}
 </script>
@@ -69,26 +70,35 @@
 		text-align: center;
 	}
 
-	h2 {
-		font-size: 1em;
+	.heading {
+		font-weight: bold;
 	}
-
-	.inline {
-		display: inline;
+	.span2 {
+		grid-column: 1 / span 2;
 	}
 </style>
 
 <div>
-	<h2 class="inline">Text:</h2>
-	<span>{String.fromCodePoint(...codes)}</span>
-
-	<h2>Characters:</h2>
+	<p>
+		<span class="heading">Text:</span>
+		<span>{String.fromCodePoint(...codes)}</span>
+	</p>
 
 	<div class="editor-list">
+		<span class="heading span2">Characters:</span>
+		<div>
+			{#if codes.length > 0}
+				<IconButton title="Remove all characters"
+					on:click={() => codes = []}>
+					{@html close}
+				</IconButton>
+			{/if}
+		</div>
+
 		{#each codes as code, i}
 			<div class="as-text">{String.fromCodePoint(code)}</div>
-			<div>{getCodeName(data, code)}</div>
-			<IconButton
+			<div title={codesToHex([code])}>{getCodeName(data, code)}</div>
+			<IconButton title="Remove character"
 				on:click={() => removeCodeAt(i)}>
 				{@html close}
 			</IconButton>
