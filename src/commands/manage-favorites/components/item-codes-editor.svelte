@@ -66,6 +66,10 @@
 		--ac-result-highlighted-border: 1px solid var(--vscode-input-foreground);
 	}
 
+	.combined-text {
+		font-size: x-large;
+	}
+
 	.as-text {
 		text-align: center;
 	}
@@ -81,7 +85,7 @@
 <div>
 	<p>
 		<span class="heading">Text:</span>
-		<span>{String.fromCodePoint(...codes)}</span>
+		<span class="combined-text">{String.fromCodePoint(...codes)}</span>
 	</p>
 
 	<div class="editor-list">
@@ -108,7 +112,7 @@
 			<AutoComplete
 				placeholder="Type to search, select to add..."
 				items={() => autoCompleteItems}
-				maxItems={100}
+				maxItems={250}
 				bind:search
 				on:item-selected={e => onItemSelected(e.detail)}/>
 		</div>

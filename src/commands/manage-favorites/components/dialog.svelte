@@ -36,6 +36,9 @@
 	export let isModal = true;
 	export let autoOpen = true;
 
+	let x = 0;
+	let y = 0;
+
 	const dispatch = createEventDispatcher();
 
 	let isOpen = false;
@@ -61,6 +64,23 @@
 		dialog.close();
 
 		isOpen = false;
+	}
+
+	let dragging = false;
+	function onPointerDown(e) {
+		e.currentTarget.setPointerCapture(e.pointerId);
+		dragging = true;
+	}
+	function onPointerUp(e) {
+		dragging = false;
+		e.currentTarget.releasePointerCapture(e.pointerId);
+	}
+	function onPointerMove(e) {
+		if (dragging == false)
+			return;
+
+		x += e.movementX;
+		y += e.movementY;
 	}
 
 	onMount(() =>
@@ -95,14 +115,19 @@
 	{
 		text-align: center;
 		font-weight: bold;
-		margin-bottom: 5px;
+		padding-bottom: 5px;
+		user-select: none;
 	}
 </style>
 
 <dialog class="dialog"
-		bind:this={dialog}>
+		bind:this={dialog}
+		style="transform: translateX({x}px) translateY({y}px)">
 	{#if title != null}
-		<div class="dialog-title">
+		<div class="dialog-title"
+			on:pointerdown={onPointerDown}
+			on:pointerup={onPointerUp}
+			on:pointermove={onPointerMove}>
 			{title}
 		</div>
 	{/if}
