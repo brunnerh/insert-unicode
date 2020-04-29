@@ -1,6 +1,6 @@
 # Change Log
 
-## [next]
+## [0.8.0] - 2020-04-29
 
 - Update Unicode table to version 13 🤌.
 - Add `Manage Favorites` command for visual editing of the favorites directory.
