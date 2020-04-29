@@ -5,6 +5,8 @@ interface FavoritesViewNode
 	directories: FavoritesDirectoryView[];
 
 	items: FavoritesItemView[];
+
+	isExpanded: boolean;
 }
 interface FavoritesDirectoryView
 {
@@ -39,6 +41,7 @@ export function fromSettings(node: FavoritesNode): FavoritesViewNode
 					codes: codes.map(c => typeof c === 'string' ? parseInt(c) : c),
 				}))
 			: [],
+		isExpanded: false,
 	};
 }
 

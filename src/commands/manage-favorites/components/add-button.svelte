@@ -5,6 +5,7 @@
 		background: transparent;
 		border-radius: 3px;
 		padding: 3px 5px;
+		cursor: pointer;
 	}
 	button:hover,
 	button:focus {

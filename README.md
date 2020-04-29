@@ -53,16 +53,23 @@ The "exact" directly inserts a given character, e.g. `FIRE`, which otherwise wou
 
 ### Insert From Favorites
 
-- *Manage Favorites* (`manageFavorites`)
 - *Insert from Favorites* (`insertFavoriteText`)
 - *Insert from Favorites as Decimal Code* (`insertFavoriteDecimalCode`)
 - *Insert from Favorites as Hex Code* (`insertFavoriteHexCode`)
+- *Manage Favorites* (`manageFavorites`)
 
 These commands insert characters from a favorites directory tree.
 
 ![favorites](./readme-files/favorites.png)
 
-Favorites can be configured via the *Manage Favorites* command.
+Favorites can be configured via the *Manage Favorites* command, which opens an editor:
+
+![favorites](./readme-files/favorites-manager.png)
+
+The buttons prefixed with `+` add new directories/favorite entries respectively. `x` removes directories/favorites. Clicking the folder icon in front of the directory name expands/collapses the contents. Directories can be renamed by clicking the name and editing it.
+
+`Save` (Ctrl+S) saves changes to the settings file.<br/>
+`Revert` reloads the favorites from the settings, discarding any changes.
 
 ### Inserting/Replacing Text With a "Unicode Font"
 

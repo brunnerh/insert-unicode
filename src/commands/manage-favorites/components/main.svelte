@@ -20,6 +20,7 @@
 	{
 		const favoritesMessage = await messageBus.call('favorites', { type: 'get-favorites' });
 		favorites = fromSettings(favoritesMessage.favorites);
+		favorites.isExpanded = true;
 		isDirty = false;
 		saveState();
 	}
@@ -84,6 +85,12 @@
 </script>
 
 <style>
+	h1 {
+		font-size: 20px;
+		padding-bottom: 3px;
+		border-bottom: 1px solid;
+	}
+
 	.fav-tree {
 		display: inline-grid;
 		grid-template-columns: auto auto;

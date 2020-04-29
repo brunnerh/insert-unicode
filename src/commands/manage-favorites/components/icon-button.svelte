@@ -6,6 +6,7 @@
 		color: var(--vscode-foreground);
 		border: 1px solid transparent;
 		padding: 3px;
+		cursor: pointer;
 	}
 	button:hover,
 	button:focus

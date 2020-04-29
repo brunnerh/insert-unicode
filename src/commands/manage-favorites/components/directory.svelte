@@ -17,6 +17,10 @@
 		? 'favorites root folder'
 		: `"${name}"`;
 
+	$: sortedDirectories = node.directories.sort((a, b) =>
+		a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+	);
+
 	function deleteDirectory()
 	{
 		dispatch('delete');
@@ -38,7 +42,8 @@
 			...node.directories,
 			{
 				name: 'New Folder',
-				content: { directories: [], items: [] },
+				content: { directories: [], items: [], isExpanded: true },
+
 			},
 		];
 		dispatch('change');
@@ -50,6 +55,17 @@
 			{ codes: [] },
 		];
 		dispatch('change');
+	}
+
+	function onBlur(e)
+	{
+		const newName = e.currentTarget.value;
+		if (newName == name)
+			return;
+
+		name = newName;
+
+		dispatch('change')
 	}
 </script>
 
@@ -64,13 +80,21 @@
 	}
 </style>
 
-{#if name}
+{#if name != null}
 	<div class="folder-label"
 		style="margin-left: {indent * indentSize}px">
-		{@html folderOpened}
+		<IconButton on:click={() => node.isExpanded = !node.isExpanded}
+			title={node.isExpanded ? "Collapse directory" : "Expand directory"}>
+			{#if node.isExpanded}
+				{@html folderOpened}
+			{:else}
+				{@html folder}
+			{/if}
+		</IconButton>
 		<input class="name"
-			bind:value={name}
-			on:input={() => dispatch('change')}/>
+			value={name}
+			placeholder="Unnamed Folder"
+			on:blur={onBlur}/>
 	</div>
 
 	<IconButton
@@ -80,32 +104,33 @@
 	</IconButton>
 {/if}
 
-{#each node.directories as childDirectory}
-	<svelte:self
-		bind:name={childDirectory.name}
-		node={childDirectory.content}
-		indent={indent + 1}
-		on:delete={() => deleteChildDirectory(childDirectory)}
-		on:change/>
-{/each}
+{#if node.isExpanded}
+	{#each node.directories as childDirectory}
+		<svelte:self
+			bind:name={childDirectory.name}
+			node={childDirectory.content}
+			indent={indent + 1}
+			on:delete={() => deleteChildDirectory(childDirectory)}
+			on:change/>
+	{/each}
 
-{#each node.items as item}
-	<Item
-		{item}
-		indent={indent + 1}
-		on:delete={() => deleteChildItem(item)}
-		on:change/>
-{/each}
+	{#each node.items as item}
+		<Item
+			{item}
+			indent={indent + 1}
+			on:delete={() => deleteChildItem(item)}
+			on:change/>
+	{/each}
 
 
+	<div style="margin-left: {(indent + 1) * indentSize}px">
+		<AddButton on:click={addFolder} title="Add new folder to {nameForTooltips}">
+			{@html folder}
+		</AddButton>
 
-<div style="margin-left: {(indent + 1) * indentSize}px">
-	<AddButton on:click={addFolder} title="Add new folder to {nameForTooltips}">
-		{@html folder}
-	</AddButton>
-
-	<AddButton on:click={addItem} title="Add new favorite entry to {nameForTooltips}">
-		{@html smiley}
-	</AddButton>
-</div>
-<div></div>
+		<AddButton on:click={addItem} title="Add new favorite entry to {nameForTooltips}">
+			{@html smiley}
+		</AddButton>
+	</div>
+	<div></div>
+{/if}
