@@ -1,5 +1,10 @@
 # Change Log
 
+## [next]
+
+- Update Unicode table to version 13 🤌.
+- Add `Manage Favorites` command for visual editing of the favorites directory.
+
 ## [0.7.1] - 2019-11-27
 
 - Add digit conversion to the fonts command. Supported are:
@@ -22,7 +27,6 @@
 ## [0.6.0] - 2019-03-05
 
 - Update Unicode table to version 12 🧇.
-- Add [README section on supporting Unicode Consortium](./README.md#supporting-the-unicode-consortium) through character adoption.
 
 ## [0.5.0] - 2019-03-01
 

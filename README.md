@@ -139,26 +139,13 @@ In general, if you see a special character or symbol and do not know how to writ
 
 ## Unicode Standards Versions
 
-- Unicode Standard: 12.0.0
-- Unicode Emoji: 12.0
+- Unicode Standard: 13.0.0
+- Unicode Emoji: 13.0
 
 ## Known Issues
 
 - Some of "fonts" do not convert correctly.
 - The unicode fonts may confuse word wrapping, which is an issue on the side of VS Code itself.
-
-## Supporting the Unicode Consortium
-
-Are you a fan of Unicode? There is a program to [adopt a Unicode character](https://unicode.org/consortium/adopted-characters.html) whose donations are used to preserve the linguistic heritage of the world.
-
-I think it would be nice to jointly adopt a character at the silver level as the users of this extension. To that end I will now accept donations; it would only take 100 people to donate $10 to reach the target of $1000. Personally, I am a great fan of ✨, so that is my proposed character of choice.
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2T6SWF4FPZ8S4&source=url)
-
-[[Progress Tracking Issue]](https://github.com/brunnerh/insert-unicode/issues/4)
-
-**Note:** I will keep donations open for at least one year starting with the Unicode v.12 release (🎉) on 2019-03-05. Donations will *not* be refundable. If reaching the target appears to be unfeasible at any point after the elapsed year, the donations may be given to another charitable cause!
-
 
 # Attribution
 
