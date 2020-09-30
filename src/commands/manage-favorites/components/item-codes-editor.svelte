@@ -1,11 +1,12 @@
-<script>
+<script type="text/typescript">
 	import IconButton from './icon-button.svelte';
 	import { close } from '../icons';
+	import { codesToHex } from '../../../utility/code-conversion';
+	import type { UnicodeEntry } from '../../../data';
 	import { AutoComplete } from '@brunnerh/autocomplete';
-	import { codesToHex } from '../../../utility/code-conversion.ts';
 
-	export let data;
-	export let codes;
+	export let data: UnicodeEntry[];
+	export let codes: number[];
 
 	let search = '';
 
@@ -14,20 +15,20 @@
 			value: e.codes,
 		}));
 
-	function removeCodeAt(index)
+	function removeCodeAt(index: number)
 	{
 		const newItems = codes.slice();
 		newItems.splice(index, 1);
 		codes = newItems;
 	}
-	function getCodeName(data, code)
+	function getCodeName(data: UnicodeEntry[], code: number)
 	{
 		const match = data.filter(e => e.codes.length == 1 && e.codes[0] === code)[0];
 
 		return match == undefined ? '?' : match.name;
 	}
 
-	function onItemSelected(item) {
+	function onItemSelected(item: typeof autoCompleteItems[number]) {
 		codes = [...codes, ...item.value];
 		search = '';
 	}

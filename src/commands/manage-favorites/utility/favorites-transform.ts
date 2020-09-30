@@ -1,6 +1,12 @@
-import { FavoritesNode } from "../../../config-interface";
+import type { FavoritesNode } from "../../../config-interface";
 
-interface FavoritesViewNode
+export interface FavoritesViewData
+{
+	global: FavoritesViewNode;
+	workspace: FavoritesViewNode;
+}
+
+export interface FavoritesViewNode
 {
 	directories: FavoritesDirectoryView[];
 
@@ -8,13 +14,13 @@ interface FavoritesViewNode
 
 	isExpanded: boolean;
 }
-interface FavoritesDirectoryView
+export interface FavoritesDirectoryView
 {
 	name: string;
 
 	content: FavoritesViewNode;
 }
-interface FavoritesItemView
+export interface FavoritesItemView
 {
 	codes: number[];
 }

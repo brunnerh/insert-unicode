@@ -1,5 +1,5 @@
-import { FavoritesViewMessage } from "../favorites-view-message";
-import { FavoritesBackEndMessage } from "../favorites-back-end-message";
+import type { FavoritesViewMessage } from "../favorites-view-message";
+import type { FavoritesBackEndMessage } from "../favorites-back-end-message";
 import { vscode } from './vscode-api';
 
 type BackEndEventHandler = (message: FavoritesBackEndMessage) => void;
@@ -51,10 +51,10 @@ class MessageBus
 	 * @param responseType The type of the expected response message.
 	 * @param message The message to send to the back-end.
 	 */
-	call<T extends FavoritesBackEndMessage>(
-		responseType: FavoritesBackEndMessage['type'],
+	call<T extends FavoritesBackEndMessage['type']>(
+		responseType: T,
 		message: FavoritesViewMessage
-	) : Promise<T>
+	) : Promise<FilterMessageByType<FavoritesBackEndMessage, T>>
 	{
 		return new Promise(res =>
 		{
@@ -64,7 +64,7 @@ class MessageBus
 					return;
 
 				this.unsubscribe(callback);
-				res(m as T);
+				res(m as FilterMessageByType<FavoritesBackEndMessage, T>);
 			};
 
 			this.subscribe(callback);
@@ -74,3 +74,9 @@ class MessageBus
 }
 
 export const messageBus = new MessageBus();
+
+
+export type FilterMessageByType<
+	MessageBase extends { type: string },
+	MessageType extends string
+	> = MessageBase extends any ? MessageBase['type'] extends MessageType ? MessageBase : never : never;

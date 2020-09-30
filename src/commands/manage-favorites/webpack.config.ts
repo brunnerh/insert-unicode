@@ -1,4 +1,6 @@
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
+const sveltePreprocess = require('svelte-preprocess');
+
 const path = require('path');
 
 module.exports = (env: any, argv: Configuration) => <Configuration>{
@@ -9,7 +11,7 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 		alias: {
 			svelte: path.resolve(__dirname, '..', '..', '..', 'node_modules', 'svelte')
 		},
-		extensions: ['.mjs', '.js', '.svelte', '.ts'],
+		extensions: ['.svelte', '.ts', '.tsx', '.mjs', '.js', '.jsx', '.css'],
 		mainFields: ['svelte', 'browser', 'module', 'main'],
 	},
 	output: {
@@ -27,6 +29,7 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 					options: {
 						emitCss: true,
 						hotReload: true,
+						preprocess: sveltePreprocess(),
 					},
 				},
 			},
@@ -38,7 +41,7 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 				],
 			},
 			{
-				test: /\.ts$/i,
+				include: /\.ts$/i,
 				loader: 'ts-loader',
 			},
 			{

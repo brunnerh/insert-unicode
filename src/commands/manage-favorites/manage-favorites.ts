@@ -1,9 +1,10 @@
-import { window, ViewColumn, workspace, Uri, ExtensionContext } from "vscode";
+import { window, ViewColumn, Uri, ExtensionContext } from "vscode";
 import { Config } from "../../config-interface";
-import { FavoritesViewMessage } from "./favorites-view-message";
-import { FavoritesBackEndMessage } from "./favorites-back-end-message";
+import type { FavoritesViewMessage } from "./favorites-view-message";
+import type { FavoritesBackEndMessage } from "./favorites-back-end-message";
 import * as path from 'path';
 import { isSkintoneModifier } from "../../utility/code-operations";
+import { empty } from "../../utility/favorites";
 
 export const manageFavorites = (context: ExtensionContext) => () =>
 {
@@ -32,8 +33,13 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 		switch (message.type)
 		{
 			case 'get-favorites':
-				const favorites = Config.section.get('favorites');
-				postMessage({ type: 'favorites', favorites });
+				const favorites = Config.section.inspect('favorites')!;
+
+				postMessage({
+					type: 'favorites',
+					global: favorites.globalValue,
+					workspace: favorites.workspaceValue,
+				});
 				view.title = title;
 				break;
 			case 'get-unicode-data':
@@ -54,8 +60,38 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 				view.title = title + '*';
 				break;
 			case 'save':
-				Config.section.update('favorites', message.favorites);
-				view.title = title;
+				try
+				{
+					const favorites = Config.section.inspect('favorites')!;
+
+					const updates = [
+						{
+							current: favorites.globalValue,
+							new: message.global,
+							target: true,
+						},
+						{
+							current: favorites.workspaceValue,
+							new: message.workspace,
+							target: false,
+						},
+					];
+
+					for (const update of updates)
+					{
+						if (update.current === undefined && empty(update.new, false))
+							continue
+
+						await Config.section.update('favorites', update.new, update.target);
+					}
+
+					view.title = title;
+				}
+				catch (e)
+				{
+					window.showErrorMessage('Saving of favorites failed. See developer console for error.');
+					console.error('Favorites save error:', e);
+				}
 				break;
 			default:
 				break;

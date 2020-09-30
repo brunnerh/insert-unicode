@@ -2,15 +2,15 @@ import { QuickPickItem, window } from "vscode";
 import { Config, FavoritesNode } from '../config-interface';
 import { data } from '../data';
 import { insert } from "../utility/editor";
+import { empty, merge } from "../utility/favorites";
 import { unicodeEntryToQuickPick } from "../utility/quick-pick";
 import { CommandCallback } from "./command-callback";
 
 type HierarchicalFavoritesNode = FavoritesNode & { parent?: FavoritesNode };
+
 export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) => string): CommandCallback =>
 	async (editor) =>
 	{
-		const favorites = Config.section.get('favorites');
-
 		const showNode = async (node: HierarchicalFavoritesNode) =>
 		{
 			const picks: (QuickPickItem & { onSelected: () => Promise<void> })[] = [];
@@ -91,5 +91,42 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 			return true;
 		};
 
-		await showNode(favorites);
+		const favorites = Config.section.inspect('favorites')!;
+
+		const sets = [
+			{
+				label: 'User Settings',
+				favorites: favorites.globalValue,
+			},
+			{
+				label: 'Workspace Settings',
+				favorites: favorites.workspaceValue,
+			}
+		].filter(s => s.favorites !== undefined && empty(s.favorites) === false);
+
+		if (sets.length === 0)
+		{
+			await showNode(favorites.defaultValue!);
+		}
+		else if (sets.length === 1)
+		{
+			await showNode(sets[0].favorites!);
+		}
+		else
+		{
+			const behavior = Config.section.get('favoritesScopeBehavior');
+			switch (behavior)
+			{
+				case 'merge':
+					await showNode(merge(sets.map(s => s.favorites!)));
+					break;
+				case 'separate':
+					await showNode({
+						directories: Object.fromEntries(sets.map(s => [s.label, s.favorites!])),
+					});
+					break;
+				default:
+					window.showErrorMessage(`Unknown "favoritesScopeBehavior" setting: ${behavior}`);
+			}
+		}
 	};

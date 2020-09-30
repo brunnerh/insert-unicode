@@ -1,5 +1,5 @@
-import { FavoritesNode } from "../../config-interface";
-import { UnicodeEntry } from '../../data';
+import type { FavoritesNode } from "../../config-interface";
+import type { UnicodeEntry } from '../../data';
 
 /** Message sent by the favorites manager back-end. */
 export type FavoritesBackEndMessage =
@@ -9,7 +9,8 @@ export type FavoritesBackEndMessage =
 export interface SendFavorites
 {
 	type: 'favorites';
-	favorites: FavoritesNode;
+	global: FavoritesNode | undefined;
+	workspace: FavoritesNode | undefined;
 }
 
 export interface SendUnicodeData

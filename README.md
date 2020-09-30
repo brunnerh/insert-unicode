@@ -68,7 +68,7 @@ Favorites can be configured via the *Manage Favorites* command, which opens an e
 
 The buttons prefixed with `+` add new directories/favorite entries respectively. `x` removes directories/favorites. Clicking the folder icon in front of the directory name expands/collapses the contents. Directories can be renamed by clicking the name and editing it.
 
-`Save` (Ctrl+S) saves changes to the settings file.<br/>
+`Save` (Ctrl+S) saves changes to the settings files.<br/>
 `Revert` reloads the favorites from the settings, discarding any changes.
 
 ### Inserting/Replacing Text With a "Unicode Font"

@@ -1,4 +1,4 @@
-import { FavoritesNode } from "../../config-interface";
+import type { FavoritesNode } from "../../config-interface";
 
 /** Message sent by the favorites manager view. */
 export type FavoritesViewMessage =
@@ -25,5 +25,6 @@ export interface ChangeEvent
 export interface SaveEvent
 {
 	type: 'save';
-	favorites: FavoritesNode;
+	global: FavoritesNode;
+	workspace: FavoritesNode;
 }

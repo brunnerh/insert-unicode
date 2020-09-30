@@ -1,17 +1,18 @@
-<script>
+<script type="text/typescript">
 	import Dialog from './dialog.svelte';
 	import IconButton from './icon-button.svelte';
 	import ItemCodesEditor from './item-codes-editor.svelte';
 	import { close } from '../icons';
-	import { indentSize } from '../utility/constants.ts';
-	import { asyncData } from '../utility/unicode-data.ts';
+	import { indentSize } from '../utility/constants';
+	import { asyncData } from '../utility/unicode-data';
 	import { createEventDispatcher } from 'svelte';
-	import { codesToHex } from '../../../utility/code-conversion.ts';
+	import { codesToHex } from '../../../utility/code-conversion';
+	import type { FavoritesItemView } from '../utility/favorites-transform';
 
-	export let item;
+	export let item: FavoritesItemView;
 	export let indent = 0;
 
-	let editDialog;
+	let editDialog: Dialog;
 	const dispatch = createEventDispatcher();
 
 	function deleteItem()
@@ -19,7 +20,7 @@
 		dispatch('delete');
 	}
 
-	let editDialogCodes = [];
+	let editDialogCodes: number[] = [];
 
 	function openEditDialog()
 	{

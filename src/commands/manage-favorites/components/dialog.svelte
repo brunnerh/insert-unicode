@@ -1,4 +1,4 @@
-<script>
+<script type="text/typescript">
 	/**
 	 * Dialog Component
 	 *
@@ -27,14 +27,23 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import Button from './button.svelte';
 
-	export let title = undefined;
-	export let content = undefined;
+	/** Title of the dialog. */
+	export let title: string | undefined = undefined;
+
+	/** Content of the dialog. */
+	export let content: any = undefined;
+
+	/** Buttons of the dialog. */
 	export let buttons = [
 		{ value: 'ok', label: 'OK' },
 		{ value: 'cancel', label: 'Cancel' },
 	];
-	export let isModal = true;
-	export let autoOpen = true;
+
+	/** Whether the dialog is modal. */
+	export let isModal: boolean = true;
+
+	/** Whether the dialog opens automatically. */
+	export let autoOpen: boolean = true;
 
 	let x = 0;
 	let y = 0;
@@ -43,14 +52,15 @@
 
 	let isOpen = false;
 
-	let dialog;
-	function buttonClick(type)
+	let dialog: HTMLDialogElement;
+
+	function buttonClick(type: string)
 	{
 		dispatch(type, null)
 		dialog.close();
 	}
 
-	function open()
+	export function open()
 	{
 		if (isModal)
 			dialog.showModal();
@@ -59,7 +69,7 @@
 
 		isOpen = true;
 	}
-	function close()
+	export function close()
 	{
 		dialog.close();
 
@@ -67,15 +77,17 @@
 	}
 
 	let dragging = false;
-	function onPointerDown(e) {
-		e.currentTarget.setPointerCapture(e.pointerId);
+	function onPointerDown(e: PointerEvent) {
+		const target = e.currentTarget as HTMLElement;
+		target.setPointerCapture(e.pointerId);
 		dragging = true;
 	}
-	function onPointerUp(e) {
+	function onPointerUp(e: PointerEvent) {
 		dragging = false;
-		e.currentTarget.releasePointerCapture(e.pointerId);
+		const target = e.currentTarget as HTMLElement;
+		target.releasePointerCapture(e.pointerId);
 	}
-	function onPointerMove(e) {
+	function onPointerMove(e: PointerEvent) {
 		if (dragging == false)
 			return;
 
@@ -90,11 +102,6 @@
 		if (autoOpen)
 			open();
 	});
-
-	export {
-		open,
-		close,
-	};
 </script>
 
 <style>

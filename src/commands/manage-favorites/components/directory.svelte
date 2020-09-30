@@ -1,16 +1,16 @@
-<script>
+<script type="text/typescript">
 	import Item from './item.svelte';
 	import AddButton from './add-button.svelte';
 	import IconButton from './icon-button.svelte';
-	import Dialog from './dialog.svelte';
 	import { folder, folderOpened, smiley, close } from '../icons';
-	import { indentSize } from '../utility/constants.ts';
+	import { indentSize } from '../utility/constants';
 	import { createEventDispatcher } from 'svelte';
+	import type { FavoritesDirectoryView, FavoritesItemView, FavoritesViewNode } from '../utility/favorites-transform';
 
 	const dispatch = createEventDispatcher();
 
-	export let name;
-	export let node;
+	export let name: string | undefined = undefined;
+	export let node: FavoritesViewNode;
 	export let indent = -1;
 
 	$: nameForTooltips = name == null
@@ -25,12 +25,12 @@
 	{
 		dispatch('delete');
 	}
-	function deleteChildDirectory(childDirectory)
+	function deleteChildDirectory(childDirectory: FavoritesDirectoryView)
 	{
 		node.directories = node.directories.filter(d => d != childDirectory);
 		dispatch('change');
 	}
-	function deleteChildItem(childItem)
+	function deleteChildItem(childItem: FavoritesItemView)
 	{
 		node.items = node.items.filter(i => i != childItem);
 		dispatch('change');
@@ -57,14 +57,13 @@
 		dispatch('change');
 	}
 
-	function onBlur(e)
+	function onBlur(e: Event)
 	{
-		const newName = e.currentTarget.value;
+		const newName = (e.currentTarget as HTMLInputElement).value;
 		if (newName == name)
 			return;
 
 		name = newName;
-
 		dispatch('change')
 	}
 </script>

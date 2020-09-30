@@ -1,5 +1,10 @@
 # Change Log
 
+## [next]
+
+- `Manage Favorites` is now separated into user and workspace settings.
+- If favorites are stored in both user and workspace settings, a new option `favoritesScopeBehavior` controls how the settings are presented in the `Insert from Favorites` tree (merged or separated).
+
 ## [0.8.0] - 2020-04-29
 
 - Update Unicode table to version 13 🤌.
