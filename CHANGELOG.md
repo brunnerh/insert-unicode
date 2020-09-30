@@ -1,6 +1,6 @@
 # Change Log
 
-## [next]
+## [0.9.0] - 2020-09-30
 
 - `Manage Favorites` is now separated into user and workspace settings.
 - If favorites are stored in both user and workspace settings, a new option `favoritesScopeBehavior` controls how the settings are presented in the `Insert from Favorites` tree (merged or separated).
