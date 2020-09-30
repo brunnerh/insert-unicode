@@ -1,9 +1,10 @@
 import type { FavoritesNode } from "../../../config-interface";
+import type { FavoritesSectionType } from "../favorites-section-type";
 
-export interface FavoritesViewData
+export interface FavoritesViewSection
 {
-	global: FavoritesViewNode;
-	workspace: FavoritesViewNode;
+	type: FavoritesSectionType;
+	favorites: FavoritesViewNode;
 }
 
 export interface FavoritesViewNode

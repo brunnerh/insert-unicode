@@ -1,10 +1,11 @@
-import { window, ViewColumn, Uri, ExtensionContext } from "vscode";
-import { Config } from "../../config-interface";
+import { window, workspace, ViewColumn, Uri, ExtensionContext } from "vscode";
+import { Config, FavoritesNode } from "../../config-interface";
 import type { FavoritesViewMessage } from "./favorites-view-message";
-import type { FavoritesBackEndMessage } from "./favorites-back-end-message";
+import type { FavoritesBackEndMessage, SendFavoritesSection } from "./favorites-back-end-message";
 import * as path from 'path';
 import { isSkintoneModifier } from "../../utility/code-operations";
 import { empty } from "../../utility/favorites";
+import { FavoritesSectionType } from "./favorites-section-type";
 
 export const manageFavorites = (context: ExtensionContext) => () =>
 {
@@ -34,11 +35,22 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 		{
 			case 'get-favorites':
 				const favorites = Config.section.inspect('favorites')!;
+				const sections = [
+					{
+						type: 'global',
+						favorites: favorites.globalValue,
+						show: true,
+					},
+					{
+						type: 'workspace',
+						favorites: favorites.workspaceValue,
+						show: workspace.name !== undefined,
+					},
+				].filter(s => s.show) as SendFavoritesSection[];
 
 				postMessage({
 					type: 'favorites',
-					global: favorites.globalValue,
-					workspace: favorites.workspaceValue,
+					sections,
 				});
 				view.title = title;
 				break;
@@ -64,25 +76,24 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 				{
 					const favorites = Config.section.inspect('favorites')!;
 
-					const updates = [
-						{
+					const updates: Record<FavoritesSectionType, UpdateInfo> = {
+						global: {
 							current: favorites.globalValue,
-							new: message.global,
 							target: true,
 						},
-						{
+						workspace: {
 							current: favorites.workspaceValue,
-							new: message.workspace,
 							target: false,
 						},
-					];
+					};
 
-					for (const update of updates)
+					for (const section of message.sections)
 					{
-						if (update.current === undefined && empty(update.new, false))
-							continue
+						const update = updates[section.type];
+						if (update.current === undefined && empty(section.favorites, false))
+							continue;
 
-						await Config.section.update('favorites', update.new, update.target);
+						await Config.section.update('favorites', section.favorites, update.target);
 					}
 
 					view.title = title;
@@ -118,3 +129,9 @@ const html = (scriptRoot: string) => /*html*/`
 		</body>
 	</html>
 `;
+
+interface UpdateInfo
+{
+	current: FavoritesNode | undefined;
+	target: boolean;
+}

@@ -1,20 +1,46 @@
 // See https://go.microsoft.com/fwlink/?LinkId=733558
 // for the documentation about the tasks.json format
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "type": "npm",
-            "script": "watch",
-            "problemMatcher": "$tsc-watch",
-            "isBackground": true,
-            "presentation": {
-                "reveal": "never"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "watch",
+			"problemMatcher": "$tsc-watch",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "never",
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "npm",
+			"label": "fav-manager:watch",
+			"script": "fav-manager:watch",
+			"isBackground": true,
+			"presentation": {
+				"group": "fav-manager",
+			},
+		},
+		{
+			"type": "npm",
+			"label": "fav-manager-svelte-check:watch",
+			"script": "fav-manager-svelte-check:watch",
+			"isBackground": true,
+			"presentation": {
+				"group": "fav-manager",
+			},
+		},
+		{
+			"label": "fav-manager",
+			"dependsOn": [
+				"fav-manager:watch",
+				"fav-manager-svelte-check:watch",
+			],
+			"problemMatcher": []
+		}
+	]
 }

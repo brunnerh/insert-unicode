@@ -1,4 +1,5 @@
 import type { FavoritesNode } from "../../config-interface";
+import type { FavoritesSectionType } from "./favorites-section-type";
 
 /** Message sent by the favorites manager view. */
 export type FavoritesViewMessage =
@@ -25,6 +26,11 @@ export interface ChangeEvent
 export interface SaveEvent
 {
 	type: 'save';
-	global: FavoritesNode;
-	workspace: FavoritesNode;
+	sections: SaveEventSection[];
+}
+
+export interface SaveEventSection
+{
+	type: FavoritesSectionType;
+	favorites: FavoritesNode;
 }

@@ -17,9 +17,11 @@
 		? 'favorites root folder'
 		: `"${name}"`;
 
-	$: sortedDirectories = node.directories.sort((a, b) =>
-		a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
-	);
+	$: {
+		node.directories.sort((a, b) =>
+			a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+		);
+	}
 
 	function deleteDirectory()
 	{
@@ -43,7 +45,6 @@
 			{
 				name: 'New Folder',
 				content: { directories: [], items: [], isExpanded: true },
-
 			},
 		];
 		dispatch('change');

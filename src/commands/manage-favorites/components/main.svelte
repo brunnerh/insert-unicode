@@ -2,14 +2,15 @@
 	import Directory from './directory.svelte';
 	import Button from './button.svelte';
 	import { messageBus } from '../utility/message-bus';
-	import { fromSettings, toSettings, areFavoritesValid, FavoritesViewData } from '../utility/favorites-transform';
+	import { fromSettings, toSettings, areFavoritesValid, FavoritesViewSection } from '../utility/favorites-transform';
 	import { showMessageDialog } from '../utility/dialog-utility';
 	import { vscode } from '../utility/vscode-api';
 	import { onMount } from 'svelte';
+	import type { FavoritesSectionType } from '../favorites-section-type';
 
 	import('../utility/unicode-data'); // Start async data loading
 
-	let favorites: FavoritesViewData | null = null;
+	let favoritesSections: FavoritesViewSection[] | null = null;
 	let isDirty = false;
 
 	onMount(async () =>
@@ -20,12 +21,11 @@
 	async function getFavorites()
 	{
 		const favoritesMessage = await messageBus.call('favorites', { type: 'get-favorites' });
-		favorites = {
-			global: fromSettings(favoritesMessage.global ?? {}),
-			workspace: fromSettings(favoritesMessage.workspace ?? {}),
-		};
-		favorites.global.isExpanded = true;
-		favorites.workspace.isExpanded = true;
+		favoritesSections = favoritesMessage.sections.map(section => ({
+			type: section.type,
+			favorites: fromSettings(section.favorites ?? {}),
+		}));
+		favoritesSections.forEach(s => s.favorites.isExpanded = true);
 
 		isDirty = false;
 		saveState();
@@ -34,9 +34,8 @@
 	/** Save settings button. */
 	async function save()
 	{
-		if (favorites == null ||
-			areFavoritesValid(favorites.global) == false ||
-			areFavoritesValid(favorites.workspace) == false)
+		if (favoritesSections == null ||
+			favoritesSections.some(s => areFavoritesValid(s.favorites) == false))
 		{
 			await showMessageDialog('Multiple directories at the same level have the same name. Cannot save favorites.');
 			return;
@@ -44,8 +43,10 @@
 
 		messageBus.send({
 			type: 'save',
-			global: toSettings(favorites.global),
-			workspace: toSettings(favorites.workspace),
+			sections: favoritesSections.map(s => ({
+				type: s.type,
+				favorites: toSettings(s.favorites),
+			}))
 		});
 		isDirty = false;
 	}
@@ -66,7 +67,7 @@
 	{
 		vscode.setState({
 			isDirty,
-			favorites,
+			favoritesSections,
 		} as State);
 	}
 	async function loadState()
@@ -75,7 +76,7 @@
 		if (state != null)
 		{
 			isDirty = state.isDirty;
-			favorites = state.favorites;
+			favoritesSections = state.favoritesSections;
 		}
 		else
 		{
@@ -95,10 +96,15 @@
 		}
 	}
 
+	const sectionLabels: Record<FavoritesSectionType, string> = {
+		global: 'User Settings',
+		workspace: 'Workspace Settings',
+	}
+
 	interface State
 	{
 		isDirty: boolean,
-		favorites: FavoritesViewData,
+		favoritesSections: FavoritesViewSection[],
 	}
 </script>
 
@@ -130,18 +136,14 @@
 
 <h1>Unicode Favorites</h1>
 
-{#if favorites}
-	<h2>User Settings</h2>
-	<div class="fav-tree">
-		<Directory node={favorites.global}
-			on:change={onChange}/>
-	</div>
-
-	<h2>Workspace Settings</h2>
-	<div class="fav-tree">
-		<Directory node={favorites.workspace}
-			on:change={onChange}/>
-	</div>
+{#if favoritesSections}
+	{#each favoritesSections as section}
+		<h2>{sectionLabels[section.type]}</h2>
+		<div class="fav-tree">
+			<Directory node={section.favorites}
+				on:change={onChange}/>
+		</div>
+	{/each}
 
 	<div class="button-bar">
 		<Button type="button" on:click={save}

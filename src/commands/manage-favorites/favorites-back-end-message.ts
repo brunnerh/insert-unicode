@@ -1,5 +1,6 @@
 import type { FavoritesNode } from "../../config-interface";
 import type { UnicodeEntry } from '../../data';
+import type { FavoritesSectionType } from "./favorites-section-type";
 
 /** Message sent by the favorites manager back-end. */
 export type FavoritesBackEndMessage =
@@ -9,8 +10,13 @@ export type FavoritesBackEndMessage =
 export interface SendFavorites
 {
 	type: 'favorites';
-	global: FavoritesNode | undefined;
-	workspace: FavoritesNode | undefined;
+	sections: SendFavoritesSection[];
+}
+
+export interface SendFavoritesSection
+{
+	type: FavoritesSectionType;
+	favorites: FavoritesNode | undefined;
 }
 
 export interface SendUnicodeData
