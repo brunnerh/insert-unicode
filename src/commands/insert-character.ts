@@ -85,6 +85,7 @@ export const insertCommandFactory = (codeConverter: (codes: number[]) => string,
 
 			const quickPickOptions = <QuickPickOptions>{
 				matchOnDescription: true,
+				matchOnDetail: true,
 				placeHolder: disableFiltering ? '' :
 					`Results for "${search}" (${pickItems.length}). (Press ESC to search for another term.)`,
 				pageSize: Config.section.get("page-size")

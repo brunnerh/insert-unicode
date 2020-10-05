@@ -54,13 +54,14 @@ export async function showPaginatedQuickPick<T extends QuickPickItem>(
 	return await showPage(0);
 }
 
-export type UnicodeQuickPickItem = QuickPickItem & { entry: UnicodeEntry }
+export type UnicodeQuickPickItem = QuickPickItem & { entry: UnicodeEntry };
 
 export function unicodeEntryToQuickPick(entry: UnicodeEntry): UnicodeQuickPickItem
 {
 	return {
 		label: entry.codes.map(code => String.fromCodePoint(code)).join(''),
 		description: `${codesToHex(entry.codes)} - ${entry.name}`,
+		detail: entry.aliases.length === 0 ? undefined : entry.aliases.join(', '),
 		entry
 	};
 }
