@@ -1,20 +1,17 @@
+/**@type {import('eslint').Linter.Config} */
 module.exports = {
+	root: true,
 	env: {
 		browser: true,
 		es6: true,
 		node: true
 	},
 	parser: "@typescript-eslint/parser",
-	parserOptions: {
-		project: "tsconfig.json",
-		sourceType: "module"
-	},
 	plugins: [
 		"@typescript-eslint"
 	],
 	ignorePatterns: ['node_modules/', 'out/'],
 	rules: {
-		"@typescript-eslint/class-name-casing": "warn",
 		"@typescript-eslint/member-delimiter-style": [
 			"warn",
 			{

@@ -3,6 +3,9 @@
 ## [next]
 
 - `Identify Characters` now prompts for input if nothing is selected.
+- Add `Identify` view which automatically identifies the selected characters, similar to `Identify Characters` command.
+  - Located in Explorer sidebar by default; can be dragged elsewhere.
+  - Has two options to optimize performance if necessary: `identifyViewUpdateDelay`, `identifyViewCharacterLimit`
 - Workspace settings section in `Manage Favorites` is hidden if no workspace is currently opened.
 
 ## [0.9.0] - 2020-09-30

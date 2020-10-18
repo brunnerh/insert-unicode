@@ -6,6 +6,24 @@ The commands can be executed via the command palette (`View` > `Command Palette.
 
 No keys are bound by default. Use the command `Preferences: Open Keyboard Shortcuts` to add custom keyboard shortcuts.
 
+<details>
+<summary>Table of Contents</summary>
+
+- [Insert Unicode](#insert-unicode)
+	- [Features](#features)
+		- [Inserting Individual Characters/Codes](#inserting-individual-characterscodes)
+		- [Insert From Favorites](#insert-from-favorites)
+		- [Inserting/Replacing Text With a "Unicode Font"](#insertingreplacing-text-with-a-unicode-font)
+		- [Identify Unicode Characters](#identify-unicode-characters)
+			- [Identify View](#identify-view)
+		- [Direct Hex Code Input](#direct-hex-code-input)
+	- [How To?](#how-to)
+		- [Insert Compound Characters, Apply Accents and Modifiers](#insert-compound-characters-apply-accents-and-modifiers)
+	- [Unicode Standards Versions](#unicode-standards-versions)
+	- [Known Issues](#known-issues)
+	- [Attribution](#attribution)
+</details>
+
 ## Features
 
 In this section the various commands will be explained. Every subsection first lists the commands that it is about (the prefix common to all commands, `Insert Unicode:`, is omitted for brevity).
@@ -119,6 +137,14 @@ The message window will not display line breaks, but there is a button that open
 
 You can always open the output in a new file by changing the setting *Show Identified Characters in File* (`insert-unicode.show-identified-characters-in-file`).
 
+#### Identify View
+
+There also is the *Identify* view in the Explorer sidebar which performs the identification of characters in the current selection on the fly. The view can be dragged to its own or another section as well as hidden via the context menu on the section title.
+
+![Identify view exmaple](./readme-files/identify-view.png)
+
+There are settings for adjusting the update rate and maximal number of identified characters if performance adjustments are necessary. While the view is not visible (i.e. collapsed or hidden) it will not perform any lookups.
+
 ### Direct Hex Code Input
 
 - *Insert from Hex Code* (`fromHexCode`)
@@ -147,7 +173,7 @@ In general, if you see a special character or symbol and do not know how to writ
 - Some of "fonts" do not convert correctly.
 - The unicode fonts may confuse word wrapping, which is an issue on the side of VS Code itself.
 
-# Attribution
+## Attribution
 
 - [microsoft/vscode-codicons][1] ([License][2]) - Slightly modified icons from this project are used.
 

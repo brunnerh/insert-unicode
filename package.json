@@ -30,7 +30,8 @@
 		"onCommand:insert-unicode.manageFavorites",
 		"onCommand:insert-unicode.insertFont",
 		"onCommand:insert-unicode.fromHexCode",
-		"onCommand:insert-unicode.identify"
+		"onCommand:insert-unicode.identify",
+		"onView:insert-unicode.identifyView"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -143,8 +144,31 @@
 						"separate"
 					],
 					"default": "merge"
+				},
+				"insert-unicode.identifyViewUpdateDelay": {
+					"title": "Identify View Update Delay",
+					"description": "The number of milliseconds to wait before updating the 'Identify' panel after the selection has changed. Increase this delay if you experience performance issues.",
+					"type": "number",
+					"default": 100
+				},
+				"insert-unicode.identifyViewCharacterLimit": {
+					"title": "Identify View Character Limit",
+					"description": "The maximal number of characters identified in the 'Identify' panel. Lower this limit if you experience performance issues.",
+					"type": "number",
+					"default": 100
 				}
 			}
+		},
+		"views": {
+			"explorer": [
+				{
+					"type": "webview",
+					"id": "insert-unicode.identifyView",
+					"name": "Identify",
+					"contextualTitle": "Insert Unicode",
+					"icon": "icon/identify-view.svg"
+				}
+			]
 		}
 	},
 	"scripts": {

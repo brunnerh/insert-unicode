@@ -3,22 +3,26 @@ import type { ConfigurationTarget } from "vscode";
 
 export class Config
 {
+	static readonly sectionName = 'insert-unicode';
+
 	static get section(): TypedConfig
 	{
-		return vscode.workspace.getConfiguration("insert-unicode");
+		return vscode.workspace.getConfiguration(this.sectionName);
 	}
 }
 
-interface TypeMap
+export interface ConfigTypeMap
 {
-	"page-size": number;
-	"unicode-font-use-regular-space": boolean;
-	"disable-pre-filtering": boolean;
-	"include-sequences": boolean;
-	"include-skin-tone-variants": boolean;
-	"show-identified-characters-in-file": boolean;
-	"favorites": FavoritesNode;
-	"favoritesScopeBehavior": 'merge' | 'separate';
+	'page-size': number;
+	'unicode-font-use-regular-space': boolean;
+	'disable-pre-filtering': boolean;
+	'include-sequences': boolean;
+	'include-skin-tone-variants': boolean;
+	'show-identified-characters-in-file': boolean;
+	'favorites': FavoritesNode;
+	'favoritesScopeBehavior': 'merge' | 'separate';
+	'identifyViewUpdateDelay': number;
+	'identifyViewCharacterLimit': number;
 }
 
 interface InspectResult<T>
@@ -40,11 +44,11 @@ interface InspectResult<T>
 
 interface TypedConfig
 {
-	get<K extends keyof TypeMap>(item: K): TypeMap[K];
-	inspect<K extends keyof TypeMap>(item: K): InspectResult<TypeMap[K]> | undefined;
-	update<K extends keyof TypeMap>(
+	get<K extends keyof ConfigTypeMap>(item: K): ConfigTypeMap[K];
+	inspect<K extends keyof ConfigTypeMap>(item: K): InspectResult<ConfigTypeMap[K]> | undefined;
+	update<K extends keyof ConfigTypeMap>(
 		item: K,
-		value: TypeMap[K],
+		value: ConfigTypeMap[K],
 		configurationTarget?: ConfigurationTarget | boolean,
 		overrideInLanguage?: boolean)
 		: Thenable<void>;

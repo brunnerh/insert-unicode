@@ -7,6 +7,7 @@ import { insertFavoriteCommandFactory } from './commands/insert-favorite';
 import { insertFont } from './commands/insert-font';
 import { manageFavorites } from './commands/manage-favorites';
 import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
+import { IdentifyViewProvider } from './views/identify-view/identify-view';
 
 export function activate(context: vscode.ExtensionContext)
 {
@@ -28,6 +29,8 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertFont', insertFont),
 		register('insert-unicode.fromHexCode', hexToText),
 		register('insert-unicode.identify', identifyCharacters),
+
+		new IdentifyViewProvider(context.extensionUri).register(),
 	];
 
 	context.subscriptions.push(...tokens);
