@@ -6,12 +6,13 @@ import { CommandCallback } from "./command-callback";
 
 export const identifyCharacters: CommandCallback = async (editor) =>
 {
-	if (editor.selection.isEmpty)
-	{
-		window.showWarningMessage("No text selected.");
+	const text =  editor.selection.isEmpty ?
+		await window.showInputBox({ prompt: 'Characters to identify.' }) :
+		editor.document.getText(editor.selection);
+
+	if (text === undefined)
 		return;
-	}
-	const text = editor.document.getText(editor.selection);
+
 	const message = Array.from(text)
 		.map(char => ({
 			char,

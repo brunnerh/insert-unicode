@@ -1,5 +1,10 @@
 # Change Log
 
+## [next]
+
+- `Identify Characters` now prompts for input if nothing is selected.
+- Workspace settings section in `Manage Favorites` is hidden if no workspace is currently opened.
+
 ## [0.9.0] - 2020-09-30
 
 - `Manage Favorites` is now separated into user and workspace settings.
