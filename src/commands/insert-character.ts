@@ -19,6 +19,15 @@ const getDataQuickPicks = () =>
 		picks = picks.filter(item => item.entry.codes.length === 1
 			|| item.entry.codes.some(isSkintoneModifier) === false);
 
+	if (Config.section.get('enableAliases') === false)
+		picks = picks.map(p =>
+		{
+			const copy = { ...p };
+			delete copy.detail;
+
+			return copy;
+		});
+
 	return picks;
 };
 

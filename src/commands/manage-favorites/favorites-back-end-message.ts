@@ -1,13 +1,15 @@
-import type { FavoritesNode } from "../../config-interface";
+import type { ConfigTypeMap, FavoritesNode } from "../../config-interface";
 import type { UnicodeEntry } from '../../data';
 import type { FavoritesSectionType } from "./favorites-section-type";
+import type { Message } from "./utility/message-bus";
 
 /** Message sent by the favorites manager back-end. */
 export type FavoritesBackEndMessage =
 	SendFavorites |
-	SendUnicodeData;
+	SendUnicodeData |
+	SendConfigValue<any>;
 
-export interface SendFavorites
+export interface SendFavorites extends Partial<Message>
 {
 	type: 'favorites';
 	sections: SendFavoritesSection[];
@@ -19,8 +21,15 @@ export interface SendFavoritesSection
 	favorites: FavoritesNode | undefined;
 }
 
-export interface SendUnicodeData
+export interface SendUnicodeData extends Partial<Message>
 {
 	type: 'unicode-data';
 	data: UnicodeEntry[];
+}
+
+export interface SendConfigValue<T extends keyof ConfigTypeMap> extends Partial<Message>
+{
+	type: 'config-value';
+	key: T;
+	value: ConfigTypeMap[T];
 }

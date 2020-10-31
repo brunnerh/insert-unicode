@@ -56,6 +56,12 @@ export async function showPaginatedQuickPick<T extends QuickPickItem>(
 
 export type UnicodeQuickPickItem = QuickPickItem & { entry: UnicodeEntry };
 
+/**
+ * Maps an entry to a `QuickPickItem`.
+ * - `description` contains the hex code and name.
+ * - `detail` contains aliases if there are any.
+ * @param entry The entry to map.
+ */
 export function unicodeEntryToQuickPick(entry: UnicodeEntry): UnicodeQuickPickItem
 {
 	return {

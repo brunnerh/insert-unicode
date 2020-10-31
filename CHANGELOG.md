@@ -6,6 +6,8 @@
 - Add `Identify` view which automatically identifies the selected characters, similar to `Identify Characters` command.
   - Located in Explorer sidebar by default; can be dragged elsewhere.
   - Has two options to optimize performance if necessary: `identifyViewUpdateDelay`, `identifyViewCharacterLimit`
+- Add aliases to Unicode entries.
+  - Can be turned off using the option `enableAliases`.
 - Workspace settings section in `Manage Favorites` is hidden if no workspace is currently opened.
 
 ## [0.9.0] - 2020-09-30

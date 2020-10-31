@@ -1,7 +1,7 @@
 import { window, workspace, ViewColumn, Uri, ExtensionContext } from "vscode";
 import { Config, FavoritesNode } from "../../config-interface";
 import type { FavoritesViewMessage } from "./favorites-view-message";
-import type { FavoritesBackEndMessage, SendFavoritesSection } from "./favorites-back-end-message";
+import type { FavoritesBackEndMessage, SendConfigValue, SendFavoritesSection } from "./favorites-back-end-message";
 import * as path from 'path';
 import { isSkintoneModifier } from "../../utility/code-operations";
 import { empty } from "../../utility/favorites";
@@ -31,6 +31,12 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 
 	view.webview.onDidReceiveMessage(async (message: FavoritesViewMessage) =>
 	{
+		const respond = (response: FavoritesBackEndMessage) =>
+			postMessage({
+				...response,
+				sequenceNumber: message.sequenceNumber,
+			});
+
 		switch (message.type)
 		{
 			case 'get-favorites':
@@ -48,7 +54,7 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 					},
 				].filter(s => s.show) as SendFavoritesSection[];
 
-				postMessage({
+				respond({
 					type: 'favorites',
 					sections,
 				});
@@ -66,7 +72,16 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 					entries = entries.filter(entry => entry.codes.length === 1
 						|| entry.codes.some(isSkintoneModifier) === false);
 
-				postMessage({ type: 'unicode-data', data: entries });
+				respond({ type: 'unicode-data', data: entries });
+				break;
+			case 'get-config-value':
+				const value = Config.section.get(message.config);
+
+				respond({
+					type: 'config-value',
+					key: message.config,
+					value,
+				});
 				break;
 			case 'changed':
 				view.title = title + '*';

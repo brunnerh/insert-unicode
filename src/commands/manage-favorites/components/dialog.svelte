@@ -26,6 +26,7 @@
 
 	import { createEventDispatcher, onMount } from 'svelte';
 	import Button from './button.svelte';
+	import * as uuid from 'uuid';
 
 	/** Title of the dialog. */
 	export let title: string | undefined = undefined;
@@ -50,8 +51,8 @@
 
 	const dispatch = createEventDispatcher();
 
+	const id = 'I' + uuid.v4();
 	let isOpen = false;
-
 	let dialog: HTMLDialogElement;
 
 	function buttonClick(type: string)
@@ -129,9 +130,10 @@
 
 <dialog class="dialog"
 		bind:this={dialog}
-		style="transform: translateX({x}px) translateY({y}px)">
+		style="transform: translateX({x}px) translateY({y}px)"
+		aria-labelledby={id + '_title'}>
 	{#if title != null}
-		<div class="dialog-title"
+		<div class="dialog-title" id={id + '_title'}
 			on:pointerdown={onPointerDown}
 			on:pointerup={onPointerUp}
 			on:pointermove={onPointerMove}>

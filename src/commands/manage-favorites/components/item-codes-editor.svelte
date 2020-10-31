@@ -3,6 +3,10 @@
 	import { close } from '../icons';
 	import { codesToHex } from '../../../utility/code-conversion';
 	import type { UnicodeEntry } from '../../../data';
+	import type { GetConfigValue } from '../favorites-view-message';
+	import type { SendConfigValue } from '../favorites-back-end-message';
+	import type { Await } from '../utility/types';
+	import { messageBus } from '../utility/message-bus';
 	import { AutoComplete } from '@brunnerh/autocomplete';
 
 	export let data: UnicodeEntry[];
@@ -10,10 +14,26 @@
 
 	let search = '';
 
-	$: autoCompleteItems = data.map(e => ({
-			key: `${String.fromCodePoint(...e.codes)} - ${e.name} (${codesToHex(e.codes)})`,
-			value: e.codes,
-		}));
+	const enableAliasesPromise = messageBus.call<'config-value'>({
+		type: 'get-config-value',
+		config: 'enableAliases',
+	} as GetConfigValue);
+
+	$: autoCompleteItems = enableAliasesPromise.then(
+		(enableAliases: SendConfigValue<'enableAliases'>) =>
+		data.map(e =>
+		{
+			const item = {
+				key: `${String.fromCodePoint(...e.codes)} - ${e.name} (${codesToHex(e.codes)})`,
+				value: e.codes,
+			};
+
+			if (enableAliases.value && e.aliases.length > 0)
+				item.key += ` [${e.aliases.join(', ')}]`;
+
+			return item;
+		})
+	);
 
 	function removeCodeAt(index: number)
 	{
@@ -21,6 +41,7 @@
 		newItems.splice(index, 1);
 		codes = newItems;
 	}
+
 	function getCodeName(data: UnicodeEntry[], code: number)
 	{
 		const match = data.filter(e => e.codes.length == 1 && e.codes[0] === code)[0];
@@ -28,7 +49,8 @@
 		return match == undefined ? '?' : match.name;
 	}
 
-	function onItemSelected(item: typeof autoCompleteItems[number]) {
+	function onItemSelected(item: Await<typeof autoCompleteItems>[number])
+	{
 		codes = [...codes, ...item.value];
 		search = '';
 	}

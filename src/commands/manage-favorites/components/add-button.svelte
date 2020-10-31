@@ -21,6 +21,7 @@
 	}
 </style>
 
-<button type="button" {...$$props} on:click>
+<button type="button" {...$$props} on:click
+		aria-label={$$props.title}>
 	<span>+</span><slot/>
 </button>

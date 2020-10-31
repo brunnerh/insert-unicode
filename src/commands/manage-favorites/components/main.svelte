@@ -20,7 +20,7 @@
 
 	async function getFavorites()
 	{
-		const favoritesMessage = await messageBus.call('favorites', { type: 'get-favorites' });
+		const favoritesMessage = await messageBus.call<'favorites'>({ type: 'get-favorites' });
 		favoritesSections = favoritesMessage.sections.map(section => ({
 			type: section.type,
 			favorites: fromSettings(section.favorites ?? {}),

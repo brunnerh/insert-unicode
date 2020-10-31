@@ -4,17 +4,28 @@ import { vscode } from './vscode-api';
 
 type BackEndEventHandler = (message: FavoritesBackEndMessage) => void;
 
+export interface Message
+{
+	sequenceNumber: number;
+}
+
 class MessageBus
 {
-	private _listeners = new Map<BackEndEventHandler, any>();
+	private sequenceNumber = 0;
+	private listeners = new Map<BackEndEventHandler, any>();
 
 	/**
 	 * Sends a message to the back-end.
 	 * @param message Message to send.
+	 * @returns Sequence number of the message.
 	 */
-	send(message: FavoritesViewMessage)
+	send<T extends Omit<FavoritesViewMessage, 'sequenceNumber'>>(message: T)
 	{
-		vscode.postMessage(message);
+		const sequenceNumber = this.sequenceNumber++;
+		const data = { ...message, sequenceNumber } as FavoritesViewMessage;
+		vscode.postMessage(data);
+
+		return sequenceNumber;
 	}
 
 	/**
@@ -26,13 +37,12 @@ class MessageBus
 		const listener = (e: any) =>
 		{
 			const message = e.data;
-			// console.log(`Received message '${message.type}'`, message);
 			callback(message);
 		};
 
 		addEventListener('message', listener);
 
-		this._listeners.set(callback, listener);
+		this.listeners.set(callback, listener);
 	}
 
 	/**
@@ -41,26 +51,26 @@ class MessageBus
 	 */
 	unsubscribe(callback: BackEndEventHandler)
 	{
-		const listener = this._listeners.get(callback);
+		const listener = this.listeners.get(callback);
 		removeEventListener('message', listener);
-		this._listeners.delete(callback);
+		this.listeners.delete(callback);
 	}
 
 	/**
-	 * Sends a message and waits for a response matching `responseType`.
+	 * Sends a message and waits for a matching response.
 	 * @param responseType The type of the expected response message.
 	 * @param message The message to send to the back-end.
 	 */
 	call<T extends FavoritesBackEndMessage['type']>(
-		responseType: T,
-		message: FavoritesViewMessage
+		message: Omit<FavoritesViewMessage, 'sequenceNumber'>
 	) : Promise<FilterMessageByType<FavoritesBackEndMessage, T>>
 	{
 		return new Promise(res =>
 		{
+			const number = this.send(message);
 			const callback: BackEndEventHandler = m =>
 			{
-				if (m.type !== responseType)
+				if (m.sequenceNumber !== number)
 					return;
 
 				this.unsubscribe(callback);
@@ -68,13 +78,11 @@ class MessageBus
 			};
 
 			this.subscribe(callback);
-			this.send(message);
 		});
 	}
 }
 
 export const messageBus = new MessageBus();
-
 
 export type FilterMessageByType<
 	MessageBase extends { type: string },

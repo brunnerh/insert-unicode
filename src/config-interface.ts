@@ -23,6 +23,7 @@ export interface ConfigTypeMap
 	'favoritesScopeBehavior': 'merge' | 'separate';
 	'identifyViewUpdateDelay': number;
 	'identifyViewCharacterLimit': number;
+	'enableAliases': boolean;
 }
 
 interface InspectResult<T>
