@@ -2,7 +2,7 @@
 	"name": "insert-unicode",
 	"displayName": "Insert Unicode",
 	"description": "Search for unicode characters and insert them into documents.",
-	"version": "0.9.0",
+	"version": "0.10.0",
 	"publisher": "brunnerh",
 	"license": "MIT",
 	"icon": "icon/icon.png",

@@ -1,6 +1,6 @@
 # Change Log
 
-## [next]
+## [0.10.0] - 2020-10-31
 
 - `Identify Characters` now prompts for input if nothing is selected.
 - Add `Identify` view which automatically identifies the selected characters, similar to `Identify Characters` command.
