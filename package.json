@@ -12,7 +12,7 @@
 		"url": "https://github.com/brunnerh/insert-unicode.git"
 	},
 	"engines": {
-		"vscode": "^1.50.0"
+		"vscode": "^1.56.0"
 	},
 	"categories": [
 		"Other"
@@ -189,8 +189,8 @@
 		"test": "npm run compile && node out/test/index.js",
 		"svelte:build": "cd ./src/commands/svelte && webpack --mode=production",
 		"svelte:watch": "cd ./src/commands/svelte && webpack --mode=development -w",
-		"svelte-svelte-check:build": "cd ./src/commands/svelte && svelte-check",
-		"svelte-svelte-check:watch": "cd ./src/commands/svelte && svelte-check --watch"
+		"svelte-check:build": "cd ./src/commands/svelte && svelte-check",
+		"svelte-check:watch": "cd ./src/commands/svelte && svelte-check --watch"
 	},
 	"devDependencies": {
 		"@brunnerh/autocomplete": "^0.1.2",

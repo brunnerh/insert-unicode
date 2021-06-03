@@ -17,6 +17,7 @@ No keys are bound by default. Use the command `Preferences: Open Keyboard Shortc
 		- [Identify Unicode Characters](#identify-unicode-characters)
 			- [Identify View](#identify-view)
 		- [Direct Hex Code Input](#direct-hex-code-input)
+		- [Unicode Data Table](#unicode-data-table)
 	- [How To?](#how-to)
 		- [Insert Compound Characters, Apply Accents and Modifiers](#insert-compound-characters-apply-accents-and-modifiers)
 	- [Unicode Standards Versions](#unicode-standards-versions)
@@ -141,7 +142,7 @@ You can always open the output in a new file by changing the setting *Show Ident
 
 There also is the *Identify* view in the Explorer sidebar which performs the identification of characters in the current selection on the fly. The view can be dragged to its own or another section as well as hidden via the context menu on the section title.
 
-![Identify view exmaple](./readme-files/identify-view.png)
+![Identify view example](./readme-files/identify-view.png)
 
 There are settings for adjusting the update rate and maximal number of identified characters if performance adjustments are necessary. While the view is not visible (i.e. collapsed or hidden) it will not perform any lookups.
 
@@ -150,6 +151,16 @@ There are settings for adjusting the update rate and maximal number of identifie
 - *Insert from Hex Code* (`fromHexCode`)
 
 If you happen to know the exact hexadecimal code, this command can be used to insert the corresponding character.
+
+### Unicode Data Table
+
+- *Data Table* (`dataTable`)
+
+Shows the Unicode data set as a big data table.
+
+![data table example](./readme-files/data-table.png)
+
+The entries are filtered according to the settings `include-sequences` and `include-skin-tone-variants`.
 
 ## How To?
 

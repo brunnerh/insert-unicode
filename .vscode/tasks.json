@@ -18,27 +18,27 @@
 		},
 		{
 			"type": "npm",
-			"label": "fav-manager:watch",
-			"script": "fav-manager:watch",
+			"label": "svelte:watch",
+			"script": "svelte:watch",
 			"isBackground": true,
 			"presentation": {
-				"group": "fav-manager",
+				"group": "svelte",
 			},
 		},
 		{
 			"type": "npm",
-			"label": "fav-manager-svelte-check:watch",
-			"script": "fav-manager-svelte-check:watch",
+			"label": "svelte-check:watch",
+			"script": "svelte-check:watch",
 			"isBackground": true,
 			"presentation": {
-				"group": "fav-manager",
+				"group": "svelte",
 			},
 		},
 		{
-			"label": "fav-manager",
+			"label": "svelte",
 			"dependsOn": [
-				"fav-manager:watch",
-				"fav-manager-svelte-check:watch",
+				"svelte:watch",
+				"svelte-check:watch",
 			],
 			"problemMatcher": []
 		}
