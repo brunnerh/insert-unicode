@@ -25,7 +25,7 @@
 	 */
 
 	import { createEventDispatcher, onMount } from 'svelte';
-	import Button from './button.svelte';
+	import Button, { ButtonKind } from './button.svelte';
 	import * as uuid from 'uuid';
 
 	/** Title of the dialog. */
@@ -35,9 +35,9 @@
 	export let content: any = undefined;
 
 	/** Buttons of the dialog. */
-	export let buttons = [
-		{ value: 'ok', label: 'OK' },
-		{ value: 'cancel', label: 'Cancel' },
+	export let buttons: ButtonDefinition[] = [
+		{ value: 'cancel', label: 'Cancel', kind: 'secondary' },
+		{ value: 'ok', label: 'OK', kind: 'primary' },
 	];
 
 	/** Whether the dialog is modal. */
@@ -98,6 +98,7 @@
 
 	onMount(() =>
 	{
+		document.body.appendChild(dialog);
 		dialog.addEventListener('close', () => dispatch('closed'));
 
 		if (autoOpen)
@@ -105,18 +106,28 @@
 	});
 </script>
 
+<script type="text/typescript" context="module">
+	export interface ButtonDefinition
+	{
+		value: string;
+		label: string;
+		kind: ButtonKind;
+	}
+</script>
+
 <style>
 	.dialog
 	{
 		color: var(--vscode-foreground);
 		background: var(--vscode-notifications-background);
-		padding: 10px;
+		padding: 1em;
 		border: none;
 		box-shadow: rgb(0, 0, 0) 0px 0px 8px;
+		overflow: visible;
 	}
 	.dialog-buttons
 	{
-		margin-top: 5px;
+		margin-top: 1em;
 		text-align: right;
 	}
 	.dialog-title
@@ -149,7 +160,7 @@
 	</div>
 	<div class="dialog-buttons">
 		{#each buttons as button}
-			<Button on:click={() => buttonClick(button.value)}>
+			<Button on:click={() => buttonClick(button.value)} kind={button.kind}>
 				{button.label}
 			</Button>
 		{/each}

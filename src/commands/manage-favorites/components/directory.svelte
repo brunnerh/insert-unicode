@@ -122,7 +122,6 @@
 			on:change/>
 	{/each}
 
-
 	<div style="margin-left: {(indent + 1) * indentSize}px">
 		<AddButton on:click={addFolder} title="Add new folder to {nameForTooltips}">
 			{@html folder}

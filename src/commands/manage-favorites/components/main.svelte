@@ -146,13 +146,13 @@
 	{/each}
 
 	<div class="button-bar">
+		<Button type="button" on:click={revert} kind="secondary"
+			title="Reloads the favorites from the settings.">
+			Revert
+		</Button>
 		<Button type="button" on:click={save}
 			title="Saves the favorites to the settings.">
 			Save
-		</Button>
-		<Button type="button" on:click={revert}
-			title="Reloads the favorites from the settings.">
-			Revert
 		</Button>
 	</div>
 {/if}
