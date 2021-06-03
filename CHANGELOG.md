@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.11.0] - 2021-06-03
+
+- Add `Data Table` command for showing the Unicode data set as a big table.
+- Fixes character filter box causing dialogs to scroll ([#25](https://github.com/brunnerh/insert-unicode/issues/25)).
+- Headers in "Identify" view are now fixed.
+
 ## [0.10.0] - 2020-10-31
 
 - `Identify Characters` now prompts for input if nothing is selected.
