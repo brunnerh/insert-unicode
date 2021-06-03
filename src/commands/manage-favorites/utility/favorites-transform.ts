@@ -1,4 +1,4 @@
-import type { FavoritesNode } from "../../../config-interface";
+import type { FavoritesNode } from "../../../config";
 import type { FavoritesSectionType } from "../favorites-section-type";
 
 export interface FavoritesViewSection

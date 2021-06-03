@@ -1,5 +1,5 @@
 import { QuickPickItem, window } from 'vscode';
-import { Config } from '../config-interface';
+import { Config } from '../config';
 import { CommandCallback } from "./command-callback";
 
 export const insertFont: CommandCallback = async (editor, edit, ...args) =>

@@ -1,6 +1,6 @@
 import { CancellationToken, ConfigurationChangeEvent, TextEditorSelectionChangeEvent, Uri, Webview, WebviewView, WebviewViewProvider, WebviewViewResolveContext, window, workspace } from 'vscode';
 import { identify } from '../../commands/identify-characters';
-import { Config } from '../../config-interface';
+import { Config } from '../../config';
 
 export class IdentifyViewProvider implements WebviewViewProvider
 {
@@ -64,6 +64,7 @@ export class IdentifyViewProvider implements WebviewViewProvider
 						position: sticky;
 						top: 0;
 						background: var(--vscode-editorWidget-background);
+						text-align: left;
 					}
 				</style>
 			</head>

@@ -1,5 +1,5 @@
 import { QuickPickOptions, window } from 'vscode';
-import { Config } from '../config-interface';
+import { Config } from '../config';
 import { data } from '../data';
 import { insert } from '../utility/editor';
 import { showPaginatedQuickPick, unicodeEntryToQuickPick } from '../utility/quick-pick';

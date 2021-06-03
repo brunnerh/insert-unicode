@@ -1,0 +1,4 @@
+{
+	"exclude": ["index.ts", "data-table.ts"],
+	"extends": "../svelte/tsconfig.json"
+}

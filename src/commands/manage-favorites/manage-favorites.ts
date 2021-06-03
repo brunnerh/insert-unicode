@@ -1,11 +1,11 @@
 import { window, workspace, ViewColumn, Uri, ExtensionContext } from "vscode";
-import { Config, FavoritesNode } from "../../config-interface";
+import { Config, FavoritesNode } from "../../config";
 import type { FavoritesViewMessage } from "./favorites-view-message";
 import type { FavoritesBackEndMessage, SendConfigValue, SendFavoritesSection } from "./favorites-back-end-message";
 import * as path from 'path';
-import { isSkintoneModifier } from "../../utility/code-operations";
 import { empty } from "../../utility/favorites";
 import { FavoritesSectionType } from "./favorites-section-type";
+import { MessageInstance } from '../svelte/utility/message-bus';
 
 export const manageFavorites = (context: ExtensionContext) => () =>
 {
@@ -26,10 +26,10 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 	);
 	view.webview.html = html(viewScriptRoot.toString() + '/');
 
-	const postMessage = (message: FavoritesBackEndMessage) =>
+	const postMessage = (message: FavoritesBackEndMessage & MessageInstance) =>
 		view.webview.postMessage(message);
 
-	view.webview.onDidReceiveMessage(async (message: FavoritesViewMessage) =>
+	view.webview.onDidReceiveMessage(async (message: FavoritesViewMessage & MessageInstance) =>
 	{
 		const respond = (response: FavoritesBackEndMessage) =>
 			postMessage({
@@ -63,16 +63,7 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 			case 'get-unicode-data':
 				const dataModule = await import('../../data');
 
-				let entries = dataModule.data;
-
-				if (Config.section.get('include-sequences') === false)
-					entries = entries.filter(entry => entry.codes.length === 1);
-
-				if (Config.section.get('include-skin-tone-variants') === false)
-					entries = entries.filter(entry => entry.codes.length === 1
-						|| entry.codes.some(isSkintoneModifier) === false);
-
-				respond({ type: 'unicode-data', data: entries });
+				respond({ type: 'unicode-data', data: Config.filterData(dataModule.data) });
 				break;
 			case 'get-config-value':
 				const value = Config.section.get(message.config);

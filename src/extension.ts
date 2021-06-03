@@ -1,5 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
+import { dataTable } from './commands/data-table';
 import { hexToText } from './commands/hex-to-text';
 import { identifyCharacters } from './commands/identify-characters';
 import { insertCommandFactory } from './commands/insert-character';
@@ -29,6 +30,8 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertFont', insertFont),
 		register('insert-unicode.fromHexCode', hexToText),
 		register('insert-unicode.identify', identifyCharacters),
+
+		vscode.commands.registerCommand('insert-unicode.dataTable', dataTable(context)),
 
 		new IdentifyViewProvider(context.extensionUri).register(),
 	];

@@ -1,10 +1,10 @@
 <script type="text/typescript">
 	import Directory from './directory.svelte';
-	import Button from './button.svelte';
+	import Button from '../../svelte/components/button.svelte';
 	import { messageBus } from '../utility/message-bus';
 	import { fromSettings, toSettings, areFavoritesValid, FavoritesViewSection } from '../utility/favorites-transform';
-	import { showMessageDialog } from '../utility/dialog-utility';
-	import { vscode } from '../utility/vscode-api';
+	import { showMessageDialog } from '../../svelte/utility/dialog-utility';
+	import { vscode } from '../../svelte/utility/vscode-api';
 	import { onMount } from 'svelte';
 	import type { FavoritesSectionType } from '../favorites-section-type';
 
@@ -109,16 +109,8 @@
 </script>
 
 <style>
-	h1 {
-		font-size: 20px;
-		padding-bottom: 3px;
-		border-bottom: 1px solid;
-	}
-
-	h2 {
-		font-size: 14px;
-	}
-	.fav-tree {
+	.fav-tree
+	{
 		display: inline-grid;
 		grid-template-columns: auto auto;
 		grid-auto-rows: auto;
@@ -127,8 +119,9 @@
 		align-items: center;
 	}
 
-	.button-bar {
-		margin-top: 10px;
+	.button-bar
+	{
+		margin-top: 1em;
 	}
 </style>
 

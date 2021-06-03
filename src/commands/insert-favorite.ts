@@ -1,5 +1,5 @@
 import { QuickPickItem, window } from "vscode";
-import { Config, FavoritesNode } from '../config-interface';
+import { Config, FavoritesNode } from '../config';
 import { data } from '../data';
 import { insert } from "../utility/editor";
 import { empty, merge } from "../utility/favorites";

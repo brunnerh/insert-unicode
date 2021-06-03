@@ -39,7 +39,7 @@ export async function showMessageDialog(content: string): Promise<void>
 			target: document.body,
 			props: {
 				content,
-				buttons: [{ value: 'ok', label: 'OK' }],
+				buttons: [{ value: 'ok', label: 'OK', kind: 'primary' }],
 			},
 		});
 

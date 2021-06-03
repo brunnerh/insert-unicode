@@ -1,7 +1,7 @@
 <script type="text/typescript">
 	import Item from './item.svelte';
 	import AddButton from './add-button.svelte';
-	import IconButton from './icon-button.svelte';
+	import IconButton from '../../svelte/components/icon-button.svelte';
 	import { folder, folderOpened, smiley, close } from '../icons';
 	import { indentSize } from '../utility/constants';
 	import { createEventDispatcher } from 'svelte';

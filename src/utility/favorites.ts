@@ -1,4 +1,4 @@
-import type { FavoritesNode } from "../config-interface";
+import type { FavoritesNode } from "../config";
 
 /** Merges directory trees. Does not eliminate duplicate items. */
 export function merge(nodes: FavoritesNode[]): FavoritesNode

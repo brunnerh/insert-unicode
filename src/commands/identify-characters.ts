@@ -1,5 +1,5 @@
 import { ViewColumn, window, workspace } from 'vscode';
-import { Config } from '../config-interface';
+import { Config } from '../config';
 import { data } from '../data';
 import { codesToHex } from "../utility/code-conversion";
 import { CommandCallback } from "./command-callback";

@@ -1,11 +1,4 @@
 {
 	"exclude": ["index.ts", "manage-favorites.ts"],
-	"compilerOptions": {
-		"strict": true,
-		"moduleResolution": "node",
-		"target": "es6",
-		"lib": ["ES2020", "DOM", "DOM.Iterable"],
-		"sourceMap": true,
-		"importsNotUsedAsValues": "error",
-	}
+	"extends": "../svelte/tsconfig.json"
 }

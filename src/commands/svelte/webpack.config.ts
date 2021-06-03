@@ -5,7 +5,8 @@ const path = require('path');
 
 module.exports = (env: any, argv: Configuration) => <Configuration>{
 	entry: {
-		view: ['./view.js'],
+		'manage-favorites/view': ['../manage-favorites/view.js'],
+		'data-table/view': ['../data-table/view.js'],
 	},
 	resolve: {
 		alias: {
@@ -15,11 +16,11 @@ module.exports = (env: any, argv: Configuration) => <Configuration>{
 		mainFields: ['svelte', 'browser', 'module', 'main'],
 	},
 	output: {
-		path: __dirname + '/../../../out/commands/manage-favorites',
+		path: __dirname + '/../../../out/commands',
 		filename: '[name].js',
 		chunkFilename: '[name].[id].js',
 	},
-	devtool: argv.mode === 'production' ? false : 'eval-source-map',
+	devtool: argv.mode === 'production' ? false : 'source-map',
 	module: {
 		rules: [
 			{

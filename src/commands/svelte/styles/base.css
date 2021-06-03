@@ -1,0 +1,40 @@
+h1
+{
+	font-size: 20px;
+	padding-bottom: 3px;
+	border-bottom: 1px solid;
+}
+
+h2
+{
+	font-size: 14px;
+}
+
+th
+{
+	text-align: left;
+}
+
+input
+{
+	color: var(--vscode-input-foreground);
+	background: var(--vscode-input-background);
+	border: none;
+	padding: 3px;
+}
+
+button:focus,
+textarea:focus,
+select:focus,
+input:focus
+{
+	outline: 1px solid var(--vscode-focusBorder);
+}
+
+input[type=submit],
+input[type=reset],
+input[type=button],
+button
+{
+	outline-offset: 2px;
+}
