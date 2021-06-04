@@ -9,12 +9,19 @@ import { insertFont } from './commands/insert-font';
 import { manageFavorites } from './commands/manage-favorites';
 import { clearRecentlyUsed } from './commands/recently-used';
 import { Context } from './context';
+import { migrate } from './migrations';
+import { Keys } from './state';
 import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
 import { IdentifyViewProvider } from './views/identify-view/identify-view';
 
 export function activate(context: vscode.ExtensionContext)
 {
 	Context.set(context);
+
+	const previousVersion = context.globalState.get<string>(Keys.lastVersion);
+	const currentVersion = context.extension.packageJSON.version;
+	context.globalState.update(Keys.lastVersion, currentVersion);
+	migrate(previousVersion, currentVersion);
 
 	const register = vscode.commands.registerTextEditorCommand;
 
