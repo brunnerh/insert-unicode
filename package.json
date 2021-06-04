@@ -32,6 +32,7 @@
 		"onCommand:insert-unicode.fromHexCode",
 		"onCommand:insert-unicode.identify",
 		"onCommand:insert-unicode.dataTable",
+		"onCommand:insert-unicode.clearRecentlyUsed",
 		"onView:insert-unicode.identifyView"
 	],
 	"main": "./out/extension",
@@ -92,6 +93,10 @@
 			{
 				"command": "insert-unicode.dataTable",
 				"title": "Insert Unicode: Data Table"
+			},
+			{
+				"command": "insert-unicode.clearRecentlyUsed",
+				"title": "Insert Unicode: Clear Recently Used List"
 			}
 		],
 		"configuration": {
@@ -167,6 +172,18 @@
 					"description": "Enables showing and searching Unicode character aliases.",
 					"type": "boolean",
 					"default": true
+				},
+				"insert-unicode.enableRecentlyUsed": {
+					"title": "Enable Recently Used",
+					"description": "Shows recently inserted characters at the top of the list.",
+					"type": "boolean",
+					"default": true
+				},
+				"insert-unicode.recentlyUsedLimit": {
+					"title": "Recently Used Limit",
+					"description": "The maximal number of recently used characters to show at the top of the list.",
+					"type": "number",
+					"default": 20
 				}
 			}
 		},
@@ -197,6 +214,7 @@
 		"@revolist/revogrid": "^3.0.9",
 		"@revolist/svelte-datagrid": "^3.0.52",
 		"@types/mocha": "^8.0.3",
+		"@types/node": "^15.12.0",
 		"@types/uuid": "^8.3.0",
 		"@types/vscode": "^1.50.0",
 		"@types/webpack": "^5.28.0",

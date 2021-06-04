@@ -19,5 +19,5 @@ export const hexToText: CommandCallback = async (editor) =>
 
 	const entry = findEntry(code)!;
 
-	insert(editor, codesToText(entry.codes));
+	await insert(editor, entry, codesToText(entry.codes));
 };

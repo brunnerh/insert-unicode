@@ -7,11 +7,15 @@ import { insertCommandFactory } from './commands/insert-character';
 import { insertFavoriteCommandFactory } from './commands/insert-favorite';
 import { insertFont } from './commands/insert-font';
 import { manageFavorites } from './commands/manage-favorites';
+import { clearRecentlyUsed } from './commands/recently-used';
+import { Context } from './context';
 import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
 import { IdentifyViewProvider } from './views/identify-view/identify-view';
 
 export function activate(context: vscode.ExtensionContext)
 {
+	Context.set(context);
+
 	const register = vscode.commands.registerTextEditorCommand;
 
 	const tokens = [
@@ -25,13 +29,14 @@ export function activate(context: vscode.ExtensionContext)
 		register('insert-unicode.insertFavoriteText', insertFavoriteCommandFactory(codesToText)),
 		register('insert-unicode.insertFavoriteDecimalCode', insertFavoriteCommandFactory(codesToDecimal)),
 		register('insert-unicode.insertFavoriteHexCode', insertFavoriteCommandFactory(codesToHex)),
-		vscode.commands.registerCommand('insert-unicode.manageFavorites', manageFavorites(context)),
+		vscode.commands.registerCommand('insert-unicode.manageFavorites', manageFavorites),
 
 		register('insert-unicode.insertFont', insertFont),
 		register('insert-unicode.fromHexCode', hexToText),
 		register('insert-unicode.identify', identifyCharacters),
 
-		vscode.commands.registerCommand('insert-unicode.dataTable', dataTable(context)),
+		vscode.commands.registerCommand('insert-unicode.dataTable', dataTable),
+		vscode.commands.registerCommand('insert-unicode.clearRecentlyUsed', clearRecentlyUsed),
 
 		new IdentifyViewProvider(context.extensionUri).register(),
 	];

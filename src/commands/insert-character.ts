@@ -5,12 +5,13 @@ import { insert } from '../utility/editor';
 import { showPaginatedQuickPick, unicodeEntryToQuickPick } from '../utility/quick-pick';
 import { CommandCallback } from './command-callback';
 import { isSkintoneModifier } from '../utility/code-operations';
+import { RecentlyUsed } from '../utility/recently-used-list';
 
 const allDataQuickPicks = data.map(unicodeEntryToQuickPick);
 
 const getDataQuickPicks = () =>
 {
-	let picks = allDataQuickPicks;
+	let picks = allDataQuickPicks.slice();
 
 	if (Config.section.get('include-sequences') === false)
 		picks = picks.filter(item => item.entry.codes.length === 1);
@@ -27,6 +28,15 @@ const getDataQuickPicks = () =>
 
 			return copy;
 		});
+
+	const recentlyUsed = RecentlyUsed.get();
+	const recentlyUsedSet = new Set(recentlyUsed);
+	const sortValue = (item: typeof picks[number]) =>
+		recentlyUsedSet.has(item.entry.name) ?
+			recentlyUsed.indexOf(item.entry.name) :
+			Number.MAX_SAFE_INTEGER;
+
+	picks.sort((a, b) => sortValue(a) - sortValue(b));
 
 	return picks;
 };
@@ -81,7 +91,8 @@ export const insertCommandFactory = (codeConverter: (codes: number[]) => string,
 				// Instant insert on exact match
 				if (pickItems.length === 1)
 				{
-					await insert(editor, codeConverter(pickItems[0].entry.codes));
+					const entry = pickItems[0].entry;
+					insert(editor, entry, codeConverter(entry.codes));
 					return;
 				}
 
@@ -107,7 +118,7 @@ export const insertCommandFactory = (codeConverter: (codes: number[]) => string,
 			);
 
 			if (selection !== undefined)
-				await insert(editor, codeConverter(selection.entry.codes));
+				await insert(editor, selection.entry, codeConverter(selection.entry.codes));
 			else if (disableFiltering === false)
 				// Go back to search.
 				await filter(search);

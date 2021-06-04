@@ -4,9 +4,9 @@ import type { DataTableViewMessage } from "./data-table-view-message";
 import type { DataTableBackEndMessage } from "./data-table-back-end-message";
 import * as path from 'path';
 import { MessageInstance } from '../svelte/utility/message-bus';
-import { vscode } from '../svelte/utility/vscode-api';
+import { Context } from '../../context';
 
-export const dataTable = (context: ExtensionContext) => async () =>
+export const dataTable = async () =>
 {
 	const title = 'Unicode Data Table';
 
@@ -16,12 +16,12 @@ export const dataTable = (context: ExtensionContext) => async () =>
 		ViewColumn.Active,
 		{
 			enableScripts: true,
-			localResourceRoots: [Uri.file(context.extensionPath)],
+			localResourceRoots: [Uri.file(Context.current.extensionPath)],
 		},
 	);
 
 	const viewScriptRoot = view.webview.asWebviewUri(
-		Uri.file(path.join(context.extensionPath, 'out', 'commands', 'data-table'))
+		Uri.file(path.join(Context.current.extensionPath, 'out', 'commands', 'data-table'))
 	);
 	view.webview.html = html(viewScriptRoot.toString() + '/');
 

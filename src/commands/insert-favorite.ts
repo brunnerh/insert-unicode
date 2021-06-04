@@ -59,10 +59,7 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 
 					const item = {
 						...unicodeEntryToQuickPick(entry),
-						onSelected: async () =>
-						{
-							await insert(editor, codeConverter(normalized));
-						}
+						onSelected: () => insert(editor, entry!, codeConverter(normalized)),
 					};
 
 					picks.push(item);

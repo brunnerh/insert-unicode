@@ -45,6 +45,8 @@ export interface ConfigTypeMap
 	'identifyViewUpdateDelay': number;
 	'identifyViewCharacterLimit': number;
 	'enableAliases': boolean;
+	'enableRecentlyUsed': boolean;
+	'recentlyUsedLimit': number;
 }
 
 interface InspectResult<T>

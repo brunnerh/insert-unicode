@@ -6,8 +6,9 @@ import * as path from 'path';
 import { empty } from "../../utility/favorites";
 import { FavoritesSectionType } from "./favorites-section-type";
 import { MessageInstance } from '../svelte/utility/message-bus';
+import { Context } from '../../context';
 
-export const manageFavorites = (context: ExtensionContext) => () =>
+export const manageFavorites = () =>
 {
 	const title = 'Manage Unicode Favorites';
 
@@ -17,12 +18,12 @@ export const manageFavorites = (context: ExtensionContext) => () =>
 		ViewColumn.Active,
 		{
 			enableScripts: true,
-			localResourceRoots: [Uri.file(context.extensionPath)],
+			localResourceRoots: [Uri.file(Context.current.extensionPath)],
 		},
 	);
 
 	const viewScriptRoot = view.webview.asWebviewUri(
-		Uri.file(path.join(context.extensionPath, 'out', 'commands', 'manage-favorites'))
+		Uri.file(path.join(Context.current.extensionPath, 'out', 'commands', 'manage-favorites'))
 	);
 	view.webview.html = html(viewScriptRoot.toString() + '/');
 
