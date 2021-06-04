@@ -11,6 +11,8 @@ const allDataQuickPicks = data.map(unicodeEntryToQuickPick);
 
 const getDataQuickPicks = () =>
 {
+	// NOTE: Can be optimized. Slice is not necessary,
+	//       when any filtering/mapping happens before the sort.
 	let picks = allDataQuickPicks.slice();
 
 	if (Config.section.get('include-sequences') === false)

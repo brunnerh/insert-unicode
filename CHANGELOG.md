@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.12.0] - 2021-06-04
+
+- Add recently used character list functionality:
+  - Upon insertion of individual characters, these characters are moved to the top of the list the next time.
+  - Can be disabled via the option `enableRecentlyUsed` which defaults to `true`.
+  - The limit of the tracking list is specified via `recentlyUsedLimit`.
+  - The command `clearRecentlyUsed` clears the list.
+
 ## [0.11.0] - 2021-06-03
 
 - Add `Data Table` command for showing the Unicode data set as a big table.

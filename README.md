@@ -18,6 +18,7 @@ No keys are bound by default. Use the command `Preferences: Open Keyboard Shortc
 			- [Identify View](#identify-view)
 		- [Direct Hex Code Input](#direct-hex-code-input)
 		- [Unicode Data Table](#unicode-data-table)
+		- [Recently Used Characters](#recently-used-characters)
 	- [How To?](#how-to)
 		- [Insert Compound Characters, Apply Accents and Modifiers](#insert-compound-characters-apply-accents-and-modifiers)
 	- [Unicode Standards Versions](#unicode-standards-versions)
@@ -136,7 +137,7 @@ Note that joint characters are split up in the analysis.
 
 The message window will not display line breaks, but there is a button that opens the result in a new file. Right clicking the notification and selecting "Copy" will also preserve the line breaks.
 
-You can always open the output in a new file by changing the setting *Show Identified Characters in File* (`insert-unicode.show-identified-characters-in-file`).
+You can always open the output in a new file by changing the setting *Show Identified Characters in File* (`show-identified-characters-in-file`).
 
 #### Identify View
 
@@ -160,7 +161,15 @@ Shows the Unicode data set as a big data table.
 
 ![data table example](./readme-files/data-table.png)
 
-The entries are filtered according to the settings `include-sequences` and `include-skin-tone-variants`.
+The entries are filtered according to the settings *Include Sequences* (`include-sequences`) and *Include Skin Tone Variants* (`include-skin-tone-variants`).
+
+### Recently Used Characters
+
+When inserting individual characters, the extension keeps track of recently used entries and subsequently shows them at the top of list.
+
+This behavior can be disabled via the option *Enable Recently Used* (`enableRecentlyUsed`). The length of this list can be set via *Recently Used Limit* (`recentlyUsedLimit`).
+
+The command *Clear Recently Used List* (`clearRecentlyUsed`) clears this temporary list.
 
 ## How To?
 
