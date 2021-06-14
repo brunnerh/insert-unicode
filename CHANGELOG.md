@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.12.1] - 2021-06-15
+
+- Fixes an issue where path names may become too long, making it impossible to install the extension. ([#26](https://github.com/brunnerh/insert-unicode/issues/26)).
+
 ## [0.12.0] - 2021-06-04
 
 - Add recently used character list functionality:
