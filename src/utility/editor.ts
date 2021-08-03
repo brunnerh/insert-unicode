@@ -12,7 +12,11 @@ export async function insert(editor: TextEditor, entry: UnicodeEntry, value: str
 {
 	RecentlyUsed.addEntry(entry.name);
 
-	await editor.edit(builder => editor.selection.isEmpty ?
-		builder.insert(editor.selection.active, value) :
-		builder.replace(editor.selection, value));
+	await editor.edit(builder =>
+		editor.selections.forEach(selection =>
+			selection.isEmpty ?
+				builder.insert(selection.active, value) :
+				builder.replace(selection, value)
+		)
+	);
 }
