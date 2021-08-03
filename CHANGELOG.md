@@ -1,12 +1,16 @@
 # Change Log
 
+## [0.12.3] - 2021-08-03
+
+- Add multi-cursor support. ([#27](https://github.com/brunnerh/insert-unicode/issues/30))
+
 ## [0.12.2] - 2021-06-18
 
-- Fixes missing characters in the Unicode "font" conversion. ([#27](https://github.com/brunnerh/insert-unicode/issues/27)).
+- Fixes missing characters in the Unicode "font" conversion. ([#27](https://github.com/brunnerh/insert-unicode/issues/27))
 
 ## [0.12.1] - 2021-06-15
 
-- Fixes an issue where path names may become too long, making it impossible to install the extension. ([#26](https://github.com/brunnerh/insert-unicode/issues/26)).
+- Fixes an issue where path names may become too long, making it impossible to install the extension. ([#26](https://github.com/brunnerh/insert-unicode/issues/26))
 
 ## [0.12.0] - 2021-06-04
 
@@ -19,7 +23,7 @@
 ## [0.11.0] - 2021-06-03
 
 - Add `Data Table` command for showing the Unicode data set as a big table.
-- Fixes character filter box causing dialogs to scroll ([#25](https://github.com/brunnerh/insert-unicode/issues/25)).
+- Fixes character filter box causing dialogs to scroll. ([#25](https://github.com/brunnerh/insert-unicode/issues/25))
 - Headers in "Identify" view are now fixed.
 
 ## [0.10.0] - 2020-10-31
