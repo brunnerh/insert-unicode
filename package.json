@@ -12,7 +12,7 @@
 		"url": "https://github.com/brunnerh/insert-unicode.git"
 	},
 	"engines": {
-		"vscode": "^1.56.0"
+		"vscode": "^1.60.0"
 	},
 	"categories": [
 		"Other"
