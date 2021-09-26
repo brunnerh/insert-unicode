@@ -6,7 +6,7 @@
 
 ## [0.12.3] - 2021-08-03
 
-- Add multi-cursor support. ([#27](https://github.com/brunnerh/insert-unicode/issues/30))
+- Add multi-cursor support. ([#30](https://github.com/brunnerh/insert-unicode/issues/30))
 
 ## [0.12.2] - 2021-06-18
 
