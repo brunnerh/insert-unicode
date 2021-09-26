@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.13.0] - 2021-09-26
+
+- Update Unicode table to version 14 🪩.
+
 ## [0.12.3] - 2021-08-03
 
 - Add multi-cursor support. ([#27](https://github.com/brunnerh/insert-unicode/issues/30))
