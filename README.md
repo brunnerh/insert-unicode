@@ -185,8 +185,8 @@ In general, if you see a special character or symbol and do not know how to writ
 
 ## Unicode Standards Versions
 
-- Unicode Standard: 13.0.0
-- Unicode Emoji: 13.0
+- Unicode Standard: 14.0.0
+- Unicode Emoji: 14.0
 
 ## Known Issues
 
