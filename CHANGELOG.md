@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.13.1] - 2021-09-28
+
+- Fix installation issue due to path lengths. ([#33](https://github.com/brunnerh/insert-unicode/issues/33))
+
 ## [0.13.0] - 2021-09-26
 
 - Update Unicode table to version 14 🪩.

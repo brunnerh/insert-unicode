@@ -1,4 +1,4 @@
-import { workspace, window, ViewColumn, Uri, ExtensionContext } from "vscode";
+import { workspace, window, ViewColumn, Uri } from "vscode";
 import { Config } from "../../config";
 import type { DataTableViewMessage } from "./data-table-view-message";
 import type { DataTableBackEndMessage } from "./data-table-back-end-message";

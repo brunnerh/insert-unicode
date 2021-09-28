@@ -1,7 +1,7 @@
-import { window, workspace, ViewColumn, Uri, ExtensionContext } from "vscode";
+import { window, workspace, ViewColumn, Uri } from "vscode";
 import { Config, FavoritesNode } from "../../config";
 import type { FavoritesViewMessage } from "./favorites-view-message";
-import type { FavoritesBackEndMessage, SendConfigValue, SendFavoritesSection } from "./favorites-back-end-message";
+import type { FavoritesBackEndMessage, SendFavoritesSection } from "./favorites-back-end-message";
 import * as path from 'path';
 import { empty } from "../../utility/favorites";
 import { FavoritesSectionType } from "./favorites-section-type";
