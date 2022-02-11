@@ -1,10 +1,10 @@
 <script type="text/typescript">
 	import Directory from './directory.svelte';
-	import Button from '../../svelte/components/button.svelte';
+	import Button from '../../../svelte/components/button.svelte';
 	import { messageBus } from '../utility/message-bus';
 	import { fromSettings, toSettings, areFavoritesValid, FavoritesViewSection } from '../utility/favorites-transform';
-	import { showMessageDialog } from '../../svelte/utility/dialog-utility';
-	import { vscode } from '../../svelte/utility/vscode-api';
+	import { showMessageDialog } from '../../../svelte/utility/dialog-utility';
+	import { vscode } from '../../../svelte/utility/vscode-api';
 	import { onMount } from 'svelte';
 	import type { FavoritesSectionType } from '../favorites-section-type';
 

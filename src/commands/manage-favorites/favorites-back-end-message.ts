@@ -1,7 +1,7 @@
 import type { ConfigTypeMap, FavoritesNode } from "../../config";
 import type { UnicodeEntry } from '../../data';
 import type { FavoritesSectionType } from "./favorites-section-type";
-import type { Message } from "../svelte/utility/message-bus";
+import type { Message } from "../../svelte/utility/message-bus";
 
 /** Message sent by the favorites manager back-end. */
 export type FavoritesBackEndMessage =

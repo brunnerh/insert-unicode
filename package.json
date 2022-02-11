@@ -204,10 +204,10 @@
 		"compile": "rimraf out && tsc -p . && npm run svelte:build",
 		"watch": "tsc -watch -p .",
 		"test": "npm run compile && node out/test/index.js",
-		"svelte:build": "cd ./src/commands/svelte && webpack --mode=production",
-		"svelte:watch": "cd ./src/commands/svelte && webpack --mode=development -w",
-		"svelte-check:build": "cd ./src/commands/svelte && svelte-check",
-		"svelte-check:watch": "cd ./src/commands/svelte && svelte-check --watch"
+		"svelte:build": "cd ./src/svelte && webpack --mode=production",
+		"svelte:watch": "cd ./src/svelte && webpack --mode=development -w",
+		"svelte-check:run": "cd ./src && svelte-check",
+		"svelte-check:watch": "cd ./src && svelte-check --watch"
 	},
 	"devDependencies": {
 		"@brunnerh/autocomplete": "^0.1.2",

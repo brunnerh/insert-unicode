@@ -12,7 +12,7 @@ import { Context } from './context';
 import { migrate } from './migrations';
 import { Keys } from './state';
 import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
-import { IdentifyViewProvider } from './views/identify-view/identify-view';
+import { IdentifyViewProvider } from './views/identify-view';
 
 export function activate(context: vscode.ExtensionContext)
 {

@@ -1,5 +1,5 @@
 <script type="text/typescript">
-	import IconButton from '../../svelte/components/icon-button.svelte';
+	import IconButton from '../../../svelte/components/icon-button.svelte';
 	import { close } from '../icons';
 	import { codesToHex } from '../../../utility/code-conversion';
 	import type { UnicodeEntry } from '../../../data';

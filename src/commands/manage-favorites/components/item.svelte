@@ -1,6 +1,6 @@
 <script type="text/typescript">
-	import Dialog from '../../svelte/components/dialog.svelte';
-	import IconButton from '../../svelte/components/icon-button.svelte';
+	import Dialog from '../../../svelte/components/dialog.svelte';
+	import IconButton from '../../../svelte/components/icon-button.svelte';
 	import ItemCodesEditor from './item-codes-editor.svelte';
 	import { close } from '../icons';
 	import { indentSize } from '../utility/constants';

@@ -3,7 +3,7 @@ import { Config } from "../../config";
 import type { DataTableViewMessage } from "./data-table-view-message";
 import type { DataTableBackEndMessage } from "./data-table-back-end-message";
 import * as path from 'path';
-import { MessageInstance } from '../svelte/utility/message-bus';
+import { MessageInstance } from '../../svelte/utility/message-bus';
 import { Context } from '../../context';
 
 export const dataTable = async () =>

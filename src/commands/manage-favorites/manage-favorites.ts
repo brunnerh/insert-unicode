@@ -5,7 +5,7 @@ import type { FavoritesBackEndMessage, SendFavoritesSection } from "./favorites-
 import * as path from 'path';
 import { empty } from "../../utility/favorites";
 import { FavoritesSectionType } from "./favorites-section-type";
-import { MessageInstance } from '../svelte/utility/message-bus';
+import { MessageInstance } from '../../svelte/utility/message-bus';
 import { Context } from '../../context';
 
 export const manageFavorites = () =>

@@ -6,7 +6,7 @@
 	import { defineCustomElements } from '@revolist/revogrid/loader';
 	import type { UnicodeEntry } from '../../../data';
 	import { messageBus } from '../utility/message-bus';
-	import { vscode } from '../../svelte/utility/vscode-api';
+	import { vscode } from '../../../svelte/utility/vscode-api';
 
 	const columns = <revo.RevoGrid.ColumnRegular[]>[
 		{

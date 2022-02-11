@@ -7,18 +7,18 @@ module.exports = (env: any, argv: Configuration) => {
 
 	return <Configuration>{
 		entry: {
-			'manage-favorites/view': ['../manage-favorites/view.js'],
-			'data-table/view': ['../data-table/view.js'],
+			'commands/manage-favorites/view': ['../commands/manage-favorites/view.js'],
+			'commands/data-table/view': ['../commands/data-table/view.js'],
 		},
 		resolve: {
 			alias: {
-				svelte: path.resolve(__dirname, '..', '..', '..', 'node_modules', 'svelte')
+				svelte: path.resolve(__dirname, '..', '..', 'node_modules', 'svelte')
 			},
 			extensions: ['.svelte', '.ts', '.tsx', '.mjs', '.js', '.jsx', '.css'],
 			mainFields: ['svelte', 'browser', 'module', 'main'],
 		},
 		output: {
-			path: __dirname + '/../../../out/commands',
+			path: __dirname + '/../../out',
 			filename: '[name].js',
 			chunkFilename: isProduction ? '[id].js' : '[name].[id].js',
 		},
