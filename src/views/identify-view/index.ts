@@ -65,6 +65,7 @@ export class IdentifyViewProvider implements WebviewViewProvider
 					}
 					th
 					{
+						background: var(--vscode-sideBar-background, none);
 						position: sticky;
 						top: 0;
 						text-align: left;

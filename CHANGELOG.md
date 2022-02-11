@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.13.3] - 2022-02-11
+
+- Restore background of fixed headers in identify view.
+
 ## [0.13.2] - 2022-02-11
 
 - Fix theming in identify view if conflicting side bar colors are set. ([#34](https://github.com/brunnerh/insert-unicode/issues/34))
