@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.13.2] - 2022-02-11
+
+- Fix theming in identify view if conflicting side bar colors are set. ([#34](https://github.com/brunnerh/insert-unicode/issues/34))
+
 ## [0.13.1] - 2021-09-28
 
 - Fix installation issue due to path lengths. ([#33](https://github.com/brunnerh/insert-unicode/issues/33))
