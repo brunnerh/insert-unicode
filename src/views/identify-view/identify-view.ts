@@ -59,11 +59,14 @@ export class IdentifyViewProvider implements WebviewViewProvider
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>Identify Unicode Characters</title>
 				<style nonce="${nonce}">
+					body
+					{
+						color: var(--vscode-sideBar-foreground, var(--vscode-editor-foreground));
+					}
 					th
 					{
 						position: sticky;
 						top: 0;
-						background: var(--vscode-editorWidget-background);
 						text-align: left;
 					}
 				</style>

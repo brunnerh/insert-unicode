@@ -12,7 +12,7 @@
 		"url": "https://github.com/brunnerh/insert-unicode.git"
 	},
 	"engines": {
-		"vscode": "^1.60.0"
+		"vscode": "^1.64.0"
 	},
 	"categories": [
 		"Other"
@@ -217,10 +217,7 @@
 		"@types/uuid": "^8.3.1",
 		"@types/vscode": "^1.60.0",
 		"@types/webpack": "^5.28.0",
-		"@typescript-eslint/eslint-plugin": "^4.31.2",
-		"@typescript-eslint/parser": "^4.31.2",
 		"css-loader": "^6.3.0",
-		"eslint": "^7.32.0",
 		"file-loader": "^6.1.1",
 		"raw-loader": "^4.0.2",
 		"rimraf": "^3.0.2",
