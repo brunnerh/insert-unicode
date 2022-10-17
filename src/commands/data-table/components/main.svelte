@@ -21,7 +21,7 @@
 			prop: 'codes',
 			name: 'Code',
 			size: 200,
-			cellTemplate: (c, props) => codesToHex(props.model[props.prop]),
+			cellTemplate: (c, props) => codesToHex(props.model[props.prop] ?? []),
 			sortable: true,
 			autoSize: true,
 		},
@@ -29,7 +29,7 @@
 			prop: 'codes',
 			name: 'Character',
 			size: 200,
-			cellTemplate: (c, props) => codesToText(props.model[props.prop]),
+			cellTemplate: (c, props) => codesToText(props.model[props.prop] ?? []),
 			autoSize: true,
 		},
 		{
@@ -54,6 +54,7 @@
 
 	$: if (grid != null)
 	{
+		// @ts-expect-error
 		const gridInstance: HTMLElement = grid.getWebComponent();
 		// @ts-expect-error
 		gridInstance.addEventListener('beforesortingapply', onBeforeSortingApply);
@@ -69,7 +70,7 @@
 		searchTimeout = window.setTimeout(() => visibleRows = search(entries, searchText), 300);
 	}
 
-	onMount(async () =>
+	onMount(() =>
 	{
 		loadState();
 
@@ -92,15 +93,18 @@
 
 		messageBus.send({ type: 'get-unicode-data' });
 
-		try
+		(async () =>
 		{
-			await defineCustomElements();
-			gridLoaded = true;
-		}
-		catch
-		{
-			error = true;
-		}
+			try
+			{
+				await defineCustomElements();
+				gridLoaded = true;
+			}
+			catch
+			{
+				error = true;
+			}
+		})();
 
 		return () =>
 		{
@@ -145,17 +149,17 @@
 		});
 	}
 
-	function onBeforeSortingApply(e: CustomEvent<{ column: revo.RevoGrid.ColumnRegular, order: 'desc' | 'asc' }>)
+	function onBeforeSortingApply(e: CustomEvent<{ column: revo.RevoGrid.ColumnRegular, order: 'desc' | 'asc' | undefined }>)
 	{
 		if (e.detail.column.name == 'Code')
 		{
 			e.preventDefault();
 			visibleRows = [...visibleRows].sort((a, b) =>
 			{
-				const compariableIndices = Math.min(a.codes.length, b.codes.length);
+				const comparableIndices = Math.min(a.codes.length, b.codes.length);
 				let totalDifference = 0;
 				let multiplier = 1;
-				for (let i = compariableIndices - 1; i >= 0; i--)
+				for (let i = comparableIndices - 1; i >= 0; i--)
 				{
 					const difference = e.detail.order == 'asc' ?
 						a.codes[i] - b.codes[i] :

@@ -1,6 +1,8 @@
 // #region Data
 // cSpell: disable
-/** https://unicode.org/Public/14.0.0/ucd/UnicodeData.txt */
+/**
+ * https://unicode.org/Public/15.0.0/ucd/UnicodeData.txt
+ */
 const str = `0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
@@ -2978,6 +2980,7 @@ const str = `0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0CEF;KANNADA DIGIT NINE;Nd;0;L;;9;9;9;N;;;;;
 0CF1;KANNADA SIGN JIHVAMULIYA;Lo;0;L;;;;;N;;;;;
 0CF2;KANNADA SIGN UPADHMANIYA;Lo;0;L;;;;;N;;;;;
+0CF3;KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT;Mc;0;L;;;;;N;;;;;
 0D00;MALAYALAM SIGN COMBINING ANUSVARA ABOVE;Mn;0;NSM;;;;;N;;;;;
 0D01;MALAYALAM SIGN CANDRABINDU;Mn;0;NSM;;;;;N;;;;;
 0D02;MALAYALAM SIGN ANUSVARA;Mc;0;L;;;;;N;;;;;
@@ -3342,6 +3345,7 @@ const str = `0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0ECB;LAO TONE MAI CATAWA;Mn;122;NSM;;;;;N;;;;;
 0ECC;LAO CANCELLATION MARK;Mn;0;NSM;;;;;N;;;;;
 0ECD;LAO NIGGAHITA;Mn;0;NSM;;;;;N;;;;;
+0ECE;LAO YAMAKKAN;Mn;0;NSM;;;;;N;;;;;
 0ED0;LAO DIGIT ZERO;Nd;0;L;;0;0;0;N;;;;;
 0ED1;LAO DIGIT ONE;Nd;0;L;;1;1;1;N;;;;;
 0ED2;LAO DIGIT TWO;Nd;0;L;;2;2;2;N;;;;;
@@ -19396,6 +19400,9 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 10EAD;YEZIDI HYPHENATION MARK;Pd;0;R;;;;;N;;;;;
 10EB0;YEZIDI LETTER LAM WITH DOT ABOVE;Lo;0;R;;;;;N;;;;;
 10EB1;YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE;Lo;0;R;;;;;N;;;;;
+10EFD;ARABIC SMALL LOW WORD SAKTA;Mn;220;NSM;;;;;N;;;;;
+10EFE;ARABIC SMALL LOW WORD QASR;Mn;220;NSM;;;;;N;;;;;
+10EFF;ARABIC SMALL LOW WORD MADDA;Mn;220;NSM;;;;;N;;;;;
 10F00;OLD SOGDIAN LETTER ALEPH;Lo;0;R;;;;;N;;;;;
 10F01;OLD SOGDIAN LETTER FINAL ALEPH;Lo;0;R;;;;;N;;;;;
 10F02;OLD SOGDIAN LETTER BETH;Lo;0;R;;;;;N;;;;;
@@ -20061,6 +20068,9 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1123C;KHOJKI DOUBLE SECTION MARK;Po;0;L;;;;;N;;;;;
 1123D;KHOJKI ABBREVIATION SIGN;Po;0;L;;;;;N;;;;;
 1123E;KHOJKI SIGN SUKUN;Mn;0;NSM;;;;;N;;;;;
+1123F;KHOJKI LETTER QA;Lo;0;L;;;;;N;;;;;
+11240;KHOJKI LETTER SHORT I;Lo;0;L;;;;;N;;;;;
+11241;KHOJKI VOWEL SIGN VOCALIC R;Mn;0;NSM;;;;;N;;;;;
 11280;MULTANI LETTER A;Lo;0;L;;;;;N;;;;;
 11281;MULTANI LETTER I;Lo;0;L;;;;;N;;;;;
 11282;MULTANI LETTER U;Lo;0;L;;;;;N;;;;;
@@ -21259,6 +21269,16 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 11AF6;PAU CIN HAU LOW-FALLING TONE LONG FINAL;Lo;0;L;;;;;N;;;;;
 11AF7;PAU CIN HAU LOW-FALLING TONE FINAL;Lo;0;L;;;;;N;;;;;
 11AF8;PAU CIN HAU GLOTTAL STOP FINAL;Lo;0;L;;;;;N;;;;;
+11B00;DEVANAGARI HEAD MARK;Po;0;L;;;;;N;;;;;
+11B01;DEVANAGARI HEAD MARK WITH HEADSTROKE;Po;0;L;;;;;N;;;;;
+11B02;DEVANAGARI SIGN BHALE;Po;0;L;;;;;N;;;;;
+11B03;DEVANAGARI SIGN BHALE WITH HOOK;Po;0;L;;;;;N;;;;;
+11B04;DEVANAGARI SIGN EXTENDED BHALE;Po;0;L;;;;;N;;;;;
+11B05;DEVANAGARI SIGN EXTENDED BHALE WITH HOOK;Po;0;L;;;;;N;;;;;
+11B06;DEVANAGARI SIGN WESTERN FIVE-LIKE BHALE;Po;0;L;;;;;N;;;;;
+11B07;DEVANAGARI SIGN WESTERN NINE-LIKE BHALE;Po;0;L;;;;;N;;;;;
+11B08;DEVANAGARI SIGN REVERSED NINE-LIKE BHALE;Po;0;L;;;;;N;;;;;
+11B09;DEVANAGARI SIGN MINDU;Po;0;L;;;;;N;;;;;
 11C00;BHAIKSUKI LETTER A;Lo;0;L;;;;;N;;;;;
 11C01;BHAIKSUKI LETTER AA;Lo;0;L;;;;;N;;;;;
 11C02;BHAIKSUKI LETTER I;Lo;0;L;;;;;N;;;;;
@@ -21587,6 +21607,92 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 11EF6;MAKASAR VOWEL SIGN O;Mc;0;L;;;;;N;;;;;
 11EF7;MAKASAR PASSIMBANG;Po;0;L;;;;;N;;;;;
 11EF8;MAKASAR END OF SECTION;Po;0;L;;;;;N;;;;;
+11F00;KAWI SIGN CANDRABINDU;Mn;0;NSM;;;;;N;;;;;
+11F01;KAWI SIGN ANUSVARA;Mn;0;NSM;;;;;N;;;;;
+11F02;KAWI SIGN REPHA;Lo;0;L;;;;;N;;;;;
+11F03;KAWI SIGN VISARGA;Mc;0;L;;;;;N;;;;;
+11F04;KAWI LETTER A;Lo;0;L;;;;;N;;;;;
+11F05;KAWI LETTER AA;Lo;0;L;;;;;N;;;;;
+11F06;KAWI LETTER I;Lo;0;L;;;;;N;;;;;
+11F07;KAWI LETTER II;Lo;0;L;;;;;N;;;;;
+11F08;KAWI LETTER U;Lo;0;L;;;;;N;;;;;
+11F09;KAWI LETTER UU;Lo;0;L;;;;;N;;;;;
+11F0A;KAWI LETTER VOCALIC R;Lo;0;L;;;;;N;;;;;
+11F0B;KAWI LETTER VOCALIC RR;Lo;0;L;;;;;N;;;;;
+11F0C;KAWI LETTER VOCALIC L;Lo;0;L;;;;;N;;;;;
+11F0D;KAWI LETTER VOCALIC LL;Lo;0;L;;;;;N;;;;;
+11F0E;KAWI LETTER E;Lo;0;L;;;;;N;;;;;
+11F0F;KAWI LETTER AI;Lo;0;L;;;;;N;;;;;
+11F10;KAWI LETTER O;Lo;0;L;;;;;N;;;;;
+11F12;KAWI LETTER KA;Lo;0;L;;;;;N;;;;;
+11F13;KAWI LETTER KHA;Lo;0;L;;;;;N;;;;;
+11F14;KAWI LETTER GA;Lo;0;L;;;;;N;;;;;
+11F15;KAWI LETTER GHA;Lo;0;L;;;;;N;;;;;
+11F16;KAWI LETTER NGA;Lo;0;L;;;;;N;;;;;
+11F17;KAWI LETTER CA;Lo;0;L;;;;;N;;;;;
+11F18;KAWI LETTER CHA;Lo;0;L;;;;;N;;;;;
+11F19;KAWI LETTER JA;Lo;0;L;;;;;N;;;;;
+11F1A;KAWI LETTER JHA;Lo;0;L;;;;;N;;;;;
+11F1B;KAWI LETTER NYA;Lo;0;L;;;;;N;;;;;
+11F1C;KAWI LETTER TTA;Lo;0;L;;;;;N;;;;;
+11F1D;KAWI LETTER TTHA;Lo;0;L;;;;;N;;;;;
+11F1E;KAWI LETTER DDA;Lo;0;L;;;;;N;;;;;
+11F1F;KAWI LETTER DDHA;Lo;0;L;;;;;N;;;;;
+11F20;KAWI LETTER NNA;Lo;0;L;;;;;N;;;;;
+11F21;KAWI LETTER TA;Lo;0;L;;;;;N;;;;;
+11F22;KAWI LETTER THA;Lo;0;L;;;;;N;;;;;
+11F23;KAWI LETTER DA;Lo;0;L;;;;;N;;;;;
+11F24;KAWI LETTER DHA;Lo;0;L;;;;;N;;;;;
+11F25;KAWI LETTER NA;Lo;0;L;;;;;N;;;;;
+11F26;KAWI LETTER PA;Lo;0;L;;;;;N;;;;;
+11F27;KAWI LETTER PHA;Lo;0;L;;;;;N;;;;;
+11F28;KAWI LETTER BA;Lo;0;L;;;;;N;;;;;
+11F29;KAWI LETTER BHA;Lo;0;L;;;;;N;;;;;
+11F2A;KAWI LETTER MA;Lo;0;L;;;;;N;;;;;
+11F2B;KAWI LETTER YA;Lo;0;L;;;;;N;;;;;
+11F2C;KAWI LETTER RA;Lo;0;L;;;;;N;;;;;
+11F2D;KAWI LETTER LA;Lo;0;L;;;;;N;;;;;
+11F2E;KAWI LETTER WA;Lo;0;L;;;;;N;;;;;
+11F2F;KAWI LETTER SHA;Lo;0;L;;;;;N;;;;;
+11F30;KAWI LETTER SSA;Lo;0;L;;;;;N;;;;;
+11F31;KAWI LETTER SA;Lo;0;L;;;;;N;;;;;
+11F32;KAWI LETTER HA;Lo;0;L;;;;;N;;;;;
+11F33;KAWI LETTER JNYA;Lo;0;L;;;;;N;;;;;
+11F34;KAWI VOWEL SIGN AA;Mc;0;L;;;;;N;;;;;
+11F35;KAWI VOWEL SIGN ALTERNATE AA;Mc;0;L;;;;;N;;;;;
+11F36;KAWI VOWEL SIGN I;Mn;0;NSM;;;;;N;;;;;
+11F37;KAWI VOWEL SIGN II;Mn;0;NSM;;;;;N;;;;;
+11F38;KAWI VOWEL SIGN U;Mn;0;NSM;;;;;N;;;;;
+11F39;KAWI VOWEL SIGN UU;Mn;0;NSM;;;;;N;;;;;
+11F3A;KAWI VOWEL SIGN VOCALIC R;Mn;0;NSM;;;;;N;;;;;
+11F3E;KAWI VOWEL SIGN E;Mc;0;L;;;;;N;;;;;
+11F3F;KAWI VOWEL SIGN AI;Mc;0;L;;;;;N;;;;;
+11F40;KAWI VOWEL SIGN EU;Mn;0;NSM;;;;;N;;;;;
+11F41;KAWI SIGN KILLER;Mc;9;L;;;;;N;;;;;
+11F42;KAWI CONJOINER;Mn;9;NSM;;;;;N;;;;;
+11F43;KAWI DANDA;Po;0;L;;;;;N;;;;;
+11F44;KAWI DOUBLE DANDA;Po;0;L;;;;;N;;;;;
+11F45;KAWI PUNCTUATION SECTION MARKER;Po;0;L;;;;;N;;;;;
+11F46;KAWI PUNCTUATION ALTERNATE SECTION MARKER;Po;0;L;;;;;N;;;;;
+11F47;KAWI PUNCTUATION FLOWER;Po;0;L;;;;;N;;;;;
+11F48;KAWI PUNCTUATION SPACE FILLER;Po;0;L;;;;;N;;;;;
+11F49;KAWI PUNCTUATION DOT;Po;0;L;;;;;N;;;;;
+11F4A;KAWI PUNCTUATION DOUBLE DOT;Po;0;L;;;;;N;;;;;
+11F4B;KAWI PUNCTUATION TRIPLE DOT;Po;0;L;;;;;N;;;;;
+11F4C;KAWI PUNCTUATION CIRCLE;Po;0;L;;;;;N;;;;;
+11F4D;KAWI PUNCTUATION FILLED CIRCLE;Po;0;L;;;;;N;;;;;
+11F4E;KAWI PUNCTUATION SPIRAL;Po;0;L;;;;;N;;;;;
+11F4F;KAWI PUNCTUATION CLOSING SPIRAL;Po;0;L;;;;;N;;;;;
+11F50;KAWI DIGIT ZERO;Nd;0;L;;0;0;0;N;;;;;
+11F51;KAWI DIGIT ONE;Nd;0;L;;1;1;1;N;;;;;
+11F52;KAWI DIGIT TWO;Nd;0;L;;2;2;2;N;;;;;
+11F53;KAWI DIGIT THREE;Nd;0;L;;3;3;3;N;;;;;
+11F54;KAWI DIGIT FOUR;Nd;0;L;;4;4;4;N;;;;;
+11F55;KAWI DIGIT FIVE;Nd;0;L;;5;5;5;N;;;;;
+11F56;KAWI DIGIT SIX;Nd;0;L;;6;6;6;N;;;;;
+11F57;KAWI DIGIT SEVEN;Nd;0;L;;7;7;7;N;;;;;
+11F58;KAWI DIGIT EIGHT;Nd;0;L;;8;8;8;N;;;;;
+11F59;KAWI DIGIT NINE;Nd;0;L;;9;9;9;N;;;;;
 11FB0;LISU LETTER YHA;Lo;0;L;;;;;N;;;;;
 11FC0;TAMIL FRACTION ONE THREE-HUNDRED-AND-TWENTIETH;No;0;L;;;;1/320;N;;;;;
 11FC1;TAMIL FRACTION ONE ONE-HUNDRED-AND-SIXTIETH;No;0;L;;;;1/160;N;;;;;
@@ -24043,6 +24149,7 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1342C;EGYPTIAN HIEROGLYPH AA030;Lo;0;L;;;;;N;;;;;
 1342D;EGYPTIAN HIEROGLYPH AA031;Lo;0;L;;;;;N;;;;;
 1342E;EGYPTIAN HIEROGLYPH AA032;Lo;0;L;;;;;N;;;;;
+1342F;EGYPTIAN HIEROGLYPH V011D;Lo;0;L;;;;;N;;;;;
 13430;EGYPTIAN HIEROGLYPH VERTICAL JOINER;Cf;0;L;;;;;N;;;;;
 13431;EGYPTIAN HIEROGLYPH HORIZONTAL JOINER;Cf;0;L;;;;;N;;;;;
 13432;EGYPTIAN HIEROGLYPH INSERT AT TOP START;Cf;0;L;;;;;N;;;;;
@@ -24052,6 +24159,35 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 13436;EGYPTIAN HIEROGLYPH OVERLAY MIDDLE;Cf;0;L;;;;;N;;;;;
 13437;EGYPTIAN HIEROGLYPH BEGIN SEGMENT;Cf;0;L;;;;;N;;;;;
 13438;EGYPTIAN HIEROGLYPH END SEGMENT;Cf;0;L;;;;;N;;;;;
+13439;EGYPTIAN HIEROGLYPH INSERT AT MIDDLE;Cf;0;L;;;;;N;;;;;
+1343A;EGYPTIAN HIEROGLYPH INSERT AT TOP;Cf;0;L;;;;;N;;;;;
+1343B;EGYPTIAN HIEROGLYPH INSERT AT BOTTOM;Cf;0;L;;;;;N;;;;;
+1343C;EGYPTIAN HIEROGLYPH BEGIN ENCLOSURE;Cf;0;L;;;;;N;;;;;
+1343D;EGYPTIAN HIEROGLYPH END ENCLOSURE;Cf;0;L;;;;;N;;;;;
+1343E;EGYPTIAN HIEROGLYPH BEGIN WALLED ENCLOSURE;Cf;0;L;;;;;N;;;;;
+1343F;EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE;Cf;0;L;;;;;N;;;;;
+13440;EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY;Mn;0;NSM;;;;;N;;;;;
+13441;EGYPTIAN HIEROGLYPH FULL BLANK;Lo;0;L;;;;;N;;;;;
+13442;EGYPTIAN HIEROGLYPH HALF BLANK;Lo;0;L;;;;;N;;;;;
+13443;EGYPTIAN HIEROGLYPH LOST SIGN;Lo;0;L;;;;;N;;;;;
+13444;EGYPTIAN HIEROGLYPH HALF LOST SIGN;Lo;0;L;;;;;N;;;;;
+13445;EGYPTIAN HIEROGLYPH TALL LOST SIGN;Lo;0;L;;;;;N;;;;;
+13446;EGYPTIAN HIEROGLYPH WIDE LOST SIGN;Lo;0;L;;;;;N;;;;;
+13447;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START;Mn;0;NSM;;;;;N;;;;;
+13448;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM START;Mn;0;NSM;;;;;N;;;;;
+13449;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START;Mn;0;NSM;;;;;N;;;;;
+1344A;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP END;Mn;0;NSM;;;;;N;;;;;
+1344B;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP;Mn;0;NSM;;;;;N;;;;;
+1344C;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM START AND TOP END;Mn;0;NSM;;;;;N;;;;;
+1344D;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START AND TOP;Mn;0;NSM;;;;;N;;;;;
+1344E;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM END;Mn;0;NSM;;;;;N;;;;;
+1344F;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START AND BOTTOM END;Mn;0;NSM;;;;;N;;;;;
+13450;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM;Mn;0;NSM;;;;;N;;;;;
+13451;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START AND BOTTOM;Mn;0;NSM;;;;;N;;;;;
+13452;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT END;Mn;0;NSM;;;;;N;;;;;
+13453;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP AND END;Mn;0;NSM;;;;;N;;;;;
+13454;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM AND END;Mn;0;NSM;;;;;N;;;;;
+13455;EGYPTIAN HIEROGLYPH MODIFIER DAMAGED;Mn;0;NSM;;;;;N;;;;;
 14400;ANATOLIAN HIEROGLYPH A001;Lo;0;L;;;;;N;;;;;
 14401;ANATOLIAN HIEROGLYPH A002;Lo;0;L;;;;;N;;;;;
 14402;ANATOLIAN HIEROGLYPH A003;Lo;0;L;;;;;N;;;;;
@@ -27292,9 +27428,11 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1B120;KATAKANA LETTER ARCHAIC YI;Lo;0;L;;;;;N;;;;;
 1B121;KATAKANA LETTER ARCHAIC YE;Lo;0;L;;;;;N;;;;;
 1B122;KATAKANA LETTER ARCHAIC WU;Lo;0;L;;;;;N;;;;;
+1B132;HIRAGANA LETTER SMALL KO;Lo;0;L;;;;;N;;;;;
 1B150;HIRAGANA LETTER SMALL WI;Lo;0;L;;;;;N;;;;;
 1B151;HIRAGANA LETTER SMALL WE;Lo;0;L;;;;;N;;;;;
 1B152;HIRAGANA LETTER SMALL WO;Lo;0;L;;;;;N;;;;;
+1B155;KATAKANA LETTER SMALL KO;Lo;0;L;;;;;N;;;;;
 1B164;KATAKANA LETTER SMALL WI;Lo;0;L;;;;;N;;;;;
 1B165;KATAKANA LETTER SMALL WE;Lo;0;L;;;;;N;;;;;
 1B166;KATAKANA LETTER SMALL WO;Lo;0;L;;;;;N;;;;;
@@ -28576,6 +28714,26 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1D243;COMBINING GREEK MUSICAL TETRASEME;Mn;230;NSM;;;;;N;;;;;
 1D244;COMBINING GREEK MUSICAL PENTASEME;Mn;230;NSM;;;;;N;;;;;
 1D245;GREEK MUSICAL LEIMMA;So;0;ON;;;;;N;;;;;
+1D2C0;KAKTOVIK NUMERAL ZERO;No;0;L;;;;0;N;;;;;
+1D2C1;KAKTOVIK NUMERAL ONE;No;0;L;;;;1;N;;;;;
+1D2C2;KAKTOVIK NUMERAL TWO;No;0;L;;;;2;N;;;;;
+1D2C3;KAKTOVIK NUMERAL THREE;No;0;L;;;;3;N;;;;;
+1D2C4;KAKTOVIK NUMERAL FOUR;No;0;L;;;;4;N;;;;;
+1D2C5;KAKTOVIK NUMERAL FIVE;No;0;L;;;;5;N;;;;;
+1D2C6;KAKTOVIK NUMERAL SIX;No;0;L;;;;6;N;;;;;
+1D2C7;KAKTOVIK NUMERAL SEVEN;No;0;L;;;;7;N;;;;;
+1D2C8;KAKTOVIK NUMERAL EIGHT;No;0;L;;;;8;N;;;;;
+1D2C9;KAKTOVIK NUMERAL NINE;No;0;L;;;;9;N;;;;;
+1D2CA;KAKTOVIK NUMERAL TEN;No;0;L;;;;10;N;;;;;
+1D2CB;KAKTOVIK NUMERAL ELEVEN;No;0;L;;;;11;N;;;;;
+1D2CC;KAKTOVIK NUMERAL TWELVE;No;0;L;;;;12;N;;;;;
+1D2CD;KAKTOVIK NUMERAL THIRTEEN;No;0;L;;;;13;N;;;;;
+1D2CE;KAKTOVIK NUMERAL FOURTEEN;No;0;L;;;;14;N;;;;;
+1D2CF;KAKTOVIK NUMERAL FIFTEEN;No;0;L;;;;15;N;;;;;
+1D2D0;KAKTOVIK NUMERAL SIXTEEN;No;0;L;;;;16;N;;;;;
+1D2D1;KAKTOVIK NUMERAL SEVENTEEN;No;0;L;;;;17;N;;;;;
+1D2D2;KAKTOVIK NUMERAL EIGHTEEN;No;0;L;;;;18;N;;;;;
+1D2D3;KAKTOVIK NUMERAL NINETEEN;No;0;L;;;;19;N;;;;;
 1D2E0;MAYAN NUMERAL ZERO;No;0;L;;;;0;N;;;;;
 1D2E1;MAYAN NUMERAL ONE;No;0;L;;;;1;N;;;;;
 1D2E2;MAYAN NUMERAL TWO;No;0;L;;;;2;N;;;;;
@@ -30407,6 +30565,12 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1DF1C;LATIN SMALL LETTER TESH DIGRAPH WITH RETROFLEX HOOK;Ll;0;L;;;;;N;;;;;
 1DF1D;LATIN SMALL LETTER C WITH RETROFLEX HOOK;Ll;0;L;;;;;N;;;;;
 1DF1E;LATIN SMALL LETTER S WITH CURL;Ll;0;L;;;;;N;;;;;
+1DF25;LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK;Ll;0;L;;;;;N;;;;;
+1DF26;LATIN SMALL LETTER L WITH MID-HEIGHT LEFT HOOK;Ll;0;L;;;;;N;;;;;
+1DF27;LATIN SMALL LETTER N WITH MID-HEIGHT LEFT HOOK;Ll;0;L;;;;;N;;;;;
+1DF28;LATIN SMALL LETTER R WITH MID-HEIGHT LEFT HOOK;Ll;0;L;;;;;N;;;;;
+1DF29;LATIN SMALL LETTER S WITH MID-HEIGHT LEFT HOOK;Ll;0;L;;;;;N;;;;;
+1DF2A;LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK;Ll;0;L;;;;;N;;;;;
 1E000;COMBINING GLAGOLITIC LETTER AZU;Mn;230;NSM;;;;;N;;;;;
 1E001;COMBINING GLAGOLITIC LETTER BUKY;Mn;230;NSM;;;;;N;;;;;
 1E002;COMBINING GLAGOLITIC LETTER VEDE;Mn;230;NSM;;;;;N;;;;;
@@ -30445,6 +30609,69 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1E028;COMBINING GLAGOLITIC LETTER BIG YUS;Mn;230;NSM;;;;;N;;;;;
 1E029;COMBINING GLAGOLITIC LETTER IOTATED BIG YUS;Mn;230;NSM;;;;;N;;;;;
 1E02A;COMBINING GLAGOLITIC LETTER FITA;Mn;230;NSM;;;;;N;;;;;
+1E030;MODIFIER LETTER CYRILLIC SMALL A;Lm;0;L;<super> 0430;;;;N;;;;;
+1E031;MODIFIER LETTER CYRILLIC SMALL BE;Lm;0;L;<super> 0431;;;;N;;;;;
+1E032;MODIFIER LETTER CYRILLIC SMALL VE;Lm;0;L;<super> 0432;;;;N;;;;;
+1E033;MODIFIER LETTER CYRILLIC SMALL GHE;Lm;0;L;<super> 0433;;;;N;;;;;
+1E034;MODIFIER LETTER CYRILLIC SMALL DE;Lm;0;L;<super> 0434;;;;N;;;;;
+1E035;MODIFIER LETTER CYRILLIC SMALL IE;Lm;0;L;<super> 0435;;;;N;;;;;
+1E036;MODIFIER LETTER CYRILLIC SMALL ZHE;Lm;0;L;<super> 0436;;;;N;;;;;
+1E037;MODIFIER LETTER CYRILLIC SMALL ZE;Lm;0;L;<super> 0437;;;;N;;;;;
+1E038;MODIFIER LETTER CYRILLIC SMALL I;Lm;0;L;<super> 0438;;;;N;;;;;
+1E039;MODIFIER LETTER CYRILLIC SMALL KA;Lm;0;L;<super> 043A;;;;N;;;;;
+1E03A;MODIFIER LETTER CYRILLIC SMALL EL;Lm;0;L;<super> 043B;;;;N;;;;;
+1E03B;MODIFIER LETTER CYRILLIC SMALL EM;Lm;0;L;<super> 043C;;;;N;;;;;
+1E03C;MODIFIER LETTER CYRILLIC SMALL O;Lm;0;L;<super> 043E;;;;N;;;;;
+1E03D;MODIFIER LETTER CYRILLIC SMALL PE;Lm;0;L;<super> 043F;;;;N;;;;;
+1E03E;MODIFIER LETTER CYRILLIC SMALL ER;Lm;0;L;<super> 0440;;;;N;;;;;
+1E03F;MODIFIER LETTER CYRILLIC SMALL ES;Lm;0;L;<super> 0441;;;;N;;;;;
+1E040;MODIFIER LETTER CYRILLIC SMALL TE;Lm;0;L;<super> 0442;;;;N;;;;;
+1E041;MODIFIER LETTER CYRILLIC SMALL U;Lm;0;L;<super> 0443;;;;N;;;;;
+1E042;MODIFIER LETTER CYRILLIC SMALL EF;Lm;0;L;<super> 0444;;;;N;;;;;
+1E043;MODIFIER LETTER CYRILLIC SMALL HA;Lm;0;L;<super> 0445;;;;N;;;;;
+1E044;MODIFIER LETTER CYRILLIC SMALL TSE;Lm;0;L;<super> 0446;;;;N;;;;;
+1E045;MODIFIER LETTER CYRILLIC SMALL CHE;Lm;0;L;<super> 0447;;;;N;;;;;
+1E046;MODIFIER LETTER CYRILLIC SMALL SHA;Lm;0;L;<super> 0448;;;;N;;;;;
+1E047;MODIFIER LETTER CYRILLIC SMALL YERU;Lm;0;L;<super> 044B;;;;N;;;;;
+1E048;MODIFIER LETTER CYRILLIC SMALL E;Lm;0;L;<super> 044D;;;;N;;;;;
+1E049;MODIFIER LETTER CYRILLIC SMALL YU;Lm;0;L;<super> 044E;;;;N;;;;;
+1E04A;MODIFIER LETTER CYRILLIC SMALL DZZE;Lm;0;L;<super> A689;;;;N;;;;;
+1E04B;MODIFIER LETTER CYRILLIC SMALL SCHWA;Lm;0;L;<super> 04D9;;;;N;;;;;
+1E04C;MODIFIER LETTER CYRILLIC SMALL BYELORUSSIAN-UKRAINIAN I;Lm;0;L;<super> 0456;;;;N;;;;;
+1E04D;MODIFIER LETTER CYRILLIC SMALL JE;Lm;0;L;<super> 0458;;;;N;;;;;
+1E04E;MODIFIER LETTER CYRILLIC SMALL BARRED O;Lm;0;L;<super> 04E9;;;;N;;;;;
+1E04F;MODIFIER LETTER CYRILLIC SMALL STRAIGHT U;Lm;0;L;<super> 04AF;;;;N;;;;;
+1E050;MODIFIER LETTER CYRILLIC SMALL PALOCHKA;Lm;0;L;<super> 04CF;;;;N;;;;;
+1E051;CYRILLIC SUBSCRIPT SMALL LETTER A;Lm;0;L;<sub> 0430;;;;N;;;;;
+1E052;CYRILLIC SUBSCRIPT SMALL LETTER BE;Lm;0;L;<sub> 0431;;;;N;;;;;
+1E053;CYRILLIC SUBSCRIPT SMALL LETTER VE;Lm;0;L;<sub> 0432;;;;N;;;;;
+1E054;CYRILLIC SUBSCRIPT SMALL LETTER GHE;Lm;0;L;<sub> 0433;;;;N;;;;;
+1E055;CYRILLIC SUBSCRIPT SMALL LETTER DE;Lm;0;L;<sub> 0434;;;;N;;;;;
+1E056;CYRILLIC SUBSCRIPT SMALL LETTER IE;Lm;0;L;<sub> 0435;;;;N;;;;;
+1E057;CYRILLIC SUBSCRIPT SMALL LETTER ZHE;Lm;0;L;<sub> 0436;;;;N;;;;;
+1E058;CYRILLIC SUBSCRIPT SMALL LETTER ZE;Lm;0;L;<sub> 0437;;;;N;;;;;
+1E059;CYRILLIC SUBSCRIPT SMALL LETTER I;Lm;0;L;<sub> 0438;;;;N;;;;;
+1E05A;CYRILLIC SUBSCRIPT SMALL LETTER KA;Lm;0;L;<sub> 043A;;;;N;;;;;
+1E05B;CYRILLIC SUBSCRIPT SMALL LETTER EL;Lm;0;L;<sub> 043B;;;;N;;;;;
+1E05C;CYRILLIC SUBSCRIPT SMALL LETTER O;Lm;0;L;<sub> 043E;;;;N;;;;;
+1E05D;CYRILLIC SUBSCRIPT SMALL LETTER PE;Lm;0;L;<sub> 043F;;;;N;;;;;
+1E05E;CYRILLIC SUBSCRIPT SMALL LETTER ES;Lm;0;L;<sub> 0441;;;;N;;;;;
+1E05F;CYRILLIC SUBSCRIPT SMALL LETTER U;Lm;0;L;<sub> 0443;;;;N;;;;;
+1E060;CYRILLIC SUBSCRIPT SMALL LETTER EF;Lm;0;L;<sub> 0444;;;;N;;;;;
+1E061;CYRILLIC SUBSCRIPT SMALL LETTER HA;Lm;0;L;<sub> 0445;;;;N;;;;;
+1E062;CYRILLIC SUBSCRIPT SMALL LETTER TSE;Lm;0;L;<sub> 0446;;;;N;;;;;
+1E063;CYRILLIC SUBSCRIPT SMALL LETTER CHE;Lm;0;L;<sub> 0447;;;;N;;;;;
+1E064;CYRILLIC SUBSCRIPT SMALL LETTER SHA;Lm;0;L;<sub> 0448;;;;N;;;;;
+1E065;CYRILLIC SUBSCRIPT SMALL LETTER HARD SIGN;Lm;0;L;<sub> 044A;;;;N;;;;;
+1E066;CYRILLIC SUBSCRIPT SMALL LETTER YERU;Lm;0;L;<sub> 044B;;;;N;;;;;
+1E067;CYRILLIC SUBSCRIPT SMALL LETTER GHE WITH UPTURN;Lm;0;L;<sub> 0491;;;;N;;;;;
+1E068;CYRILLIC SUBSCRIPT SMALL LETTER BYELORUSSIAN-UKRAINIAN I;Lm;0;L;<sub> 0456;;;;N;;;;;
+1E069;CYRILLIC SUBSCRIPT SMALL LETTER DZE;Lm;0;L;<sub> 0455;;;;N;;;;;
+1E06A;CYRILLIC SUBSCRIPT SMALL LETTER DZHE;Lm;0;L;<sub> 045F;;;;N;;;;;
+1E06B;MODIFIER LETTER CYRILLIC SMALL ES WITH DESCENDER;Lm;0;L;<super> 04AB;;;;N;;;;;
+1E06C;MODIFIER LETTER CYRILLIC SMALL YERU WITH BACK YER;Lm;0;L;<super> A651;;;;N;;;;;
+1E06D;MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE;Lm;0;L;<super> 04B1;;;;N;;;;;
+1E08F;COMBINING CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I;Mn;230;NSM;;;;;N;;;;;
 1E100;NYIAKENG PUACHUE HMONG LETTER MA;Lo;0;L;;;;;N;;;;;
 1E101;NYIAKENG PUACHUE HMONG LETTER TSA;Lo;0;L;;;;;N;;;;;
 1E102;NYIAKENG PUACHUE HMONG LETTER NTA;Lo;0;L;;;;;N;;;;;
@@ -30606,6 +30833,48 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1E2F8;WANCHO DIGIT EIGHT;Nd;0;L;;8;8;8;N;;;;;
 1E2F9;WANCHO DIGIT NINE;Nd;0;L;;9;9;9;N;;;;;
 1E2FF;WANCHO NGUN SIGN;Sc;0;ET;;;;;N;;;;;
+1E4D0;NAG MUNDARI LETTER O;Lo;0;L;;;;;N;;;;;
+1E4D1;NAG MUNDARI LETTER OP;Lo;0;L;;;;;N;;;;;
+1E4D2;NAG MUNDARI LETTER OL;Lo;0;L;;;;;N;;;;;
+1E4D3;NAG MUNDARI LETTER OY;Lo;0;L;;;;;N;;;;;
+1E4D4;NAG MUNDARI LETTER ONG;Lo;0;L;;;;;N;;;;;
+1E4D5;NAG MUNDARI LETTER A;Lo;0;L;;;;;N;;;;;
+1E4D6;NAG MUNDARI LETTER AJ;Lo;0;L;;;;;N;;;;;
+1E4D7;NAG MUNDARI LETTER AB;Lo;0;L;;;;;N;;;;;
+1E4D8;NAG MUNDARI LETTER ANY;Lo;0;L;;;;;N;;;;;
+1E4D9;NAG MUNDARI LETTER AH;Lo;0;L;;;;;N;;;;;
+1E4DA;NAG MUNDARI LETTER I;Lo;0;L;;;;;N;;;;;
+1E4DB;NAG MUNDARI LETTER IS;Lo;0;L;;;;;N;;;;;
+1E4DC;NAG MUNDARI LETTER IDD;Lo;0;L;;;;;N;;;;;
+1E4DD;NAG MUNDARI LETTER IT;Lo;0;L;;;;;N;;;;;
+1E4DE;NAG MUNDARI LETTER IH;Lo;0;L;;;;;N;;;;;
+1E4DF;NAG MUNDARI LETTER U;Lo;0;L;;;;;N;;;;;
+1E4E0;NAG MUNDARI LETTER UC;Lo;0;L;;;;;N;;;;;
+1E4E1;NAG MUNDARI LETTER UD;Lo;0;L;;;;;N;;;;;
+1E4E2;NAG MUNDARI LETTER UK;Lo;0;L;;;;;N;;;;;
+1E4E3;NAG MUNDARI LETTER UR;Lo;0;L;;;;;N;;;;;
+1E4E4;NAG MUNDARI LETTER E;Lo;0;L;;;;;N;;;;;
+1E4E5;NAG MUNDARI LETTER ENN;Lo;0;L;;;;;N;;;;;
+1E4E6;NAG MUNDARI LETTER EG;Lo;0;L;;;;;N;;;;;
+1E4E7;NAG MUNDARI LETTER EM;Lo;0;L;;;;;N;;;;;
+1E4E8;NAG MUNDARI LETTER EN;Lo;0;L;;;;;N;;;;;
+1E4E9;NAG MUNDARI LETTER ETT;Lo;0;L;;;;;N;;;;;
+1E4EA;NAG MUNDARI LETTER ELL;Lo;0;L;;;;;N;;;;;
+1E4EB;NAG MUNDARI SIGN OJOD;Lm;0;L;;;;;N;;;;;
+1E4EC;NAG MUNDARI SIGN MUHOR;Mn;232;NSM;;;;;N;;;;;
+1E4ED;NAG MUNDARI SIGN TOYOR;Mn;232;NSM;;;;;N;;;;;
+1E4EE;NAG MUNDARI SIGN IKIR;Mn;220;NSM;;;;;N;;;;;
+1E4EF;NAG MUNDARI SIGN SUTUH;Mn;230;NSM;;;;;N;;;;;
+1E4F0;NAG MUNDARI DIGIT ZERO;Nd;0;L;;0;0;0;N;;;;;
+1E4F1;NAG MUNDARI DIGIT ONE;Nd;0;L;;1;1;1;N;;;;;
+1E4F2;NAG MUNDARI DIGIT TWO;Nd;0;L;;2;2;2;N;;;;;
+1E4F3;NAG MUNDARI DIGIT THREE;Nd;0;L;;3;3;3;N;;;;;
+1E4F4;NAG MUNDARI DIGIT FOUR;Nd;0;L;;4;4;4;N;;;;;
+1E4F5;NAG MUNDARI DIGIT FIVE;Nd;0;L;;5;5;5;N;;;;;
+1E4F6;NAG MUNDARI DIGIT SIX;Nd;0;L;;6;6;6;N;;;;;
+1E4F7;NAG MUNDARI DIGIT SEVEN;Nd;0;L;;7;7;7;N;;;;;
+1E4F8;NAG MUNDARI DIGIT EIGHT;Nd;0;L;;8;8;8;N;;;;;
+1E4F9;NAG MUNDARI DIGIT NINE;Nd;0;L;;9;9;9;N;;;;;
 1E7E0;ETHIOPIC SYLLABLE HHYA;Lo;0;L;;;;;N;;;;;
 1E7E1;ETHIOPIC SYLLABLE HHYU;Lo;0;L;;;;;N;;;;;
 1E7E2;ETHIOPIC SYLLABLE HHYI;Lo;0;L;;;;;N;;;;;
@@ -32681,6 +32950,7 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1F6D5;HINDU TEMPLE;So;0;ON;;;;;N;;;;;
 1F6D6;HUT;So;0;ON;;;;;N;;;;;
 1F6D7;ELEVATOR;So;0;ON;;;;;N;;;;;
+1F6DC;WIRELESS;So;0;ON;;;;;N;;;;;
 1F6DD;PLAYGROUND SLIDE;So;0;ON;;;;;N;;;;;
 1F6DE;WHEEL;So;0;ON;;;;;N;;;;;
 1F6DF;RING BUOY;So;0;ON;;;;;N;;;;;
@@ -32826,6 +33096,14 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1F771;ALCHEMICAL SYMBOL FOR MONTH;So;0;ON;;;;;N;;;;;
 1F772;ALCHEMICAL SYMBOL FOR HALF DRAM;So;0;ON;;;;;N;;;;;
 1F773;ALCHEMICAL SYMBOL FOR HALF OUNCE;So;0;ON;;;;;N;;;;;
+1F774;LOT OF FORTUNE;So;0;ON;;;;;N;;;;;
+1F775;OCCULTATION;So;0;ON;;;;;N;;;;;
+1F776;LUNAR ECLIPSE;So;0;ON;;;;;N;;;;;
+1F77B;HAUMEA;So;0;ON;;;;;N;;;;;
+1F77C;MAKEMAKE;So;0;ON;;;;;N;;;;;
+1F77D;GONGGONG;So;0;ON;;;;;N;;;;;
+1F77E;QUAOAR;So;0;ON;;;;;N;;;;;
+1F77F;ORCUS;So;0;ON;;;;;N;;;;;
 1F780;BLACK LEFT-POINTING ISOSCELES RIGHT TRIANGLE;So;0;ON;;;;;N;;;;;
 1F781;BLACK UP-POINTING ISOSCELES RIGHT TRIANGLE;So;0;ON;;;;;N;;;;;
 1F782;BLACK RIGHT-POINTING ISOSCELES RIGHT TRIANGLE;So;0;ON;;;;;N;;;;;
@@ -32915,6 +33193,7 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1F7D6;NEGATIVE CIRCLED TRIANGLE;So;0;ON;;;;;N;;;;;
 1F7D7;CIRCLED SQUARE;So;0;ON;;;;;N;;;;;
 1F7D8;NEGATIVE CIRCLED SQUARE;So;0;ON;;;;;N;;;;;
+1F7D9;NINE POINTED WHITE STAR;So;0;ON;;;;;N;;;;;
 1F7E0;LARGE ORANGE CIRCLE;So;0;ON;;;;;N;;;;;
 1F7E1;LARGE YELLOW CIRCLE;So;0;ON;;;;;N;;;;;
 1F7E2;LARGE GREEN CIRCLE;So;0;ON;;;;;N;;;;;
@@ -33437,6 +33716,9 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FA72;BRIEFS;So;0;ON;;;;;N;;;;;
 1FA73;SHORTS;So;0;ON;;;;;N;;;;;
 1FA74;THONG SANDAL;So;0;ON;;;;;N;;;;;
+1FA75;LIGHT BLUE HEART;So;0;ON;;;;;N;;;;;
+1FA76;GREY HEART;So;0;ON;;;;;N;;;;;
+1FA77;PINK HEART;So;0;ON;;;;;N;;;;;
 1FA78;DROP OF BLOOD;So;0;ON;;;;;N;;;;;
 1FA79;ADHESIVE BANDAGE;So;0;ON;;;;;N;;;;;
 1FA7A;STETHOSCOPE;So;0;ON;;;;;N;;;;;
@@ -33449,6 +33731,8 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FA84;MAGIC WAND;So;0;ON;;;;;N;;;;;
 1FA85;PINATA;So;0;ON;;;;;N;;;;;
 1FA86;NESTING DOLLS;So;0;ON;;;;;N;;;;;
+1FA87;MARACAS;So;0;ON;;;;;N;;;;;
+1FA88;FLUTE;So;0;ON;;;;;N;;;;;
 1FA90;RINGED PLANET;So;0;ON;;;;;N;;;;;
 1FA91;CHAIR;So;0;ON;;;;;N;;;;;
 1FA92;RAZOR;So;0;ON;;;;;N;;;;;
@@ -33478,6 +33762,9 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FAAA;IDENTIFICATION CARD;So;0;ON;;;;;N;;;;;
 1FAAB;LOW BATTERY;So;0;ON;;;;;N;;;;;
 1FAAC;HAMSA;So;0;ON;;;;;N;;;;;
+1FAAD;FOLDING HAND FAN;So;0;ON;;;;;N;;;;;
+1FAAE;HAIR PICK;So;0;ON;;;;;N;;;;;
+1FAAF;KHANDA;So;0;ON;;;;;N;;;;;
 1FAB0;FLY;So;0;ON;;;;;N;;;;;
 1FAB1;WORM;So;0;ON;;;;;N;;;;;
 1FAB2;BEETLE;So;0;ON;;;;;N;;;;;
@@ -33489,12 +33776,18 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FAB8;CORAL;So;0;ON;;;;;N;;;;;
 1FAB9;EMPTY NEST;So;0;ON;;;;;N;;;;;
 1FABA;NEST WITH EGGS;So;0;ON;;;;;N;;;;;
+1FABB;HYACINTH;So;0;ON;;;;;N;;;;;
+1FABC;JELLYFISH;So;0;ON;;;;;N;;;;;
+1FABD;WING;So;0;ON;;;;;N;;;;;
+1FABF;GOOSE;So;0;ON;;;;;N;;;;;
 1FAC0;ANATOMICAL HEART;So;0;ON;;;;;N;;;;;
 1FAC1;LUNGS;So;0;ON;;;;;N;;;;;
 1FAC2;PEOPLE HUGGING;So;0;ON;;;;;N;;;;;
 1FAC3;PREGNANT MAN;So;0;ON;;;;;N;;;;;
 1FAC4;PREGNANT PERSON;So;0;ON;;;;;N;;;;;
 1FAC5;PERSON WITH CROWN;So;0;ON;;;;;N;;;;;
+1FACE;MOOSE;So;0;ON;;;;;N;;;;;
+1FACF;DONKEY;So;0;ON;;;;;N;;;;;
 1FAD0;BLUEBERRIES;So;0;ON;;;;;N;;;;;
 1FAD1;BELL PEPPER;So;0;ON;;;;;N;;;;;
 1FAD2;OLIVE;So;0;ON;;;;;N;;;;;
@@ -33505,6 +33798,8 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FAD7;POURING LIQUID;So;0;ON;;;;;N;;;;;
 1FAD8;BEANS;So;0;ON;;;;;N;;;;;
 1FAD9;JAR;So;0;ON;;;;;N;;;;;
+1FADA;GINGER ROOT;So;0;ON;;;;;N;;;;;
+1FADB;PEA POD;So;0;ON;;;;;N;;;;;
 1FAE0;MELTING FACE;So;0;ON;;;;;N;;;;;
 1FAE1;SALUTING FACE;So;0;ON;;;;;N;;;;;
 1FAE2;FACE WITH OPEN EYES AND HAND OVER MOUTH;So;0;ON;;;;;N;;;;;
@@ -33513,6 +33808,7 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FAE5;DOTTED LINE FACE;So;0;ON;;;;;N;;;;;
 1FAE6;BITING LIP;So;0;ON;;;;;N;;;;;
 1FAE7;BUBBLES;So;0;ON;;;;;N;;;;;
+1FAE8;SHAKING FACE;So;0;ON;;;;;N;;;;;
 1FAF0;HAND WITH INDEX FINGER AND THUMB CROSSED;So;0;ON;;;;;N;;;;;
 1FAF1;RIGHTWARDS HAND;So;0;ON;;;;;N;;;;;
 1FAF2;LEFTWARDS HAND;So;0;ON;;;;;N;;;;;
@@ -33520,6 +33816,8 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 1FAF4;PALM UP HAND;So;0;ON;;;;;N;;;;;
 1FAF5;INDEX POINTING AT THE VIEWER;So;0;ON;;;;;N;;;;;
 1FAF6;HEART HANDS;So;0;ON;;;;;N;;;;;
+1FAF7;LEFTWARDS PUSHING HAND;So;0;ON;;;;;N;;;;;
+1FAF8;RIGHTWARDS PUSHING HAND;So;0;ON;;;;;N;;;;;
 1FB00;BLOCK SEXTANT-1;So;0;ON;;;;;N;;;;;
 1FB01;BLOCK SEXTANT-2;So;0;ON;;;;;N;;;;;
 1FB02;BLOCK SEXTANT-12;So;0;ON;;;;;N;;;;;
@@ -33735,7 +34033,7 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 20000;<CJK Ideograph Extension B, First>;Lo;0;L;;;;;N;;;;;
 2A6DF;<CJK Ideograph Extension B, Last>;Lo;0;L;;;;;N;;;;;
 2A700;<CJK Ideograph Extension C, First>;Lo;0;L;;;;;N;;;;;
-2B738;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
+2B739;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;;
 2B740;<CJK Ideograph Extension D, First>;Lo;0;L;;;;;N;;;;;
 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
 2B820;<CJK Ideograph Extension E, First>;Lo;0;L;;;;;N;;;;;
@@ -34286,6 +34584,8 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 2FA1D;CJK COMPATIBILITY IDEOGRAPH-2FA1D;Lo;0;L;2A600;;;;N;;;;;
 30000;<CJK Ideograph Extension G, First>;Lo;0;L;;;;;N;;;;;
 3134A;<CJK Ideograph Extension G, Last>;Lo;0;L;;;;;N;;;;;
+31350;<CJK Ideograph Extension H, First>;Lo;0;L;;;;;N;;;;;
+323AF;<CJK Ideograph Extension H, Last>;Lo;0;L;;;;;N;;;;;
 E0001;LANGUAGE TAG;Cf;0;BN;;;;;N;;;;;
 E0020;TAG SPACE;Cf;0;BN;;;;;N;;;;;
 E0021;TAG EXCLAMATION MARK;Cf;0;BN;;;;;N;;;;;
@@ -34628,17 +34928,21 @@ FFFFD;<Plane 15 Private Use, Last>;Co;0;L;;;;;N;;;;;
 100000;<Plane 16 Private Use, First>;Co;0;L;;;;;N;;;;;
 10FFFD;<Plane 16 Private Use, Last>;Co;0;L;;;;;N;;;;;`;
 
-/** https://unicode.org/Public/emoji/14.0/emoji-sequences.txt */
+
+/**
+ * https://unicode.org/Public/emoji/15.0/emoji-sequences.txt
+ * (Replace `\x` with `\\x` after update.)
+ */
 const seq = `# emoji-sequences.txt
-# Date: 2021-08-26, 17:22:22 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2022-08-15, 23:13:41 GMT
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Emoji Sequence Data for UTS #51
-# Version: 14.0
+# Version: 15.0
 #
-# For documentation and usage, see http://www.unicode.org/reports/tr51
+# For documentation and usage, see https://www.unicode.org/reports/tr51
 #
 # Format:
 #   code_point(s) ; type_field ; description # comments
@@ -34669,144 +34973,145 @@ const seq = `# emoji-sequences.txt
 
 # Basic_Emoji
 
-231A..231B    ; Basic_Emoji                  ; watch                                                          # E0.6   [2] (⌚..⌛)
-23E9..23EC    ; Basic_Emoji                  ; fast-forward button                                            # E0.6   [4] (⏩..⏬)
+
+231A..231B    ; Basic_Emoji                  ; watch..hourglass done                                          # E0.6   [2] (⌚..⌛)
+23E9..23EC    ; Basic_Emoji                  ; fast-forward button..fast down button                          # E0.6   [4] (⏩..⏬)
 23F0          ; Basic_Emoji                  ; alarm clock                                                    # E0.6   [1] (⏰)
 23F3          ; Basic_Emoji                  ; hourglass not done                                             # E0.6   [1] (⏳)
-25FD..25FE    ; Basic_Emoji                  ; white medium-small square                                      # E0.6   [2] (◽..◾)
-2614..2615    ; Basic_Emoji                  ; umbrella with rain drops                                       # E0.6   [2] (☔..☕)
-2648..2653    ; Basic_Emoji                  ; Aries                                                          # E0.6  [12] (♈..♓)
+25FD..25FE    ; Basic_Emoji                  ; white medium-small square..black medium-small square           # E0.6   [2] (◽..◾)
+2614..2615    ; Basic_Emoji                  ; umbrella with rain drops..hot beverage                         # E0.6   [2] (☔..☕)
+2648..2653    ; Basic_Emoji                  ; Aries..Pisces                                                  # E0.6  [12] (♈..♓)
 267F          ; Basic_Emoji                  ; wheelchair symbol                                              # E0.6   [1] (♿)
 2693          ; Basic_Emoji                  ; anchor                                                         # E0.6   [1] (⚓)
 26A1          ; Basic_Emoji                  ; high voltage                                                   # E0.6   [1] (⚡)
-26AA..26AB    ; Basic_Emoji                  ; white circle                                                   # E0.6   [2] (⚪..⚫)
-26BD..26BE    ; Basic_Emoji                  ; soccer ball                                                    # E0.6   [2] (⚽..⚾)
-26C4..26C5    ; Basic_Emoji                  ; snowman without snow                                           # E0.6   [2] (⛄..⛅)
+26AA..26AB    ; Basic_Emoji                  ; white circle..black circle                                     # E0.6   [2] (⚪..⚫)
+26BD..26BE    ; Basic_Emoji                  ; soccer ball..baseball                                          # E0.6   [2] (⚽..⚾)
+26C4..26C5    ; Basic_Emoji                  ; snowman without snow..sun behind cloud                         # E0.6   [2] (⛄..⛅)
 26CE          ; Basic_Emoji                  ; Ophiuchus                                                      # E0.6   [1] (⛎)
 26D4          ; Basic_Emoji                  ; no entry                                                       # E0.6   [1] (⛔)
 26EA          ; Basic_Emoji                  ; church                                                         # E0.6   [1] (⛪)
-26F2..26F3    ; Basic_Emoji                  ; fountain                                                       # E0.6   [2] (⛲..⛳)
+26F2..26F3    ; Basic_Emoji                  ; fountain..flag in hole                                         # E0.6   [2] (⛲..⛳)
 26F5          ; Basic_Emoji                  ; sailboat                                                       # E0.6   [1] (⛵)
 26FA          ; Basic_Emoji                  ; tent                                                           # E0.6   [1] (⛺)
 26FD          ; Basic_Emoji                  ; fuel pump                                                      # E0.6   [1] (⛽)
 2705          ; Basic_Emoji                  ; check mark button                                              # E0.6   [1] (✅)
-270A..270B    ; Basic_Emoji                  ; raised fist                                                    # E0.6   [2] (✊..✋)
+270A..270B    ; Basic_Emoji                  ; raised fist..raised hand                                       # E0.6   [2] (✊..✋)
 2728          ; Basic_Emoji                  ; sparkles                                                       # E0.6   [1] (✨)
 274C          ; Basic_Emoji                  ; cross mark                                                     # E0.6   [1] (❌)
 274E          ; Basic_Emoji                  ; cross mark button                                              # E0.6   [1] (❎)
-2753..2755    ; Basic_Emoji                  ; red question mark                                              # E0.6   [3] (❓..❕)
+2753..2755    ; Basic_Emoji                  ; red question mark..white exclamation mark                      # E0.6   [3] (❓..❕)
 2757          ; Basic_Emoji                  ; red exclamation mark                                           # E0.6   [1] (❗)
-2795..2797    ; Basic_Emoji                  ; plus                                                           # E0.6   [3] (➕..➗)
+2795..2797    ; Basic_Emoji                  ; plus..divide                                                   # E0.6   [3] (➕..➗)
 27B0          ; Basic_Emoji                  ; curly loop                                                     # E0.6   [1] (➰)
 27BF          ; Basic_Emoji                  ; double curly loop                                              # E1.0   [1] (➿)
-2B1B..2B1C    ; Basic_Emoji                  ; black large square                                             # E0.6   [2] (⬛..⬜)
+2B1B..2B1C    ; Basic_Emoji                  ; black large square..white large square                         # E0.6   [2] (⬛..⬜)
 2B50          ; Basic_Emoji                  ; star                                                           # E0.6   [1] (⭐)
 2B55          ; Basic_Emoji                  ; hollow red circle                                              # E0.6   [1] (⭕)
 1F004         ; Basic_Emoji                  ; mahjong red dragon                                             # E0.6   [1] (🀄)
 1F0CF         ; Basic_Emoji                  ; joker                                                          # E0.6   [1] (🃏)
 1F18E         ; Basic_Emoji                  ; AB button (blood type)                                         # E0.6   [1] (🆎)
-1F191..1F19A  ; Basic_Emoji                  ; CL button                                                      # E0.6  [10] (🆑..🆚)
+1F191..1F19A  ; Basic_Emoji                  ; CL button..VS button                                           # E0.6  [10] (🆑..🆚)
 1F201         ; Basic_Emoji                  ; Japanese “here” button                                         # E0.6   [1] (🈁)
 1F21A         ; Basic_Emoji                  ; Japanese “free of charge” button                               # E0.6   [1] (🈚)
 1F22F         ; Basic_Emoji                  ; Japanese “reserved” button                                     # E0.6   [1] (🈯)
-1F232..1F236  ; Basic_Emoji                  ; Japanese “prohibited” button                                   # E0.6   [5] (🈲..🈶)
-1F238..1F23A  ; Basic_Emoji                  ; Japanese “application” button                                  # E0.6   [3] (🈸..🈺)
-1F250..1F251  ; Basic_Emoji                  ; Japanese “bargain” button                                      # E0.6   [2] (🉐..🉑)
-1F300..1F30C  ; Basic_Emoji                  ; cyclone                                                        # E0.6  [13] (🌀..🌌)
-1F30D..1F30E  ; Basic_Emoji                  ; globe showing Europe-Africa                                    # E0.7   [2] (🌍..🌎)
+1F232..1F236  ; Basic_Emoji                  ; Japanese “prohibited” button..Japanese “not free of charge” button#E0.6 [5] (🈲..🈶)
+1F238..1F23A  ; Basic_Emoji                  ; Japanese “application” button..Japanese “open for business” button#E0.6 [3] (🈸..🈺)
+1F250..1F251  ; Basic_Emoji                  ; Japanese “bargain” button..Japanese “acceptable” button        # E0.6   [2] (🉐..🉑)
+1F300..1F30C  ; Basic_Emoji                  ; cyclone..milky way                                             # E0.6  [13] (🌀..🌌)
+1F30D..1F30E  ; Basic_Emoji                  ; globe showing Europe-Africa..globe showing Americas            # E0.7   [2] (🌍..🌎)
 1F30F         ; Basic_Emoji                  ; globe showing Asia-Australia                                   # E0.6   [1] (🌏)
 1F310         ; Basic_Emoji                  ; globe with meridians                                           # E1.0   [1] (🌐)
 1F311         ; Basic_Emoji                  ; new moon                                                       # E0.6   [1] (🌑)
 1F312         ; Basic_Emoji                  ; waxing crescent moon                                           # E1.0   [1] (🌒)
-1F313..1F315  ; Basic_Emoji                  ; first quarter moon                                             # E0.6   [3] (🌓..🌕)
-1F316..1F318  ; Basic_Emoji                  ; waning gibbous moon                                            # E1.0   [3] (🌖..🌘)
+1F313..1F315  ; Basic_Emoji                  ; first quarter moon..full moon                                  # E0.6   [3] (🌓..🌕)
+1F316..1F318  ; Basic_Emoji                  ; waning gibbous moon..waning crescent moon                      # E1.0   [3] (🌖..🌘)
 1F319         ; Basic_Emoji                  ; crescent moon                                                  # E0.6   [1] (🌙)
 1F31A         ; Basic_Emoji                  ; new moon face                                                  # E1.0   [1] (🌚)
 1F31B         ; Basic_Emoji                  ; first quarter moon face                                        # E0.6   [1] (🌛)
 1F31C         ; Basic_Emoji                  ; last quarter moon face                                         # E0.7   [1] (🌜)
-1F31D..1F31E  ; Basic_Emoji                  ; full moon face                                                 # E1.0   [2] (🌝..🌞)
-1F31F..1F320  ; Basic_Emoji                  ; glowing star                                                   # E0.6   [2] (🌟..🌠)
-1F32D..1F32F  ; Basic_Emoji                  ; hot dog                                                        # E1.0   [3] (🌭..🌯)
-1F330..1F331  ; Basic_Emoji                  ; chestnut                                                       # E0.6   [2] (🌰..🌱)
-1F332..1F333  ; Basic_Emoji                  ; evergreen tree                                                 # E1.0   [2] (🌲..🌳)
-1F334..1F335  ; Basic_Emoji                  ; palm tree                                                      # E0.6   [2] (🌴..🌵)
-1F337..1F34A  ; Basic_Emoji                  ; tulip                                                          # E0.6  [20] (🌷..🍊)
+1F31D..1F31E  ; Basic_Emoji                  ; full moon face..sun with face                                  # E1.0   [2] (🌝..🌞)
+1F31F..1F320  ; Basic_Emoji                  ; glowing star..shooting star                                    # E0.6   [2] (🌟..🌠)
+1F32D..1F32F  ; Basic_Emoji                  ; hot dog..burrito                                               # E1.0   [3] (🌭..🌯)
+1F330..1F331  ; Basic_Emoji                  ; chestnut..seedling                                             # E0.6   [2] (🌰..🌱)
+1F332..1F333  ; Basic_Emoji                  ; evergreen tree..deciduous tree                                 # E1.0   [2] (🌲..🌳)
+1F334..1F335  ; Basic_Emoji                  ; palm tree..cactus                                              # E0.6   [2] (🌴..🌵)
+1F337..1F34A  ; Basic_Emoji                  ; tulip..tangerine                                               # E0.6  [20] (🌷..🍊)
 1F34B         ; Basic_Emoji                  ; lemon                                                          # E1.0   [1] (🍋)
-1F34C..1F34F  ; Basic_Emoji                  ; banana                                                         # E0.6   [4] (🍌..🍏)
+1F34C..1F34F  ; Basic_Emoji                  ; banana..green apple                                            # E0.6   [4] (🍌..🍏)
 1F350         ; Basic_Emoji                  ; pear                                                           # E1.0   [1] (🍐)
-1F351..1F37B  ; Basic_Emoji                  ; peach                                                          # E0.6  [43] (🍑..🍻)
+1F351..1F37B  ; Basic_Emoji                  ; peach..clinking beer mugs                                      # E0.6  [43] (🍑..🍻)
 1F37C         ; Basic_Emoji                  ; baby bottle                                                    # E1.0   [1] (🍼)
-1F37E..1F37F  ; Basic_Emoji                  ; bottle with popping cork                                       # E1.0   [2] (🍾..🍿)
-1F380..1F393  ; Basic_Emoji                  ; ribbon                                                         # E0.6  [20] (🎀..🎓)
-1F3A0..1F3C4  ; Basic_Emoji                  ; carousel horse                                                 # E0.6  [37] (🎠..🏄)
+1F37E..1F37F  ; Basic_Emoji                  ; bottle with popping cork..popcorn                              # E1.0   [2] (🍾..🍿)
+1F380..1F393  ; Basic_Emoji                  ; ribbon..graduation cap                                         # E0.6  [20] (🎀..🎓)
+1F3A0..1F3C4  ; Basic_Emoji                  ; carousel horse..person surfing                                 # E0.6  [37] (🎠..🏄)
 1F3C5         ; Basic_Emoji                  ; sports medal                                                   # E1.0   [1] (🏅)
 1F3C6         ; Basic_Emoji                  ; trophy                                                         # E0.6   [1] (🏆)
 1F3C7         ; Basic_Emoji                  ; horse racing                                                   # E1.0   [1] (🏇)
 1F3C8         ; Basic_Emoji                  ; american football                                              # E0.6   [1] (🏈)
 1F3C9         ; Basic_Emoji                  ; rugby football                                                 # E1.0   [1] (🏉)
 1F3CA         ; Basic_Emoji                  ; person swimming                                                # E0.6   [1] (🏊)
-1F3CF..1F3D3  ; Basic_Emoji                  ; cricket game                                                   # E1.0   [5] (🏏..🏓)
-1F3E0..1F3E3  ; Basic_Emoji                  ; house                                                          # E0.6   [4] (🏠..🏣)
+1F3CF..1F3D3  ; Basic_Emoji                  ; cricket game..ping pong                                        # E1.0   [5] (🏏..🏓)
+1F3E0..1F3E3  ; Basic_Emoji                  ; house..Japanese post office                                    # E0.6   [4] (🏠..🏣)
 1F3E4         ; Basic_Emoji                  ; post office                                                    # E1.0   [1] (🏤)
-1F3E5..1F3F0  ; Basic_Emoji                  ; hospital                                                       # E0.6  [12] (🏥..🏰)
+1F3E5..1F3F0  ; Basic_Emoji                  ; hospital..castle                                               # E0.6  [12] (🏥..🏰)
 1F3F4         ; Basic_Emoji                  ; black flag                                                     # E1.0   [1] (🏴)
-1F3F8..1F407  ; Basic_Emoji                  ; badminton                                                      # E1.0  [16] (🏸..🐇)
+1F3F8..1F407  ; Basic_Emoji                  ; badminton..rabbit                                              # E1.0  [16] (🏸..🐇)
 1F408         ; Basic_Emoji                  ; cat                                                            # E0.7   [1] (🐈)
-1F409..1F40B  ; Basic_Emoji                  ; dragon                                                         # E1.0   [3] (🐉..🐋)
-1F40C..1F40E  ; Basic_Emoji                  ; snail                                                          # E0.6   [3] (🐌..🐎)
-1F40F..1F410  ; Basic_Emoji                  ; ram                                                            # E1.0   [2] (🐏..🐐)
-1F411..1F412  ; Basic_Emoji                  ; ewe                                                            # E0.6   [2] (🐑..🐒)
+1F409..1F40B  ; Basic_Emoji                  ; dragon..whale                                                  # E1.0   [3] (🐉..🐋)
+1F40C..1F40E  ; Basic_Emoji                  ; snail..horse                                                   # E0.6   [3] (🐌..🐎)
+1F40F..1F410  ; Basic_Emoji                  ; ram..goat                                                      # E1.0   [2] (🐏..🐐)
+1F411..1F412  ; Basic_Emoji                  ; ewe..monkey                                                    # E0.6   [2] (🐑..🐒)
 1F413         ; Basic_Emoji                  ; rooster                                                        # E1.0   [1] (🐓)
 1F414         ; Basic_Emoji                  ; chicken                                                        # E0.6   [1] (🐔)
 1F415         ; Basic_Emoji                  ; dog                                                            # E0.7   [1] (🐕)
 1F416         ; Basic_Emoji                  ; pig                                                            # E1.0   [1] (🐖)
-1F417..1F429  ; Basic_Emoji                  ; boar                                                           # E0.6  [19] (🐗..🐩)
+1F417..1F429  ; Basic_Emoji                  ; boar..poodle                                                   # E0.6  [19] (🐗..🐩)
 1F42A         ; Basic_Emoji                  ; camel                                                          # E1.0   [1] (🐪)
-1F42B..1F43E  ; Basic_Emoji                  ; two-hump camel                                                 # E0.6  [20] (🐫..🐾)
+1F42B..1F43E  ; Basic_Emoji                  ; two-hump camel..paw prints                                     # E0.6  [20] (🐫..🐾)
 1F440         ; Basic_Emoji                  ; eyes                                                           # E0.6   [1] (👀)
-1F442..1F464  ; Basic_Emoji                  ; ear                                                            # E0.6  [35] (👂..👤)
+1F442..1F464  ; Basic_Emoji                  ; ear..bust in silhouette                                        # E0.6  [35] (👂..👤)
 1F465         ; Basic_Emoji                  ; busts in silhouette                                            # E1.0   [1] (👥)
-1F466..1F46B  ; Basic_Emoji                  ; boy                                                            # E0.6   [6] (👦..👫)
-1F46C..1F46D  ; Basic_Emoji                  ; men holding hands                                              # E1.0   [2] (👬..👭)
-1F46E..1F4AC  ; Basic_Emoji                  ; police officer                                                 # E0.6  [63] (👮..💬)
+1F466..1F46B  ; Basic_Emoji                  ; boy..woman and man holding hands                               # E0.6   [6] (👦..👫)
+1F46C..1F46D  ; Basic_Emoji                  ; men holding hands..women holding hands                         # E1.0   [2] (👬..👭)
+1F46E..1F4AC  ; Basic_Emoji                  ; police officer..speech balloon                                 # E0.6  [63] (👮..💬)
 1F4AD         ; Basic_Emoji                  ; thought balloon                                                # E1.0   [1] (💭)
-1F4AE..1F4B5  ; Basic_Emoji                  ; white flower                                                   # E0.6   [8] (💮..💵)
-1F4B6..1F4B7  ; Basic_Emoji                  ; euro banknote                                                  # E1.0   [2] (💶..💷)
-1F4B8..1F4EB  ; Basic_Emoji                  ; money with wings                                               # E0.6  [52] (💸..📫)
-1F4EC..1F4ED  ; Basic_Emoji                  ; open mailbox with raised flag                                  # E0.7   [2] (📬..📭)
+1F4AE..1F4B5  ; Basic_Emoji                  ; white flower..dollar banknote                                  # E0.6   [8] (💮..💵)
+1F4B6..1F4B7  ; Basic_Emoji                  ; euro banknote..pound banknote                                  # E1.0   [2] (💶..💷)
+1F4B8..1F4EB  ; Basic_Emoji                  ; money with wings..closed mailbox with raised flag              # E0.6  [52] (💸..📫)
+1F4EC..1F4ED  ; Basic_Emoji                  ; open mailbox with raised flag..open mailbox with lowered flag  # E0.7   [2] (📬..📭)
 1F4EE         ; Basic_Emoji                  ; postbox                                                        # E0.6   [1] (📮)
 1F4EF         ; Basic_Emoji                  ; postal horn                                                    # E1.0   [1] (📯)
-1F4F0..1F4F4  ; Basic_Emoji                  ; newspaper                                                      # E0.6   [5] (📰..📴)
+1F4F0..1F4F4  ; Basic_Emoji                  ; newspaper..mobile phone off                                    # E0.6   [5] (📰..📴)
 1F4F5         ; Basic_Emoji                  ; no mobile phones                                               # E1.0   [1] (📵)
-1F4F6..1F4F7  ; Basic_Emoji                  ; antenna bars                                                   # E0.6   [2] (📶..📷)
+1F4F6..1F4F7  ; Basic_Emoji                  ; antenna bars..camera                                           # E0.6   [2] (📶..📷)
 1F4F8         ; Basic_Emoji                  ; camera with flash                                              # E1.0   [1] (📸)
-1F4F9..1F4FC  ; Basic_Emoji                  ; video camera                                                   # E0.6   [4] (📹..📼)
-1F4FF..1F502  ; Basic_Emoji                  ; prayer beads                                                   # E1.0   [4] (📿..🔂)
+1F4F9..1F4FC  ; Basic_Emoji                  ; video camera..videocassette                                    # E0.6   [4] (📹..📼)
+1F4FF..1F502  ; Basic_Emoji                  ; prayer beads..repeat single button                             # E1.0   [4] (📿..🔂)
 1F503         ; Basic_Emoji                  ; clockwise vertical arrows                                      # E0.6   [1] (🔃)
-1F504..1F507  ; Basic_Emoji                  ; counterclockwise arrows button                                 # E1.0   [4] (🔄..🔇)
+1F504..1F507  ; Basic_Emoji                  ; counterclockwise arrows button..muted speaker                  # E1.0   [4] (🔄..🔇)
 1F508         ; Basic_Emoji                  ; speaker low volume                                             # E0.7   [1] (🔈)
 1F509         ; Basic_Emoji                  ; speaker medium volume                                          # E1.0   [1] (🔉)
-1F50A..1F514  ; Basic_Emoji                  ; speaker high volume                                            # E0.6  [11] (🔊..🔔)
+1F50A..1F514  ; Basic_Emoji                  ; speaker high volume..bell                                      # E0.6  [11] (🔊..🔔)
 1F515         ; Basic_Emoji                  ; bell with slash                                                # E1.0   [1] (🔕)
-1F516..1F52B  ; Basic_Emoji                  ; bookmark                                                       # E0.6  [22] (🔖..🔫)
-1F52C..1F52D  ; Basic_Emoji                  ; microscope                                                     # E1.0   [2] (🔬..🔭)
-1F52E..1F53D  ; Basic_Emoji                  ; crystal ball                                                   # E0.6  [16] (🔮..🔽)
-1F54B..1F54E  ; Basic_Emoji                  ; kaaba                                                          # E1.0   [4] (🕋..🕎)
-1F550..1F55B  ; Basic_Emoji                  ; one o’clock                                                    # E0.6  [12] (🕐..🕛)
-1F55C..1F567  ; Basic_Emoji                  ; one-thirty                                                     # E0.7  [12] (🕜..🕧)
+1F516..1F52B  ; Basic_Emoji                  ; bookmark..water pistol                                         # E0.6  [22] (🔖..🔫)
+1F52C..1F52D  ; Basic_Emoji                  ; microscope..telescope                                          # E1.0   [2] (🔬..🔭)
+1F52E..1F53D  ; Basic_Emoji                  ; crystal ball..downwards button                                 # E0.6  [16] (🔮..🔽)
+1F54B..1F54E  ; Basic_Emoji                  ; kaaba..menorah                                                 # E1.0   [4] (🕋..🕎)
+1F550..1F55B  ; Basic_Emoji                  ; one o’clock..twelve o’clock                                    # E0.6  [12] (🕐..🕛)
+1F55C..1F567  ; Basic_Emoji                  ; one-thirty..twelve-thirty                                      # E0.7  [12] (🕜..🕧)
 1F57A         ; Basic_Emoji                  ; man dancing                                                    # E3.0   [1] (🕺)
-1F595..1F596  ; Basic_Emoji                  ; middle finger                                                  # E1.0   [2] (🖕..🖖)
+1F595..1F596  ; Basic_Emoji                  ; middle finger..vulcan salute                                   # E1.0   [2] (🖕..🖖)
 1F5A4         ; Basic_Emoji                  ; black heart                                                    # E3.0   [1] (🖤)
-1F5FB..1F5FF  ; Basic_Emoji                  ; mount fuji                                                     # E0.6   [5] (🗻..🗿)
+1F5FB..1F5FF  ; Basic_Emoji                  ; mount fuji..moai                                               # E0.6   [5] (🗻..🗿)
 1F600         ; Basic_Emoji                  ; grinning face                                                  # E1.0   [1] (😀)
-1F601..1F606  ; Basic_Emoji                  ; beaming face with smiling eyes                                 # E0.6   [6] (😁..😆)
-1F607..1F608  ; Basic_Emoji                  ; smiling face with halo                                         # E1.0   [2] (😇..😈)
-1F609..1F60D  ; Basic_Emoji                  ; winking face                                                   # E0.6   [5] (😉..😍)
+1F601..1F606  ; Basic_Emoji                  ; beaming face with smiling eyes..grinning squinting face        # E0.6   [6] (😁..😆)
+1F607..1F608  ; Basic_Emoji                  ; smiling face with halo..smiling face with horns                # E1.0   [2] (😇..😈)
+1F609..1F60D  ; Basic_Emoji                  ; winking face..smiling face with heart-eyes                     # E0.6   [5] (😉..😍)
 1F60E         ; Basic_Emoji                  ; smiling face with sunglasses                                   # E1.0   [1] (😎)
 1F60F         ; Basic_Emoji                  ; smirking face                                                  # E0.6   [1] (😏)
 1F610         ; Basic_Emoji                  ; neutral face                                                   # E0.7   [1] (😐)
 1F611         ; Basic_Emoji                  ; expressionless face                                            # E1.0   [1] (😑)
-1F612..1F614  ; Basic_Emoji                  ; unamused face                                                  # E0.6   [3] (😒..😔)
+1F612..1F614  ; Basic_Emoji                  ; unamused face..pensive face                                    # E0.6   [3] (😒..😔)
 1F615         ; Basic_Emoji                  ; confused face                                                  # E1.0   [1] (😕)
 1F616         ; Basic_Emoji                  ; confounded face                                                # E0.6   [1] (😖)
 1F617         ; Basic_Emoji                  ; kissing face                                                   # E1.0   [1] (😗)
@@ -34814,132 +35119,142 @@ const seq = `# emoji-sequences.txt
 1F619         ; Basic_Emoji                  ; kissing face with smiling eyes                                 # E1.0   [1] (😙)
 1F61A         ; Basic_Emoji                  ; kissing face with closed eyes                                  # E0.6   [1] (😚)
 1F61B         ; Basic_Emoji                  ; face with tongue                                               # E1.0   [1] (😛)
-1F61C..1F61E  ; Basic_Emoji                  ; winking face with tongue                                       # E0.6   [3] (😜..😞)
+1F61C..1F61E  ; Basic_Emoji                  ; winking face with tongue..disappointed face                    # E0.6   [3] (😜..😞)
 1F61F         ; Basic_Emoji                  ; worried face                                                   # E1.0   [1] (😟)
-1F620..1F625  ; Basic_Emoji                  ; angry face                                                     # E0.6   [6] (😠..😥)
-1F626..1F627  ; Basic_Emoji                  ; frowning face with open mouth                                  # E1.0   [2] (😦..😧)
-1F628..1F62B  ; Basic_Emoji                  ; fearful face                                                   # E0.6   [4] (😨..😫)
+1F620..1F625  ; Basic_Emoji                  ; angry face..sad but relieved face                              # E0.6   [6] (😠..😥)
+1F626..1F627  ; Basic_Emoji                  ; frowning face with open mouth..anguished face                  # E1.0   [2] (😦..😧)
+1F628..1F62B  ; Basic_Emoji                  ; fearful face..tired face                                       # E0.6   [4] (😨..😫)
 1F62C         ; Basic_Emoji                  ; grimacing face                                                 # E1.0   [1] (😬)
 1F62D         ; Basic_Emoji                  ; loudly crying face                                             # E0.6   [1] (😭)
-1F62E..1F62F  ; Basic_Emoji                  ; face with open mouth                                           # E1.0   [2] (😮..😯)
-1F630..1F633  ; Basic_Emoji                  ; anxious face with sweat                                        # E0.6   [4] (😰..😳)
+1F62E..1F62F  ; Basic_Emoji                  ; face with open mouth..hushed face                              # E1.0   [2] (😮..😯)
+1F630..1F633  ; Basic_Emoji                  ; anxious face with sweat..flushed face                          # E0.6   [4] (😰..😳)
 1F634         ; Basic_Emoji                  ; sleeping face                                                  # E1.0   [1] (😴)
 1F635         ; Basic_Emoji                  ; face with crossed-out eyes                                     # E0.6   [1] (😵)
 1F636         ; Basic_Emoji                  ; face without mouth                                             # E1.0   [1] (😶)
-1F637..1F640  ; Basic_Emoji                  ; face with medical mask                                         # E0.6  [10] (😷..🙀)
-1F641..1F644  ; Basic_Emoji                  ; slightly frowning face                                         # E1.0   [4] (🙁..🙄)
-1F645..1F64F  ; Basic_Emoji                  ; person gesturing NO                                            # E0.6  [11] (🙅..🙏)
+1F637..1F640  ; Basic_Emoji                  ; face with medical mask..weary cat                              # E0.6  [10] (😷..🙀)
+1F641..1F644  ; Basic_Emoji                  ; slightly frowning face..face with rolling eyes                 # E1.0   [4] (🙁..🙄)
+1F645..1F64F  ; Basic_Emoji                  ; person gesturing NO..folded hands                              # E0.6  [11] (🙅..🙏)
 1F680         ; Basic_Emoji                  ; rocket                                                         # E0.6   [1] (🚀)
-1F681..1F682  ; Basic_Emoji                  ; helicopter                                                     # E1.0   [2] (🚁..🚂)
-1F683..1F685  ; Basic_Emoji                  ; railway car                                                    # E0.6   [3] (🚃..🚅)
+1F681..1F682  ; Basic_Emoji                  ; helicopter..locomotive                                         # E1.0   [2] (🚁..🚂)
+1F683..1F685  ; Basic_Emoji                  ; railway car..bullet train                                      # E0.6   [3] (🚃..🚅)
 1F686         ; Basic_Emoji                  ; train                                                          # E1.0   [1] (🚆)
 1F687         ; Basic_Emoji                  ; metro                                                          # E0.6   [1] (🚇)
 1F688         ; Basic_Emoji                  ; light rail                                                     # E1.0   [1] (🚈)
 1F689         ; Basic_Emoji                  ; station                                                        # E0.6   [1] (🚉)
-1F68A..1F68B  ; Basic_Emoji                  ; tram                                                           # E1.0   [2] (🚊..🚋)
+1F68A..1F68B  ; Basic_Emoji                  ; tram..tram car                                                 # E1.0   [2] (🚊..🚋)
 1F68C         ; Basic_Emoji                  ; bus                                                            # E0.6   [1] (🚌)
 1F68D         ; Basic_Emoji                  ; oncoming bus                                                   # E0.7   [1] (🚍)
 1F68E         ; Basic_Emoji                  ; trolleybus                                                     # E1.0   [1] (🚎)
 1F68F         ; Basic_Emoji                  ; bus stop                                                       # E0.6   [1] (🚏)
 1F690         ; Basic_Emoji                  ; minibus                                                        # E1.0   [1] (🚐)
-1F691..1F693  ; Basic_Emoji                  ; ambulance                                                      # E0.6   [3] (🚑..🚓)
+1F691..1F693  ; Basic_Emoji                  ; ambulance..police car                                          # E0.6   [3] (🚑..🚓)
 1F694         ; Basic_Emoji                  ; oncoming police car                                            # E0.7   [1] (🚔)
 1F695         ; Basic_Emoji                  ; taxi                                                           # E0.6   [1] (🚕)
 1F696         ; Basic_Emoji                  ; oncoming taxi                                                  # E1.0   [1] (🚖)
 1F697         ; Basic_Emoji                  ; automobile                                                     # E0.6   [1] (🚗)
 1F698         ; Basic_Emoji                  ; oncoming automobile                                            # E0.7   [1] (🚘)
-1F699..1F69A  ; Basic_Emoji                  ; sport utility vehicle                                          # E0.6   [2] (🚙..🚚)
-1F69B..1F6A1  ; Basic_Emoji                  ; articulated lorry                                              # E1.0   [7] (🚛..🚡)
+1F699..1F69A  ; Basic_Emoji                  ; sport utility vehicle..delivery truck                          # E0.6   [2] (🚙..🚚)
+1F69B..1F6A1  ; Basic_Emoji                  ; articulated lorry..aerial tramway                              # E1.0   [7] (🚛..🚡)
 1F6A2         ; Basic_Emoji                  ; ship                                                           # E0.6   [1] (🚢)
 1F6A3         ; Basic_Emoji                  ; person rowing boat                                             # E1.0   [1] (🚣)
-1F6A4..1F6A5  ; Basic_Emoji                  ; speedboat                                                      # E0.6   [2] (🚤..🚥)
+1F6A4..1F6A5  ; Basic_Emoji                  ; speedboat..horizontal traffic light                            # E0.6   [2] (🚤..🚥)
 1F6A6         ; Basic_Emoji                  ; vertical traffic light                                         # E1.0   [1] (🚦)
-1F6A7..1F6AD  ; Basic_Emoji                  ; construction                                                   # E0.6   [7] (🚧..🚭)
-1F6AE..1F6B1  ; Basic_Emoji                  ; litter in bin sign                                             # E1.0   [4] (🚮..🚱)
+1F6A7..1F6AD  ; Basic_Emoji                  ; construction..no smoking                                       # E0.6   [7] (🚧..🚭)
+1F6AE..1F6B1  ; Basic_Emoji                  ; litter in bin sign..non-potable water                          # E1.0   [4] (🚮..🚱)
 1F6B2         ; Basic_Emoji                  ; bicycle                                                        # E0.6   [1] (🚲)
-1F6B3..1F6B5  ; Basic_Emoji                  ; no bicycles                                                    # E1.0   [3] (🚳..🚵)
+1F6B3..1F6B5  ; Basic_Emoji                  ; no bicycles..person mountain biking                            # E1.0   [3] (🚳..🚵)
 1F6B6         ; Basic_Emoji                  ; person walking                                                 # E0.6   [1] (🚶)
-1F6B7..1F6B8  ; Basic_Emoji                  ; no pedestrians                                                 # E1.0   [2] (🚷..🚸)
-1F6B9..1F6BE  ; Basic_Emoji                  ; men’s room                                                     # E0.6   [6] (🚹..🚾)
+1F6B7..1F6B8  ; Basic_Emoji                  ; no pedestrians..children crossing                              # E1.0   [2] (🚷..🚸)
+1F6B9..1F6BE  ; Basic_Emoji                  ; men’s room..water closet                                       # E0.6   [6] (🚹..🚾)
 1F6BF         ; Basic_Emoji                  ; shower                                                         # E1.0   [1] (🚿)
 1F6C0         ; Basic_Emoji                  ; person taking bath                                             # E0.6   [1] (🛀)
-1F6C1..1F6C5  ; Basic_Emoji                  ; bathtub                                                        # E1.0   [5] (🛁..🛅)
+1F6C1..1F6C5  ; Basic_Emoji                  ; bathtub..left luggage                                          # E1.0   [5] (🛁..🛅)
 1F6CC         ; Basic_Emoji                  ; person in bed                                                  # E1.0   [1] (🛌)
 1F6D0         ; Basic_Emoji                  ; place of worship                                               # E1.0   [1] (🛐)
-1F6D1..1F6D2  ; Basic_Emoji                  ; stop sign                                                      # E3.0   [2] (🛑..🛒)
+1F6D1..1F6D2  ; Basic_Emoji                  ; stop sign..shopping cart                                       # E3.0   [2] (🛑..🛒)
 1F6D5         ; Basic_Emoji                  ; hindu temple                                                   # E12.0  [1] (🛕)
-1F6D6..1F6D7  ; Basic_Emoji                  ; hut                                                            # E13.0  [2] (🛖..🛗)
-1F6DD..1F6DF  ; Basic_Emoji                  ; playground slide                                               # E14.0  [3] (🛝..🛟)
-1F6EB..1F6EC  ; Basic_Emoji                  ; airplane departure                                             # E1.0   [2] (🛫..🛬)
-1F6F4..1F6F6  ; Basic_Emoji                  ; kick scooter                                                   # E3.0   [3] (🛴..🛶)
-1F6F7..1F6F8  ; Basic_Emoji                  ; sled                                                           # E5.0   [2] (🛷..🛸)
+1F6D6..1F6D7  ; Basic_Emoji                  ; hut..elevator                                                  # E13.0  [2] (🛖..🛗)
+1F6DC         ; Basic_Emoji                  ; wireless                                                       # E15.0  [1] (🛜)
+1F6DD..1F6DF  ; Basic_Emoji                  ; playground slide..ring buoy                                    # E14.0  [3] (🛝..🛟)
+1F6EB..1F6EC  ; Basic_Emoji                  ; airplane departure..airplane arrival                           # E1.0   [2] (🛫..🛬)
+1F6F4..1F6F6  ; Basic_Emoji                  ; kick scooter..canoe                                            # E3.0   [3] (🛴..🛶)
+1F6F7..1F6F8  ; Basic_Emoji                  ; sled..flying saucer                                            # E5.0   [2] (🛷..🛸)
 1F6F9         ; Basic_Emoji                  ; skateboard                                                     # E11.0  [1] (🛹)
 1F6FA         ; Basic_Emoji                  ; auto rickshaw                                                  # E12.0  [1] (🛺)
-1F6FB..1F6FC  ; Basic_Emoji                  ; pickup truck                                                   # E13.0  [2] (🛻..🛼)
-1F7E0..1F7EB  ; Basic_Emoji                  ; orange circle                                                  # E12.0 [12] (🟠..🟫)
+1F6FB..1F6FC  ; Basic_Emoji                  ; pickup truck..roller skate                                     # E13.0  [2] (🛻..🛼)
+1F7E0..1F7EB  ; Basic_Emoji                  ; orange circle..brown square                                    # E12.0 [12] (🟠..🟫)
 1F7F0         ; Basic_Emoji                  ; heavy equals sign                                              # E14.0  [1] (🟰)
 1F90C         ; Basic_Emoji                  ; pinched fingers                                                # E13.0  [1] (🤌)
-1F90D..1F90F  ; Basic_Emoji                  ; white heart                                                    # E12.0  [3] (🤍..🤏)
-1F910..1F918  ; Basic_Emoji                  ; zipper-mouth face                                              # E1.0   [9] (🤐..🤘)
-1F919..1F91E  ; Basic_Emoji                  ; call me hand                                                   # E3.0   [6] (🤙..🤞)
+1F90D..1F90F  ; Basic_Emoji                  ; white heart..pinching hand                                     # E12.0  [3] (🤍..🤏)
+1F910..1F918  ; Basic_Emoji                  ; zipper-mouth face..sign of the horns                           # E1.0   [9] (🤐..🤘)
+1F919..1F91E  ; Basic_Emoji                  ; call me hand..crossed fingers                                  # E3.0   [6] (🤙..🤞)
 1F91F         ; Basic_Emoji                  ; love-you gesture                                               # E5.0   [1] (🤟)
-1F920..1F927  ; Basic_Emoji                  ; cowboy hat face                                                # E3.0   [8] (🤠..🤧)
-1F928..1F92F  ; Basic_Emoji                  ; face with raised eyebrow                                       # E5.0   [8] (🤨..🤯)
+1F920..1F927  ; Basic_Emoji                  ; cowboy hat face..sneezing face                                 # E3.0   [8] (🤠..🤧)
+1F928..1F92F  ; Basic_Emoji                  ; face with raised eyebrow..exploding head                       # E5.0   [8] (🤨..🤯)
 1F930         ; Basic_Emoji                  ; pregnant woman                                                 # E3.0   [1] (🤰)
-1F931..1F932  ; Basic_Emoji                  ; breast-feeding                                                 # E5.0   [2] (🤱..🤲)
-1F933..1F93A  ; Basic_Emoji                  ; selfie                                                         # E3.0   [8] (🤳..🤺)
-1F93C..1F93E  ; Basic_Emoji                  ; people wrestling                                               # E3.0   [3] (🤼..🤾)
+1F931..1F932  ; Basic_Emoji                  ; breast-feeding..palms up together                              # E5.0   [2] (🤱..🤲)
+1F933..1F93A  ; Basic_Emoji                  ; selfie..person fencing                                         # E3.0   [8] (🤳..🤺)
+1F93C..1F93E  ; Basic_Emoji                  ; people wrestling..person playing handball                      # E3.0   [3] (🤼..🤾)
 1F93F         ; Basic_Emoji                  ; diving mask                                                    # E12.0  [1] (🤿)
-1F940..1F945  ; Basic_Emoji                  ; wilted flower                                                  # E3.0   [6] (🥀..🥅)
-1F947..1F94B  ; Basic_Emoji                  ; 1st place medal                                                # E3.0   [5] (🥇..🥋)
+1F940..1F945  ; Basic_Emoji                  ; wilted flower..goal net                                        # E3.0   [6] (🥀..🥅)
+1F947..1F94B  ; Basic_Emoji                  ; 1st place medal..martial arts uniform                          # E3.0   [5] (🥇..🥋)
 1F94C         ; Basic_Emoji                  ; curling stone                                                  # E5.0   [1] (🥌)
-1F94D..1F94F  ; Basic_Emoji                  ; lacrosse                                                       # E11.0  [3] (🥍..🥏)
-1F950..1F95E  ; Basic_Emoji                  ; croissant                                                      # E3.0  [15] (🥐..🥞)
-1F95F..1F96B  ; Basic_Emoji                  ; dumpling                                                       # E5.0  [13] (🥟..🥫)
-1F96C..1F970  ; Basic_Emoji                  ; leafy green                                                    # E11.0  [5] (🥬..🥰)
+1F94D..1F94F  ; Basic_Emoji                  ; lacrosse..flying disc                                          # E11.0  [3] (🥍..🥏)
+1F950..1F95E  ; Basic_Emoji                  ; croissant..pancakes                                            # E3.0  [15] (🥐..🥞)
+1F95F..1F96B  ; Basic_Emoji                  ; dumpling..canned food                                          # E5.0  [13] (🥟..🥫)
+1F96C..1F970  ; Basic_Emoji                  ; leafy green..smiling face with hearts                          # E11.0  [5] (🥬..🥰)
 1F971         ; Basic_Emoji                  ; yawning face                                                   # E12.0  [1] (🥱)
 1F972         ; Basic_Emoji                  ; smiling face with tear                                         # E13.0  [1] (🥲)
-1F973..1F976  ; Basic_Emoji                  ; partying face                                                  # E11.0  [4] (🥳..🥶)
-1F977..1F978  ; Basic_Emoji                  ; ninja                                                          # E13.0  [2] (🥷..🥸)
+1F973..1F976  ; Basic_Emoji                  ; partying face..cold face                                       # E11.0  [4] (🥳..🥶)
+1F977..1F978  ; Basic_Emoji                  ; ninja..disguised face                                          # E13.0  [2] (🥷..🥸)
 1F979         ; Basic_Emoji                  ; face holding back tears                                        # E14.0  [1] (🥹)
 1F97A         ; Basic_Emoji                  ; pleading face                                                  # E11.0  [1] (🥺)
 1F97B         ; Basic_Emoji                  ; sari                                                           # E12.0  [1] (🥻)
-1F97C..1F97F  ; Basic_Emoji                  ; lab coat                                                       # E11.0  [4] (🥼..🥿)
-1F980..1F984  ; Basic_Emoji                  ; crab                                                           # E1.0   [5] (🦀..🦄)
-1F985..1F991  ; Basic_Emoji                  ; eagle                                                          # E3.0  [13] (🦅..🦑)
-1F992..1F997  ; Basic_Emoji                  ; giraffe                                                        # E5.0   [6] (🦒..🦗)
-1F998..1F9A2  ; Basic_Emoji                  ; kangaroo                                                       # E11.0 [11] (🦘..🦢)
-1F9A3..1F9A4  ; Basic_Emoji                  ; mammoth                                                        # E13.0  [2] (🦣..🦤)
-1F9A5..1F9AA  ; Basic_Emoji                  ; sloth                                                          # E12.0  [6] (🦥..🦪)
-1F9AB..1F9AD  ; Basic_Emoji                  ; beaver                                                         # E13.0  [3] (🦫..🦭)
-1F9AE..1F9AF  ; Basic_Emoji                  ; guide dog                                                      # E12.0  [2] (🦮..🦯)
-1F9B0..1F9B9  ; Basic_Emoji                  ; red hair                                                       # E11.0 [10] (🦰..🦹)
-1F9BA..1F9BF  ; Basic_Emoji                  ; safety vest                                                    # E12.0  [6] (🦺..🦿)
+1F97C..1F97F  ; Basic_Emoji                  ; lab coat..flat shoe                                            # E11.0  [4] (🥼..🥿)
+1F980..1F984  ; Basic_Emoji                  ; crab..unicorn                                                  # E1.0   [5] (🦀..🦄)
+1F985..1F991  ; Basic_Emoji                  ; eagle..squid                                                   # E3.0  [13] (🦅..🦑)
+1F992..1F997  ; Basic_Emoji                  ; giraffe..cricket                                               # E5.0   [6] (🦒..🦗)
+1F998..1F9A2  ; Basic_Emoji                  ; kangaroo..swan                                                 # E11.0 [11] (🦘..🦢)
+1F9A3..1F9A4  ; Basic_Emoji                  ; mammoth..dodo                                                  # E13.0  [2] (🦣..🦤)
+1F9A5..1F9AA  ; Basic_Emoji                  ; sloth..oyster                                                  # E12.0  [6] (🦥..🦪)
+1F9AB..1F9AD  ; Basic_Emoji                  ; beaver..seal                                                   # E13.0  [3] (🦫..🦭)
+1F9AE..1F9AF  ; Basic_Emoji                  ; guide dog..white cane                                          # E12.0  [2] (🦮..🦯)
+1F9B0..1F9B9  ; Basic_Emoji                  ; red hair..supervillain                                         # E11.0 [10] (🦰..🦹)
+1F9BA..1F9BF  ; Basic_Emoji                  ; safety vest..mechanical leg                                    # E12.0  [6] (🦺..🦿)
 1F9C0         ; Basic_Emoji                  ; cheese wedge                                                   # E1.0   [1] (🧀)
-1F9C1..1F9C2  ; Basic_Emoji                  ; cupcake                                                        # E11.0  [2] (🧁..🧂)
-1F9C3..1F9CA  ; Basic_Emoji                  ; beverage box                                                   # E12.0  [8] (🧃..🧊)
+1F9C1..1F9C2  ; Basic_Emoji                  ; cupcake..salt                                                  # E11.0  [2] (🧁..🧂)
+1F9C3..1F9CA  ; Basic_Emoji                  ; beverage box..ice                                              # E12.0  [8] (🧃..🧊)
 1F9CB         ; Basic_Emoji                  ; bubble tea                                                     # E13.0  [1] (🧋)
 1F9CC         ; Basic_Emoji                  ; troll                                                          # E14.0  [1] (🧌)
-1F9CD..1F9CF  ; Basic_Emoji                  ; person standing                                                # E12.0  [3] (🧍..🧏)
-1F9D0..1F9E6  ; Basic_Emoji                  ; face with monocle                                              # E5.0  [23] (🧐..🧦)
-1F9E7..1F9FF  ; Basic_Emoji                  ; red envelope                                                   # E11.0 [25] (🧧..🧿)
-1FA70..1FA73  ; Basic_Emoji                  ; ballet shoes                                                   # E12.0  [4] (🩰..🩳)
+1F9CD..1F9CF  ; Basic_Emoji                  ; person standing..deaf person                                   # E12.0  [3] (🧍..🧏)
+1F9D0..1F9E6  ; Basic_Emoji                  ; face with monocle..socks                                       # E5.0  [23] (🧐..🧦)
+1F9E7..1F9FF  ; Basic_Emoji                  ; red envelope..nazar amulet                                     # E11.0 [25] (🧧..🧿)
+1FA70..1FA73  ; Basic_Emoji                  ; ballet shoes..shorts                                           # E12.0  [4] (🩰..🩳)
 1FA74         ; Basic_Emoji                  ; thong sandal                                                   # E13.0  [1] (🩴)
-1FA78..1FA7A  ; Basic_Emoji                  ; drop of blood                                                  # E12.0  [3] (🩸..🩺)
-1FA7B..1FA7C  ; Basic_Emoji                  ; x-ray                                                          # E14.0  [2] (🩻..🩼)
-1FA80..1FA82  ; Basic_Emoji                  ; yo-yo                                                          # E12.0  [3] (🪀..🪂)
-1FA83..1FA86  ; Basic_Emoji                  ; boomerang                                                      # E13.0  [4] (🪃..🪆)
-1FA90..1FA95  ; Basic_Emoji                  ; ringed planet                                                  # E12.0  [6] (🪐..🪕)
-1FA96..1FAA8  ; Basic_Emoji                  ; military helmet                                                # E13.0 [19] (🪖..🪨)
-1FAA9..1FAAC  ; Basic_Emoji                  ; mirror ball                                                    # E14.0  [4] (🪩..🪬)
-1FAB0..1FAB6  ; Basic_Emoji                  ; fly                                                            # E13.0  [7] (🪰..🪶)
-1FAB7..1FABA  ; Basic_Emoji                  ; lotus                                                          # E14.0  [4] (🪷..🪺)
-1FAC0..1FAC2  ; Basic_Emoji                  ; anatomical heart                                               # E13.0  [3] (🫀..🫂)
-1FAC3..1FAC5  ; Basic_Emoji                  ; pregnant man                                                   # E14.0  [3] (🫃..🫅)
-1FAD0..1FAD6  ; Basic_Emoji                  ; blueberries                                                    # E13.0  [7] (🫐..🫖)
-1FAD7..1FAD9  ; Basic_Emoji                  ; pouring liquid                                                 # E14.0  [3] (🫗..🫙)
-1FAE0..1FAE7  ; Basic_Emoji                  ; melting face                                                   # E14.0  [8] (🫠..🫧)
-1FAF0..1FAF6  ; Basic_Emoji                  ; hand with index finger and thumb crossed                       # E14.0  [7] (🫰..🫶)
+1FA75..1FA77  ; Basic_Emoji                  ; light blue heart..pink heart                                   # E15.0  [3] (🩵..🩷)
+1FA78..1FA7A  ; Basic_Emoji                  ; drop of blood..stethoscope                                     # E12.0  [3] (🩸..🩺)
+1FA7B..1FA7C  ; Basic_Emoji                  ; x-ray..crutch                                                  # E14.0  [2] (🩻..🩼)
+1FA80..1FA82  ; Basic_Emoji                  ; yo-yo..parachute                                               # E12.0  [3] (🪀..🪂)
+1FA83..1FA86  ; Basic_Emoji                  ; boomerang..nesting dolls                                       # E13.0  [4] (🪃..🪆)
+1FA87..1FA88  ; Basic_Emoji                  ; maracas..flute                                                 # E15.0  [2] (🪇..🪈)
+1FA90..1FA95  ; Basic_Emoji                  ; ringed planet..banjo                                           # E12.0  [6] (🪐..🪕)
+1FA96..1FAA8  ; Basic_Emoji                  ; military helmet..rock                                          # E13.0 [19] (🪖..🪨)
+1FAA9..1FAAC  ; Basic_Emoji                  ; mirror ball..hamsa                                             # E14.0  [4] (🪩..🪬)
+1FAAD..1FAAF  ; Basic_Emoji                  ; folding hand fan..khanda                                       # E15.0  [3] (🪭..🪯)
+1FAB0..1FAB6  ; Basic_Emoji                  ; fly..feather                                                   # E13.0  [7] (🪰..🪶)
+1FAB7..1FABA  ; Basic_Emoji                  ; lotus..nest with eggs                                          # E14.0  [4] (🪷..🪺)
+1FABB..1FABD  ; Basic_Emoji                  ; hyacinth..wing                                                 # E15.0  [3] (🪻..🪽)
+1FABF         ; Basic_Emoji                  ; goose                                                          # E15.0  [1] (🪿)
+1FAC0..1FAC2  ; Basic_Emoji                  ; anatomical heart..people hugging                               # E13.0  [3] (🫀..🫂)
+1FAC3..1FAC5  ; Basic_Emoji                  ; pregnant man..person with crown                                # E14.0  [3] (🫃..🫅)
+1FACE..1FACF  ; Basic_Emoji                  ; moose..donkey                                                  # E15.0  [2] (🫎..🫏)
+1FAD0..1FAD6  ; Basic_Emoji                  ; blueberries..teapot                                            # E13.0  [7] (🫐..🫖)
+1FAD7..1FAD9  ; Basic_Emoji                  ; pouring liquid..jar                                            # E14.0  [3] (🫗..🫙)
+1FADA..1FADB  ; Basic_Emoji                  ; ginger root..pea pod                                           # E15.0  [2] (🫚..🫛)
+1FAE0..1FAE7  ; Basic_Emoji                  ; melting face..bubbles                                          # E14.0  [8] (🫠..🫧)
+1FAE8         ; Basic_Emoji                  ; shaking face                                                   # E15.0  [1] (🫨)
+1FAF0..1FAF6  ; Basic_Emoji                  ; hand with index finger and thumb crossed..heart hands          # E14.0  [7] (🫰..🫶)
+1FAF7..1FAF8  ; Basic_Emoji                  ; leftwards pushing hand..rightwards pushing hand                # E15.0  [2] (🫷..🫸)
 00A9 FE0F     ; Basic_Emoji                  ; copyright                                                      # E0.6   [1] (©️)
 00AE FE0F     ; Basic_Emoji                  ; registered                                                     # E0.6   [1] (®️)
 203C FE0F     ; Basic_Emoji                  ; double exclamation mark                                        # E0.6   [1] (‼️)
@@ -35148,11 +35463,12 @@ const seq = `# emoji-sequences.txt
 1F6F0 FE0F    ; Basic_Emoji                  ; satellite                                                      # E0.7   [1] (🛰️)
 1F6F3 FE0F    ; Basic_Emoji                  ; passenger ship                                                 # E0.7   [1] (🛳️)
 
-# Total elements: 1366
+# Total elements: 1386
 
 # ================================================
 
 # Emoji_Keycap_Sequence
+
 
 0023 FE0F 20E3; Emoji_Keycap_Sequence        ; keycap: \\x{23}                                                 # E0.6   [1] (#️⃣)
 002A FE0F 20E3; Emoji_Keycap_Sequence        ; keycap: *                                                      # E2.0   [1] (*️⃣)
@@ -35173,6 +35489,7 @@ const seq = `# emoji-sequences.txt
 
 # RGI_Emoji_Flag_Sequence: This list does not include deprecated or macroregion flags, except for UN and EU.
 # See Annex B of TR51 for more information.
+
 
 1F1E6 1F1E8   ; RGI_Emoji_Flag_Sequence      ; flag: Ascension Island                                         # E2.0   [1] (🇦🇨)
 1F1E6 1F1E9   ; RGI_Emoji_Flag_Sequence      ; flag: Andorra                                                  # E2.0   [1] (🇦🇩)
@@ -35439,6 +35756,7 @@ const seq = `# emoji-sequences.txt
 
 # RGI_Emoji_Tag_Sequence: See Annex C of TR51 for more information.
 
+
 1F3F4 E0067 E0062 E0065 E006E E0067 E007F; RGI_Emoji_Tag_Sequence; flag: England                              # E5.0   [1] (🏴󠁧󠁢󠁥󠁮󠁧󠁿)
 1F3F4 E0067 E0062 E0073 E0063 E0074 E007F; RGI_Emoji_Tag_Sequence; flag: Scotland                             # E5.0   [1] (🏴󠁧󠁢󠁳󠁣󠁴󠁿)
 1F3F4 E0067 E0062 E0077 E006C E0073 E007F; RGI_Emoji_Tag_Sequence; flag: Wales                                # E5.0   [1] (🏴󠁧󠁢󠁷󠁬󠁳󠁿)
@@ -35448,6 +35766,7 @@ const seq = `# emoji-sequences.txt
 # ================================================
 
 # RGI_Emoji_Modifier_Sequence
+
 
 261D 1F3FB    ; RGI_Emoji_Modifier_Sequence  ; index pointing up: light skin tone                             # E1.0   [1] (☝🏻)
 261D 1F3FC    ; RGI_Emoji_Modifier_Sequence  ; index pointing up: medium-light skin tone                      # E1.0   [1] (☝🏼)
@@ -35854,11 +36173,11 @@ const seq = `# emoji-sequences.txt
 1F91C 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; right-facing fist: medium skin tone                            # E3.0   [1] (🤜🏽)
 1F91C 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; right-facing fist: medium-dark skin tone                       # E3.0   [1] (🤜🏾)
 1F91C 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; right-facing fist: dark skin tone                              # E3.0   [1] (🤜🏿)
-1F91D 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; handshake: light skin tone                                     # E3.0   [1] (🤝🏻)
-1F91D 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; handshake: medium-light skin tone                              # E3.0   [1] (🤝🏼)
-1F91D 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; handshake: medium skin tone                                    # E3.0   [1] (🤝🏽)
-1F91D 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; handshake: medium-dark skin tone                               # E3.0   [1] (🤝🏾)
-1F91D 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; handshake: dark skin tone                                      # E3.0   [1] (🤝🏿)
+1F91D 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; handshake: light skin tone                                     # E14.0  [1] (🤝🏻)
+1F91D 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; handshake: medium-light skin tone                              # E14.0  [1] (🤝🏼)
+1F91D 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; handshake: medium skin tone                                    # E14.0  [1] (🤝🏽)
+1F91D 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; handshake: medium-dark skin tone                               # E14.0  [1] (🤝🏾)
+1F91D 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; handshake: dark skin tone                                      # E14.0  [1] (🤝🏿)
 1F91E 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; crossed fingers: light skin tone                               # E3.0   [1] (🤞🏻)
 1F91E 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; crossed fingers: medium-light skin tone                        # E3.0   [1] (🤞🏼)
 1F91E 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; crossed fingers: medium skin tone                              # E3.0   [1] (🤞🏽)
@@ -36094,22 +36413,35 @@ const seq = `# emoji-sequences.txt
 1FAF6 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; heart hands: medium skin tone                                  # E14.0  [1] (🫶🏽)
 1FAF6 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; heart hands: medium-dark skin tone                             # E14.0  [1] (🫶🏾)
 1FAF6 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; heart hands: dark skin tone                                    # E14.0  [1] (🫶🏿)
+1FAF7 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; leftwards pushing hand: light skin tone                        # E15.0  [1] (🫷🏻)
+1FAF7 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; leftwards pushing hand: medium-light skin tone                 # E15.0  [1] (🫷🏼)
+1FAF7 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; leftwards pushing hand: medium skin tone                       # E15.0  [1] (🫷🏽)
+1FAF7 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; leftwards pushing hand: medium-dark skin tone                  # E15.0  [1] (🫷🏾)
+1FAF7 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; leftwards pushing hand: dark skin tone                         # E15.0  [1] (🫷🏿)
+1FAF8 1F3FB   ; RGI_Emoji_Modifier_Sequence  ; rightwards pushing hand: light skin tone                       # E15.0  [1] (🫸🏻)
+1FAF8 1F3FC   ; RGI_Emoji_Modifier_Sequence  ; rightwards pushing hand: medium-light skin tone                # E15.0  [1] (🫸🏼)
+1FAF8 1F3FD   ; RGI_Emoji_Modifier_Sequence  ; rightwards pushing hand: medium skin tone                      # E15.0  [1] (🫸🏽)
+1FAF8 1F3FE   ; RGI_Emoji_Modifier_Sequence  ; rightwards pushing hand: medium-dark skin tone                 # E15.0  [1] (🫸🏾)
+1FAF8 1F3FF   ; RGI_Emoji_Modifier_Sequence  ; rightwards pushing hand: dark skin tone                        # E15.0  [1] (🫸🏿)
 
-# Total elements: 645
+# Total elements: 655
 
 #EOF`;
 
-/** https://unicode.org/Public/emoji/14.0/emoji-zwj-sequences.txt */
+/**
+ * https://unicode.org/Public/emoji/15.0/emoji-zwj-sequences.txt
+ * (Replace `\x` with `\\x` after update.)
+ */
 const seqZwj = `# emoji-zwj-sequences.txt
-# Date: 2021-06-08, 05:19:16 GMT
-# © 2021 Unicode®, Inc.
+# Date: 2022-05-06, 16:14:52 GMT
+# © 2022 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For terms of use, see https://www.unicode.org/terms_of_use.html
 #
 # Emoji ZWJ Sequences for UTS #51
-# Version: 14.0
+# Version: 15.0
 #
-# For documentation and usage, see http://www.unicode.org/reports/tr51
+# For documentation and usage, see https://www.unicode.org/reports/tr51
 #
 # Format:
 #   code_point(s) ; type_field ; description # comments
@@ -37500,6 +37832,7 @@ const seqZwj = `# emoji-zwj-sequences.txt
 1F3F4 200D 2620 FE0F                        ; RGI_Emoji_ZWJ_Sequence  ; pirate flag                                                    # E11.0  [1] (🏴‍☠️)
 1F408 200D 2B1B                             ; RGI_Emoji_ZWJ_Sequence  ; black cat                                                      # E13.0  [1] (🐈‍⬛)
 1F415 200D 1F9BA                            ; RGI_Emoji_ZWJ_Sequence  ; service dog                                                    # E12.0  [1] (🐕‍🦺)
+1F426 200D 2B1B                             ; RGI_Emoji_ZWJ_Sequence  ; black bird                                                     # E15.0  [1] (🐦‍⬛)
 1F43B 200D 2744 FE0F                        ; RGI_Emoji_ZWJ_Sequence  ; polar bear                                                     # E13.0  [1] (🐻‍❄️)
 1F441 FE0F 200D 1F5E8 FE0F                  ; RGI_Emoji_ZWJ_Sequence  ; eye in speech bubble                                           # E2.0   [1] (👁️‍🗨️)
 1F62E 200D 1F4A8                            ; RGI_Emoji_ZWJ_Sequence  ; face exhaling                                                  # E13.1  [1] (😮‍💨)
@@ -37507,7 +37840,7 @@ const seqZwj = `# emoji-zwj-sequences.txt
 1F636 200D 1F32B FE0F                       ; RGI_Emoji_ZWJ_Sequence  ; face in clouds                                                 # E13.1  [1] (😶‍🌫️)
 1F9D1 200D 1F384                            ; RGI_Emoji_ZWJ_Sequence  ; mx claus                                                       # E13.0  [1] (🧑‍🎄)
 
-# Total elements: 13
+# Total elements: 14
 
 #EOF`;
 

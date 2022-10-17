@@ -139,8 +139,8 @@
 	}
 </style>
 
-<dialog class="dialog"
-		bind:this={dialog}
+<dialog bind:this={dialog}
+		class="dialog"
 		style="transform: translateX({x}px) translateY({y}px)"
 		aria-labelledby={id + '_title'}>
 	{#if title != null}

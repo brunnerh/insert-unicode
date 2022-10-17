@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.14.0] - 2022-10-17
+
+- Update Unicode table to version 15 🪈.
+
 ## [0.13.3] - 2022-02-11
 
 - Restore background of fixed headers in identify view.
