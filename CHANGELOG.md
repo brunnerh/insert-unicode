@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.15.0] - 2023-09-15
+
+- Add Emoji variants of insert commands that limit the list of characters to those defined in the Unicode Emoji standard:
+- Add category column to data table.
+
 ## [0.14.0] - 2022-10-17
 
 - Update Unicode table to version 15 🪈.

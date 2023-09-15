@@ -1,8 +1,8 @@
-<script type="text/typescript">
+<script lang="ts">
 	export let kind: ButtonKind = 'primary';
 </script>
 
-<script type="text/typescript" context="module">
+<script lang="ts" context="module">
 	export type ButtonKind = 'primary' | 'secondary';
 </script>
 

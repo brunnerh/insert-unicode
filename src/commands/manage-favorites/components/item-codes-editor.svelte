@@ -1,4 +1,4 @@
-<script type="text/typescript">
+<script lang="ts">
 	import IconButton from '../../../svelte/components/icon-button.svelte';
 	import { close } from '../icons';
 	import { codesToHex } from '../../../utility/code-conversion';

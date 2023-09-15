@@ -40,10 +40,15 @@ The command identifier (used in custom keyboard shortcuts) will be given in pare
 - *Insert Exact* (`insertTextExact`)
 - *Insert Exact as Decimal Code* (`insertDecimalCodeExact`)
 - *Insert Exact as Hex Code* (`insertCodeExact`)
+- *Insert Emoji* (`insertEmojiText`)
+- *Insert Emoji as Decimal Code* (`insertEmojiDecimalCode`)
+- *Insert Emoji as Hex Code* (`insertEmojiHexCode`)
 
 These commands insert Unicode characters as text, decimal or hex codes.
 
-The "exact" variations search for an exact name rather than a substring to facilitate faster insertion when the name is known (particularly useful for custom keyboard shortcuts).
+The "exact" variants search for an exact name rather than a substring to facilitate faster insertion when the name is known (particularly useful for custom keyboard shortcuts).
+
+The "Emoji" variants limit the search to characters classified as [Emoji][3].
 
 Example for *Insert*, searching for `fire`:
 
@@ -51,7 +56,7 @@ Example for *Insert*, searching for `fire`:
 
 When binding a command to a keyboard shortcut, the search string can be provided as an argument. Note that the UI for binding keyboard shortcuts currently does not support setting arguments, so the JSON file has to be edited (execute command `Preferences: Open Keyboard Shortcuts (JSON)`).
 
-E.g. to quickly insert skintone modifier characters:
+E.g. to quickly insert skin tone modifier characters:
 
 ```json
 {
@@ -95,7 +100,7 @@ The buttons prefixed with `+` add new directories/favorite entries respectively.
 
 - *Insert/Replace Text With "Unicode Font"* (`insertFont`)
 
-This command inserts/replaces Latin alphabetic characters with unicode variations that give them another appearance. Whether these characters can be displayed properly depends on the font, of course.
+This command inserts/replaces Latin alphabetic characters with Unicode variants that give them another appearance. Whether these characters can be displayed properly depends on the font, of course.
 
 When the command is invoked the user can select the font style:
 
@@ -200,3 +205,4 @@ In general, if you see a special character or symbol and do not know how to writ
 
  [1]: https://github.com/microsoft/vscode-codicons
  [2]: https://github.com/microsoft/vscode-codicons/blob/master/LICENSE
+ [3]: https://en.wikipedia.org/wiki/Emoji

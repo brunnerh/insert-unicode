@@ -54,6 +54,7 @@ export const insertFavoriteCommandFactory = (codeConverter: (codes: number[]) =>
 							codes: normalized,
 							name: `[${names.join(', ')}]`,
 							aliases: [],
+							category: null,
 						};
 					}
 

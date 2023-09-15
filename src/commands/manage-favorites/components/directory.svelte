@@ -1,4 +1,4 @@
-<script type="text/typescript">
+<script lang="ts">
 	import Item from './item.svelte';
 	import AddButton from './add-button.svelte';
 	import IconButton from '../../../svelte/components/icon-button.svelte';

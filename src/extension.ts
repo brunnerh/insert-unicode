@@ -9,13 +9,16 @@ import { insertFont } from './commands/insert-font';
 import { manageFavorites } from './commands/manage-favorites';
 import { clearRecentlyUsed } from './commands/recently-used';
 import { Context } from './context';
+import { UnicodeEntry } from './data';
 import { migrate } from './migrations';
 import { Keys } from './state';
 import { codesToDecimal, codesToHex, codesToText } from './utility/code-conversion';
+import { isEmoji } from './utility/code-operations';
 import { IdentifyViewProvider } from './views/identify-view';
 
 export function activate(context: vscode.ExtensionContext)
 {
+	console.log('Unicode Tools activated.')
 	Context.set(context);
 
 	const previousVersion = context.globalState.get<string>(Keys.lastVersion);
@@ -25,13 +28,18 @@ export function activate(context: vscode.ExtensionContext)
 
 	const register = vscode.commands.registerTextEditorCommand;
 
+	const emojiFilter = (item: UnicodeEntry) => isEmoji(item.codes);
+
 	const tokens = [
-		register('insert-unicode.insertText', insertCommandFactory(codesToText, false)),
-		register('insert-unicode.insertTextExact', insertCommandFactory(codesToText, true)),
-		register('insert-unicode.insertCode', insertCommandFactory(codesToHex, false)),
-		register('insert-unicode.insertCodeExact', insertCommandFactory(codesToHex, true)),
-		register('insert-unicode.insertDecimalCode', insertCommandFactory(codesToDecimal, false)),
-		register('insert-unicode.insertDecimalCodeExact', insertCommandFactory(codesToDecimal, true)),
+		register('insert-unicode.insertText', insertCommandFactory(codesToText, null, false)),
+		register('insert-unicode.insertTextExact', insertCommandFactory(codesToText, null, true)),
+		register('insert-unicode.insertCode', insertCommandFactory(codesToHex, null, false)),
+		register('insert-unicode.insertCodeExact', insertCommandFactory(codesToHex, null, true)),
+		register('insert-unicode.insertDecimalCode', insertCommandFactory(codesToDecimal, null, false)),
+		register('insert-unicode.insertDecimalCodeExact', insertCommandFactory(codesToDecimal, null, true)),
+		register('insert-unicode.insertEmojiText', insertCommandFactory(codesToText, emojiFilter, false)),
+		register('insert-unicode.insertEmojiDecimalCode', insertCommandFactory(codesToDecimal, emojiFilter, false)),
+		register('insert-unicode.insertEmojiHexCode', insertCommandFactory(codesToHex, emojiFilter, false)),
 
 		register('insert-unicode.insertFavoriteText', insertFavoriteCommandFactory(codesToText)),
 		register('insert-unicode.insertFavoriteDecimalCode', insertFavoriteCommandFactory(codesToDecimal)),

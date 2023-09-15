@@ -1,4 +1,4 @@
-<script type="text/typescript">
+<script lang="ts">
 	import Dialog from '../../../svelte/components/dialog.svelte';
 	import IconButton from '../../../svelte/components/icon-button.svelte';
 	import ItemCodesEditor from './item-codes-editor.svelte';

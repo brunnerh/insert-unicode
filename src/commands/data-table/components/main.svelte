@@ -1,12 +1,12 @@
-<script type="text/typescript">
-	import { onMount } from 'svelte';
-	import { codesToHex, codesToText } from '../../../utility/code-conversion';
-	import { RevoGrid } from '@revolist/svelte-datagrid';
-	import type * as revo  from '@revolist/revogrid/dist/types/interfaces';
+<script lang="ts">
+	import type * as revo from '@revolist/revogrid/dist/types/interfaces';
 	import { defineCustomElements } from '@revolist/revogrid/loader';
-	import type { UnicodeEntry } from '../../../data';
-	import { messageBus } from '../utility/message-bus';
+	import { RevoGrid } from '@revolist/svelte-datagrid';
+	import { onMount } from 'svelte';
+	import { unicodeCategoryLabels, type UnicodeCategory, type UnicodeEntry } from '../../../data';
 	import { vscode } from '../../../svelte/utility/vscode-api';
+	import { codesToHex, codesToText } from '../../../utility/code-conversion';
+	import { messageBus } from '../utility/message-bus';
 
 	const columns = <revo.RevoGrid.ColumnRegular[]>[
 		{
@@ -30,6 +30,15 @@
 			name: 'Character',
 			size: 200,
 			cellTemplate: (c, props) => codesToText(props.model[props.prop] ?? []),
+			autoSize: true,
+		},
+		{
+			prop: 'category',
+			name: 'Category',
+			size: 200,
+			cellTemplate: (c, props) =>
+				unicodeCategoryLabels[props.model[props.prop] as UnicodeCategory] ?? '',
+			sortable: true,
 			autoSize: true,
 		},
 		{

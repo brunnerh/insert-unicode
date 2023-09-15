@@ -1,26 +1,41 @@
 import { QuickPickOptions, window } from 'vscode';
 import { Config } from '../config';
-import { data } from '../data';
+import { UnicodeEntry, data } from '../data';
 import { insert } from '../utility/editor';
-import { showPaginatedQuickPick, unicodeEntryToQuickPick } from '../utility/quick-pick';
+import { UnicodeQuickPickItem, showPaginatedQuickPick, unicodeEntryToQuickPick } from '../utility/quick-pick';
 import { CommandCallback } from './command-callback';
-import { isSkintoneModifier } from '../utility/code-operations';
+import { isSkinToneModifier } from '../utility/code-operations';
 import { RecentlyUsed } from '../utility/recently-used-list';
 
-const allDataQuickPicks = data.map(unicodeEntryToQuickPick);
+const allQuickPicks = data.map(unicodeEntryToQuickPick);
 
-const getDataQuickPicks = () =>
+const quickPicksByFilter = new Map<Function | null, UnicodeQuickPickItem[]>([
+	[null, allQuickPicks],
+]);
+
+function getQuickPicks(preFilter: ((item: UnicodeEntry) => boolean) | null)
 {
-	// NOTE: Can be optimized. Slice is not necessary,
-	//       when any filtering/mapping happens before the sort.
-	let picks = allDataQuickPicks.slice();
+	if (quickPicksByFilter.has(preFilter) === false)
+		quickPicksByFilter.set(preFilter, allQuickPicks.filter(item => preFilter!(item.entry)));
+
+	return quickPicksByFilter.get(preFilter)!;
+}
+
+/**
+ * Gets the quick picks for the characters according to user settings.
+ * @param preFilter Filter that is always applied to the list of characters.
+ * @returns The quick picks for the characters.
+ */
+function getUserQuickPicks(preFilter: ((item: UnicodeEntry) => boolean) | null)
+{
+	let picks = getQuickPicks(preFilter).slice();
 
 	if (Config.section.get('include-sequences') === false)
 		picks = picks.filter(item => item.entry.codes.length === 1);
 
 	if (Config.section.get('include-skin-tone-variants') === false)
 		picks = picks.filter(item => item.entry.codes.length === 1
-			|| item.entry.codes.some(isSkintoneModifier) === false);
+			|| item.entry.codes.some(isSkinToneModifier) === false);
 
 	if (Config.section.get('enableAliases') === false)
 		picks = picks.map(p =>
@@ -46,9 +61,14 @@ const getDataQuickPicks = () =>
 /**
  * Creates a command function with the specified settings.
  * @param codeConverter Conversion from selected Unicode code to text to insert into the editor.
+ * @param preFilter Filter that is always applied to the list of characters.
  * @param matchExact Whether to search the Unicode characters for the exact search term.
  */
-export const insertCommandFactory = (codeConverter: (codes: number[]) => string, matchExact: boolean): CommandCallback =>
+export const insertCommandFactory = (
+	codeConverter: (codes: number[]) => string,
+	preFilter: ((item: UnicodeEntry) => boolean) | null,
+	matchExact: boolean,
+): CommandCallback =>
 	async (editor, _edit, ...args) =>
 	{
 		const search = <string | object>args[0];
@@ -79,15 +99,14 @@ export const insertCommandFactory = (codeConverter: (codes: number[]) => string,
 		 */
 		const select = async (search?: string) =>
 		{
-			let pickItems = getDataQuickPicks();
+			let pickItems = getUserQuickPicks(preFilter);
 
 			if (search !== undefined)
 			{
 				const searchNormalized = search.toUpperCase();
-				pickItems = pickItems.filter(quickPick =>
-					matchExact
-						? quickPick.entry.name.toUpperCase() === searchNormalized
-						: quickPick.entry.name.toUpperCase().indexOf(searchNormalized) !== -1
+				pickItems = pickItems.filter(quickPick => matchExact
+					? quickPick.entry.name.toUpperCase() === searchNormalized
+					: quickPick.entry.name.toUpperCase().indexOf(searchNormalized) !== -1
 				);
 
 				// Instant insert on exact match

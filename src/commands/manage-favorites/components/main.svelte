@@ -1,4 +1,4 @@
-<script type="text/typescript">
+<script lang="ts">
 	import Directory from './directory.svelte';
 	import Button from '../../../svelte/components/button.svelte';
 	import { messageBus } from '../utility/message-bus';

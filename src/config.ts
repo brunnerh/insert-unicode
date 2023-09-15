@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import type { ConfigurationTarget } from "vscode";
 import type { UnicodeEntry } from './data';
-import { isSkintoneModifier } from './utility/code-operations';
+import { isSkinToneModifier } from './utility/code-operations';
 
 export class Config
 {
@@ -26,7 +26,7 @@ export class Config
 
 		if (Config.section.get('include-skin-tone-variants') === false)
 			filtered = filtered.filter(entry => entry.codes.length === 1
-				|| entry.codes.some(isSkintoneModifier) === false);
+				|| entry.codes.some(isSkinToneModifier) === false);
 
 		return filtered;
 	}

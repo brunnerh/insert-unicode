@@ -2,7 +2,7 @@
 	"name": "insert-unicode",
 	"displayName": "Insert Unicode",
 	"description": "Search for unicode characters and insert them into documents.",
-	"version": "0.14.0",
+	"version": "0.15.0",
 	"publisher": "brunnerh",
 	"license": "MIT",
 	"icon": "icon/icon.png",
@@ -24,6 +24,9 @@
 		"onCommand:insert-unicode.insertTextExact",
 		"onCommand:insert-unicode.insertDecimalCodeExact",
 		"onCommand:insert-unicode.insertCodeExact",
+		"onCommand:insert-unicode.insertEmojiText",
+		"onCommand:insert-unicode.insertEmojiDecimalCode",
+		"onCommand:insert-unicode.insertEmojiHexCode",
 		"onCommand:insert-unicode.insertFavoriteText",
 		"onCommand:insert-unicode.insertFavoriteDecimalCode",
 		"onCommand:insert-unicode.insertFavoriteHexCode",
@@ -61,6 +64,18 @@
 			{
 				"command": "insert-unicode.insertCodeExact",
 				"title": "Insert Unicode: Insert Exact as Hex Code"
+			},
+			{
+				"command": "insert-unicode.insertEmojiText",
+				"title": "Insert Unicode: Insert Emoji"
+			},
+			{
+				"command": "insert-unicode.insertEmojiDecimalCode",
+				"title": "Insert Unicode: Insert Emoji as Decimal Code"
+			},
+			{
+				"command": "insert-unicode.insertEmojiHexCode",
+				"title": "Insert Unicode: Insert Emoji as Hex Code"
 			},
 			{
 				"command": "insert-unicode.insertFavoriteText",

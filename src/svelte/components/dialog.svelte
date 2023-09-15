@@ -1,4 +1,4 @@
-<script type="text/typescript">
+<script lang="ts">
 	/**
 	 * Dialog Component
 	 *
@@ -106,7 +106,7 @@
 	});
 </script>
 
-<script type="text/typescript" context="module">
+<script lang="ts" context="module">
 	export interface ButtonDefinition
 	{
 		value: string;
