@@ -2,7 +2,7 @@
 	"name": "insert-unicode",
 	"displayName": "Insert Unicode",
 	"description": "Search for unicode characters and insert them into documents.",
-	"version": "0.15.0",
+	"version": "0.15.1",
 	"publisher": "brunnerh",
 	"license": "MIT",
 	"icon": "icon/icon.png",
@@ -12,32 +12,12 @@
 		"url": "https://github.com/brunnerh/insert-unicode.git"
 	},
 	"engines": {
-		"vscode": "^1.72.0"
+		"vscode": "^1.75.0"
 	},
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [
-		"onCommand:insert-unicode.insertText",
-		"onCommand:insert-unicode.insertDecimalCode",
-		"onCommand:insert-unicode.insertCode",
-		"onCommand:insert-unicode.insertTextExact",
-		"onCommand:insert-unicode.insertDecimalCodeExact",
-		"onCommand:insert-unicode.insertCodeExact",
-		"onCommand:insert-unicode.insertEmojiText",
-		"onCommand:insert-unicode.insertEmojiDecimalCode",
-		"onCommand:insert-unicode.insertEmojiHexCode",
-		"onCommand:insert-unicode.insertFavoriteText",
-		"onCommand:insert-unicode.insertFavoriteDecimalCode",
-		"onCommand:insert-unicode.insertFavoriteHexCode",
-		"onCommand:insert-unicode.manageFavorites",
-		"onCommand:insert-unicode.insertFont",
-		"onCommand:insert-unicode.fromHexCode",
-		"onCommand:insert-unicode.identify",
-		"onCommand:insert-unicode.dataTable",
-		"onCommand:insert-unicode.clearRecentlyUsed",
-		"onView:insert-unicode.identifyView"
-	],
+	"activationEvents": [],
 	"main": "./out/extension",
 	"contributes": {
 		"commands": [

@@ -43521,6 +43521,12 @@ export interface UnicodeEntry
 	aliases: string[];
 }
 
+export type EmojiType =
+	| 'fully-qualified'
+	| 'unqualified'
+	| 'minimally-qualified'
+	| 'component'
+
 const stripComments = (line: string): string => line.replace(/#.*$/, '');
 const filterEmptyLines = (line: string): boolean => line.match(/^\s*$/) === null;
 
@@ -43612,10 +43618,13 @@ export const data = str.split('\n')
 /**
  * List of emoji derived from `emoji-test.txt`.
  */
-export const emojiCodes = emojiTest.split('\n')
+export const emoji = emojiTest.split('\n')
 	.map(stripComments)
 	.filter(filterEmptyLines)
-	.map(line => line.split(';'))
-	.map(([sequence]) => sequence.trim()
-		.split(' ')
-		.map(code => parseInt(code, 16)));
+	.map(line => line.split(';').map(p => p.trim()))
+	.map(([sequence, type]) => ({
+		codes: sequence
+			.split(' ')
+			.map(code => parseInt(code, 16)),
+		type: type as EmojiType,
+	}));
